@@ -3,7 +3,7 @@
 
 This project is a **website designed to showcase a luxury car rental catalog**.
 
-It allows users to explore different models, apply filters to find vehicles by brand or type, and access pages with **detailed information about each car such as its name, model, specifications, and price**.
+It allows users to explore different models, apply filters to find vehicles by brand or type, and access pages with **detailed information about each car such as its name, model, specifications and price**.
 
 ---
 ##
