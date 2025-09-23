@@ -3,7 +3,7 @@
 
 This project is a **website designed to showcase a luxury car rental catalog**.
 
-It allows users to explore different models, apply filters to find vehicles by brand or type, and access pages with **detailed information about each car such as its name, model, specifications and price**.
+It allows users to explore different models, apply filters to find vehicles by brand or type, and access pages with detailed information about each car such as **its name, model, specifications and price**.
 
 ---
 ##
@@ -23,6 +23,8 @@ It allows users to explore different models, apply filters to find vehicles by b
 - **HTML5**
 - **CSS3** (with responsive design)
 - **JavaScript** (for interactivity and filtering)
+- **Node.js** (to create a scalable backend environment for the webapp)
+- **Bootstrap** (to allow for easier frontend tampering)
 
 ---
 ##
@@ -30,10 +32,10 @@ It allows users to explore different models, apply filters to find vehicles by b
 # Project Prototype Structure
 📁 **luxury-cars-project**  
 ├── 📁 **assets** # Images, icons, and multimedia resources  
-├── 📁 **css** # Stylesheets  
-├── 📁 **js** # JavaScript functionality  
-├── 📁 **pages** # Individual pages with information about each car  
-├── **index.html** # Main page (catalog)  
+├── 📁 **css** # Stylesheets for the static pages
+├── 📁 **js** # JavaScript functionality to allow for interaction with the webapp
+├── 📁 **pages** # Individual pages with information about each car 
+├── **index.html** # Main page (car catalog) 
 └── **README.md** # Project documentation
 
 ---
