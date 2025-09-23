@@ -32,10 +32,10 @@ It allows users to explore different models, apply filters to find vehicles by b
 # Project Prototype Structure
 📁 **luxury-cars-project**  
 ├── 📁 **assets** # Images, icons, and multimedia resources  
-├── 📁 **css** # Stylesheets for the static pages
-├── 📁 **js** # JavaScript functionality to allow for interaction with the webapp
-├── 📁 **pages** # Individual pages with information about each car 
-├── **index.html** # Main page (car catalog) 
+├── 📁 **css** # Stylesheets for the static pages  
+├── 📁 **js** # JavaScript functionality to allow for interaction with the webapp  
+├── 📁 **pages** # Individual pages with information about each car  
+├── **index.html** # Main page (car catalog)  
 └── **README.md** # Project documentation
 
 ---
