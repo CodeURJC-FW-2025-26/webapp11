@@ -33,18 +33,18 @@ It allows users to explore different models, apply filters to find vehicles by b
 👥
 # Team Members
 - Ramón Nieto Villegas
-- r.nieto.2023@alumnos.urjc.es
-- GITHUB: Ramoniet
+  - r.nieto.2023@alumnos.urjc.es
+  - GITHUB: Ramoniet
   
 - Adrián Varea Fernández
-- a.varea.2023@alumnos.urjc.es
-- GITHUB: blodresg
+  - a.varea.2023@alumnos.urjc.es
+  - GITHUB: blodresg
   
 - Jorge Mariscal Rubiales
-- j.mariscalr.2023@alumnos.urjc.es
-- GITHUB: jormarrub
+  - j.mariscalr.2023@alumnos.urjc.es
+  - GITHUB: jormarrub
   
 - Ángel Murciano Baena
-- a.murciano.2021@alumnos.urjc.es
-- GITHUB: Angel-Murciano
+  - a.murciano.2021@alumnos.urjc.es
+  - GITHUB: Angel-Murciano
 
