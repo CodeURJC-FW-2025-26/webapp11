@@ -9,11 +9,30 @@ It allows users to explore different models, apply filters to find vehicles by b
 ##
 🚀
 # Features
-- **Main entity**: Car brands including a name, short description, brand logo, and country of origin.
-- **Secondary entity**: Brand models with their name, images, year, description, horsepower, technical specifications, rental conditions, interesting facts and daily price. This relationship exists because a brand is composed of multiple models.
 - **Interactive catalog**: A clear and visually appealing gallery of luxury cars.
-- **Filtering options**: Search for a specific vehicle, filter by brand, vehicle type, price range, or horsepower.
+- **Filtering options**: Search for a specific vehicle, filter by brand, vehicle type, price range.
 - **Detail pages**: Individual pages for each car with specifications, images, and interesting facts.
+
+---
+##
+🗒️
+# Entities
+- **Main entity**: Car brands.
+  * Attributes:
+    - `name`
+    - `description`
+    - `logo`
+    - `country of origin`
+- **Secondary entity**: Brand models.
+  * Attributes:
+    - `name`
+    - `image`
+    - `year of release`
+    - `description`
+    - `technical specifications`
+    - `rental conditions`
+    - `interesting facts`
+    - `daily price`
 
 ---
 ##
