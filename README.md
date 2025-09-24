@@ -17,13 +17,13 @@ It allows users to explore different models, apply filters to find vehicles by b
 ##
 🗒️
 # Entities
-- **Main entity**: Car brands.
+- **Main entity**: Car brand.
   * Attributes:
     - `name`
     - `description`
     - `logo`
     - `country of origin`
-- **Secondary entity**: Brand models.
+- **Secondary entity**: Model.
   * Attributes:
     - `name`
     - `image`
