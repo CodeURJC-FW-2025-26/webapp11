@@ -20,7 +20,7 @@ It allows users to explore different models, apply filters to find vehicles by b
 🛠
 # Technologies Used
 - Organization tool
-- https://trello.com/invite/b/68d40b2fe84a1401258327db/ATTI44ec42f5c5cc14ba77241a4026bee2112BD84F40/mi-tablero-de-trello
+  - https://trello.com/invite/b/68d40b2fe84a1401258327db/ATTI44ec42f5c5cc14ba77241a4026bee2112BD84F40/mi-tablero-de-trello
 - **HTML5**
 - **CSS3** (with responsive design)
 - **JavaScript** (for interactivity and filtering)
