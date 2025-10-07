@@ -1,19 +1,22 @@
 /* Vista de containers para evitar problemas de tamaño */
-[class^="col"]{
+/* [class^="col"]{
     border: 1px solid black;
     text-align: center;
-}
+} */
 
 /* Normal CSS */
+.body {
+    background-color: #AAAAAA;
+    color: #000000;
+}
+
 .section {
     align-items: space-evenly;
 }
 
-.container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    justify-content: space-around;
+.brands {
+    background-color: lavender;
+    padding: 20px;
 }
 
 .brand-card {
@@ -37,4 +40,15 @@
     text-align: center;
     margin-bottom: 10px;
     
+}
+
+.brand-card img {
+    width: 100px;
+    height: 100px;
+}
+
+/* BootStrap CSS property override */
+.row {
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
