@@ -1,0 +1,29 @@
+/* Vista de containers para evitar problemas de tamaño */
+[class^="col"]{
+    border: 1px solid black;
+    text-align: center;
+}
+
+/* Normal CSS */
+.section {
+    align-items: space-evenly;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-content: space-around;
+}
+
+.brand-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(145, 144, 144);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: transform 0.2s;
+}
