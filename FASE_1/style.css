@@ -27,3 +27,14 @@
     border-radius: 5px;
     transition: transform 0.2s;
 }
+
+.brands h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    
+}
+.brands h4 {
+    text-align: center;
+    margin-bottom: 10px;
+    
+}
