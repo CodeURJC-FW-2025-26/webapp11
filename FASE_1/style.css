@@ -1,22 +1,25 @@
 /* Vista de containers para evitar problemas de tamaño */
-/* [class^="col"]{
+/*[class^="col"]{
     border: 1px solid black;
     text-align: center;
-} */
-
-/* Normal CSS */
-.body {
-    background-color: #AAAAAA;
-    color: #000000;
 }
-
+*/
+/* Normal CSS */
 .section {
     align-items: space-evenly;
 }
 
-.brands {
-    background-color: lavender;
-    padding: 20px;
+.luxecars{
+    text-align: center;
+    background-color: #AAAAAA;
+    color: #000000;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-content: space-around;
 }
 
 .brand-card {
@@ -29,13 +32,6 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     transition: transform 0.2s;
-}
-
-.container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    justify-content: space-around;
 }
 
 .brands h1 {
@@ -57,5 +53,6 @@
 /* BootStrap CSS property override */
 .row {
     margin-bottom: 5px;
+
     margin-top: 5px;
 }
