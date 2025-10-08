@@ -56,3 +56,48 @@
 
     margin-top: 5px;
 }
+
+.header-index {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Empuja el contenido hacia abajo */
+    align-items: center;       /* Centra horizontalmente */
+    height: 300px;             /* Ajusta la altura según lo que necesites */
+    color: white;
+    padding: 100px 0;
+    margin-bottom: 5px;
+    background-image: url('https://cdnb.artstation.com/p/assets/images/images/051/948/409/large/rogari-ferrari-dark1-shopped2.jpg?1658574622');
+   background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+   
+}
+
+.main-title-index {
+    text-align: center;
+    margin-bottom: 0px; /* Espacio desde el fondo, ajusta si quieres */
+    color: white;        /* Opcional, para mejor contraste */
+}
+
+.header-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Empuja el contenido hacia abajo */
+    align-items: center;       /* Centra horizontalmente */
+    height: 300px;             /* Ajusta la altura según lo que necesites */
+    color: white;
+    padding: 100px 0;
+    margin-bottom: 5px;
+    background-image: url('https://images.unsplash.com/photo-1553198194-1b81858f6436?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmFpbnklMjByb2FkfGVufDB8fDB8fHww');
+   background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+   
+}
+
+.main-title-info {
+    text-align: center;
+    margin-bottom: 0px; /* Espacio desde el fondo, ajusta si quieres */
+    color: white;        /* Opcional, para mejor contraste */
+}
+
