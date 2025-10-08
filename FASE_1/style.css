@@ -1,63 +1,15 @@
-/* Vista de containers para evitar problemas de tamaño */
-/*[class^="col"]{
-    border: 1px solid black;
-    text-align: center;
-}
-*/
-/* Normal CSS */
-.section {
-    align-items: space-evenly;
-}
-
-.luxecars{
-    text-align: center;
-    background-color: #AAAAAA;
-    color: #000000;
+/* ==== GLOBAL CSS STYLES ==== */
+body.luxecars { /* Body style */
+  background-color: #fafafa;
+  color: #111;
+  font-family: "Poppins", "Helvetica Neue", sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
 
-.container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    justify-content: space-around;
-}
-
-.brand-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: rgb(145, 144, 144);
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: transform 0.2s;
-}
-
-.brands h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    
-}
-.brands h4 {
-    text-align: center;
-    margin-bottom: 10px;
-    
-}
-
-.brand-card img {
-    width: 100px;
-    height: 100px;
-}
-
-/* BootStrap CSS property override */
-.row {
-    margin-bottom: 5px;
-
-    margin-top: 5px;
-}
-
-.header-index {
+/* ==== HEADER INDEX STYLES ==== */
+.header-index { /* Header from index style */
     display: flex;
     flex-direction: column;
     justify-content: flex-end; /* Empuja el contenido hacia abajo */
@@ -70,34 +22,173 @@
    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    position: relative;
+}
+
+
+.header-index::before { /* Dark overlay effect */
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.main-title-index { /* Title index position */
+  position: relative;
+  z-index: 1;
+}
+
+.main-title-index h2 { /* Main title index style */
+  font-size: 3.5rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: #f5f5f5;
+  text-transform: uppercase;
+}
+
+.main-title-index p { /* Subtitle index style */ 
+  font-size: 1.1rem;
+  color: #ddd;
+  margin-top: 15px;
+}
+
+/* ==== HEADER INFO STYLES ==== */
+.header-info { /* Header from info style */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Push the content below */
+  align-items: center;       /* Horizontally center */
+  height: 300px;             /* Adjust to required height */
+  color: white;
+  padding: 100px 0;
+  margin-bottom: 5px;
+  background-image: url('https://images.unsplash.com/photo-1553198194-1b81858f6436?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmFpbnklMjByb2FkfGVufDB8fDB8fHww');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
    
 }
 
-.main-title-index {
-    text-align: center;
-    margin-bottom: 0px; /* Espacio desde el fondo, ajusta si quieres */
-    color: white;        /* Opcional, para mejor contraste */
+.main-title-info { /* Title info position */
+  position: relative;
+  z-index: 1;
 }
 
-.header-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end; /* Empuja el contenido hacia abajo */
-    align-items: center;       /* Centra horizontalmente */
-    height: 300px;             /* Ajusta la altura según lo que necesites */
-    color: white;
-    padding: 100px 0;
-    margin-bottom: 5px;
-    background-image: url('https://images.unsplash.com/photo-1553198194-1b81858f6436?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmFpbnklMjByb2FkfGVufDB8fDB8fHww');
-   background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-   
+.main-title-info h2 { /* Main title info style */
+  font-size: 3.5rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: #f5f5f5;
+  text-transform: uppercase;
 }
 
-.main-title-info {
-    text-align: center;
-    margin-bottom: 0px; /* Espacio desde el fondo, ajusta si quieres */
-    color: white;        /* Opcional, para mejor contraste */
+.main-title-info p { /* Subtitle info style */ 
+  font-size: 1.1rem;
+  color: #ddd;
+  margin-top: 15px;
+}
+
+
+/* ==== NAVBAR ==== */
+.row { /* Navbar container style */
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.btn-group .btn { /* Navbar button style */
+  border: none;
+  border-radius: 30px;
+  padding: 0.5rem 1.2rem;
+  background-color: transparent;
+  color: #111;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-group .btn:hover { /* Navbar button hover effect */
+  background-color: #111;
+  color: #fff;
+}
+
+/* ==== BRANDS SECTION ==== */
+.brands { /* Brands section style */
+  padding: 60px 0;
+  background-color: #fafafa;
+}
+
+.brands h2 { /* Brands section title style */
+  font-size: 2.2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+  color: #111;
+}
+
+/* ==== BRAND GRID ==== */
+.container { /* Container for the grid of brand cards */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  padding: 0 40px;
+}
+
+.brand-card { /* Individual brand card style */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 30px 20px;
+  transition: all 0.3s ease;
+}
+
+.brand-card:hover { /* Hover effect when the mouse passes over the image */
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+}
+
+.brand-card img { /* Adds grayscale to the images */
+  width: 100px;
+  height: auto;
+  filter: grayscale(100%);
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+
+.brand-card:hover img { /* Erase the grayscale when the mouse passes over the image */
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.brand-card span { /* Changes the style of the text under each image (spans inside class brand-card)*/
+  margin-top: 15px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+/* ==== FOOTER ==== */
+footer { /* Footer style */
+  padding: 30px 0;
+  background-color: #fff;
+  border-top: 1px solid #eee;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 768px) { /* Adjustments for smaller screens */
+  .main-title-index h2 {
+    font-size: 2.5rem;
+  }
+  .main-title-index p {
+    font-size: 1rem;
+  }
+  .container {
+    gap: 25px;
+  }
 }
 

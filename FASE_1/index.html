@@ -1,122 +1,95 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Luxecars</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LuxeCars | Luxury Car Renting</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="luxecars">
 
+    <!-- HEADER -->
     <header class="header-index">
-        
         <div class="main-title-index">
-            
-            <h2 class="display-2">Luxecars</h2>
-            <p>Discover the freedom and bravery of driving a luxury car.</p>
-           
+            <h2>LuxeCars</h2>
+            <p>Experience the Art of Driving Luxury</p>
         </div>
     </header>
 
-        <div class="row">
-            <div class="col-md col-sm">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="index.html">
-                    <button type="button" class="btn btn-primary">Brands</button>
-                    </a>
-                    <a href="info.html">
-                    <button type="button" class="btn btn-primary">Models</button>
-                    </a>
-                    <button type="button" class="btn btn-primary">About us</button>
-                </div>
-            </div>
+    <!-- NAVIGATION BAR -->
+    <div class="row justify-content-center">
+        <div class="btn-group" role="group" aria-label="Navigation">
+            <a href="index.html" class="btn">Brands</a>
+            <a href="info.html" class="btn">Models</a>
+            <a href="#contact" class="btn">Contact</a>
         </div>
-
-    <main>
-
-        <!-- Brands section -->
-        <section class="brands" style="background-color: lavender; padding: 20px;">
-            <h2>BRANDS</h2>
-            <div class="container">
-                <div class="brand-card">
-                    <span>Ferrari</span>
-                    <a href="info.html">
-                        <img src="https://images.seeklogo.com/logo-png/51/2/ferrari-logo-png_seeklogo-512505.png"
-                            alt="ferrari" style="width:150px;height:150px;">
-                    </a>
-                    
-                </div>
-                <div class="brand-card">
-                    <span>Lamborghini</span>
-                    <a href="info.html">
-                        <img src="https://logos-world.net/wp-content/uploads/2021/03/Lamborghini-Emblem.png"
-                            alt="Lamborghini" style="width:225px;height:150px;">
-                    </a>
-                
-                </div>
-                <div class="brand-card">
-                    <span>Mclaren</span>
-                    <a href="info.html">
-                        <img src="https://logodownload.org/wp-content/uploads/2022/02/mclaren-logo-0.png" alt="mclaren"
-                            style="width:200px;height:150px;">
-                    </a>
-                   
-                </div>
-                <div class="brand-card">
-                    <span>Porsche</span>
-                    <a href="info.html">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Porsche_hood_emblem.png"
-                            alt="porsche" style="width:100px;height:100px;">
-                    </a>
-                    
-                </div>
-                <div class="brand-card">
-                    <span>Aston Martin</span>
-                    <a href="info.html">
-                        <img src="https://cdn.worldvectorlogo.com/logos/aston-martin-1.svg" alt="aston martin"
-                            style="width:150px;height:100px;">
-                    </a>
-                    
-                </div>
-                <div class="brand-card">
-                    <span>BMW</span>
-                    <a href="info.html">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/1015px-BMW.svg.png"
-                            alt="bmw" style="width:75px;height:75px;">
-                    </a>
-                    
-                </div>
-                <div class="brand-card">
-                    <span>Audi</span>
-                    <a href="info.html">
-                        <img src="https://cdn.freebiesupply.com/logos/large/2x/audi-14-logo-black-and-white.png"
-                            alt="Audi" style="width:150px;height:100px;">
-                    </a>
-                    
-                </div>
-                <div class="brand-card">
-                    <span>Mercedes</span>
-                    <a href="info.html">
-                        <img src="https://i.pinimg.com/originals/f8/c5/48/f8c5480be81bef4196cddd030f4c0365.png"
-                            alt="mercedes" style="width:100px;height:100px;">
-                    </a>
-                    
-                </div>
-                <div class="brand-card">
-                    <span>Rolls Royce</span>
-                    <a href="info.html">
-                        <img src="https://images.seeklogo.com/logo-png/29/2/rolls-royce-logo-png_seeklogo-299337.png"
-                            alt="rolls royce" style="width:100px;height:100px;">
-                    </a>
-                    
-                </div>
-
-        <!-- Add more brands here -->
     </div>
-</body>
 
+    
+
+    <!-- BRANDS -->
+    <section class="brands">
+        <h2>Our Luxury Brands</h2>
+        <div class="container">
+
+            <a href="info.html#ferrari" class="brand-card">
+                <img src="https://i.blogs.es/74232c/ferrari-cars-logo-emblem/650_1200.jpg" alt="ferrari">
+                <span>Ferrari</span>
+            </a>
+                    
+            <a href="info.html#lamborghini" class="brand-card">
+                <img src="https://i.etsystatic.com/36048535/r/il/363e2b/3996337472/il_fullxfull.3996337472_qifn.jpg" alt="Lamborghini">          
+                <span>Lamborghini</span>
+            </a>
+                
+            <a href="info.html#mclaren" class="brand-card">
+                <img src="https://logodownload.org/wp-content/uploads/2022/02/mclaren-logo-0.png" alt="mclaren">
+                <span>Mclaren</span>
+            </a>
+                   
+            <a href="info.html#porsche" class="brand-card">
+                <img src="https://i.pinimg.com/736x/9c/bc/4c/9cbc4c53ec35540abb9500b7a834dae6.jpg" alt="porsche">
+                <span>Porsche</span>
+            </a>
+                    
+            <a href="info.html#astonmartin" class="brand-card">
+                <img src="https://images.icon-icons.com/2402/PNG/512/aston_martin_logo_icon_145844.png" alt="aston martin">
+                
+                <span>Aston Martin</span>
+            </a>
+                    
+            <a href="info.html#bmw" class="brand-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/1015px-BMW.svg.png" alt="bmw">
+                <span>BMW</span>
+            </a>
+                    
+            <a href="info.html#audi" class="brand-card">
+                <img src="https://cdn.freebiesupply.com/logos/large/2x/audi-14-logo-black-and-white.png" alt="Audi">
+                <span>Audi</span>
+            </a>
+               
+                        
+            <a href="info.html#mercedes" class="brand-card">
+                <img src="https://i.pinimg.com/originals/f8/c5/48/f8c5480be81bef4196cddd030f4c0365.png" alt="mercedes">
+                <span>Mercedes</span>
+            </a>
+                   
+            <a href="info.html#rollsroyce" class="brand-card">
+                <img src="https://images.seeklogo.com/logo-png/29/2/rolls-royce-logo-png_seeklogo-299337.png" alt="rolls royce">
+                <span>Rolls-Royce</span>
+            </a>
+                    
+            <!-- Add more brands here -->
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        © 2025 LuxeCars. All rights reserved. 
+    </footer>
+
+</body>
 </html>
