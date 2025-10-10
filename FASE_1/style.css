@@ -12,13 +12,13 @@ body.luxecars { /* Body style */
 .header-index { /* Header from index style */
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Empuja el contenido hacia abajo */
-    align-items: center;       /* Centra horizontalmente */
-    height: 300px;             /* Ajusta la altura según lo que necesites */
+    justify-content: flex-end; 
+    align-items: center;       
+    height: 175px;            
     color: white;
-    padding: 100px 0;
+    padding: 20px 0;
     margin-bottom: 5px;
-    background-image: url('https://cdnb.artstation.com/p/assets/images/images/051/948/409/large/rogari-ferrari-dark1-shopped2.jpg?1658574622');
+    background-image: url('/FASE_1/IMAGES/imagen\ principal\ index.jpg');
    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -58,11 +58,11 @@ body.luxecars { /* Body style */
   flex-direction: column;
   justify-content: flex-end; /* Push the content below */
   align-items: center;       /* Horizontally center */
-  height: 300px;             /* Adjust to required height */
+  height: 175px;             /* Adjust to required height */
   color: white;
-  padding: 100px 0;
+  padding: 20px 0;
   margin-bottom: 5px;
-  background-image: url('https://images.unsplash.com/photo-1553198194-1b81858f6436?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmFpbnklMjByb2FkfGVufDB8fDB8fHww');
+  background-image: url('/FASE_1/IMAGES/imagen\ principal\ del\ info.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
