@@ -135,13 +135,13 @@
         </div>
 
         <div class="mb-3">
-          <label for="country" class="form-label">Country of Origin</label>
-          <input type="text" class="form-control" id="country" placeholder="e.g. Italy" required>
+          <label for="country" class="form-label">Horsepower</label>
+          <input type="number" class="form-control" id="country" placeholder="e.g. 700" required>
         </div>
 
         <div class="mb-3">
           <label for="price" class="form-label">Daily Price</label>
-          <input type="text" class="form-control" id="price" placeholder="e.g. 5000$/day" required>
+          <input type="number" class="form-control" id="price" placeholder="e.g. 5000" required>
         </div>
 
         <div class="mb-3">
@@ -150,10 +150,24 @@
         </div>
 
         <div class="mb-3">
-          <label for="description" class="form-label">Description</label>
-          <textarea class="form-control" id="description" rows="3"
-            placeholder="Brief description about the car..."></textarea>
+          <label for="specifications" class="form-label">Technical Specifications</label>
+          <textarea class="form-control" id="specifications" rows="3"
+            placeholder="Specifications of the car..." required></textarea>
         </div>
+
+        <div class="mb-3">
+          <label for="rental" class="form-label">Rental conditions</label>
+          <textarea class="form-control" id="rental" rows="3"
+            placeholder="Conditions to rent the car..." required></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Interesting Facts</label>
+          <textarea class="form-control" id="description" rows="3"
+            placeholder="Some data about the car..." required></textarea>
+        </div>
+
+        
 
         <button type="submit" class="btn btn-dark w-100">Create</button>
       </form>
