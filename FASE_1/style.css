@@ -251,3 +251,60 @@ footer {
   margin-top: 6px;
   font-size: 1rem;
 }
+
+/* ==== EDIT / DELETE / BACK BUTTONS ==== */
+.btn-outline-primary,
+.btn-outline-danger,
+.btn-outline-secondary {
+  border-radius: 30px;
+  padding: 0.5rem 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  /* Puedes aumentar a 15px o 20px si quieres más separación */
+  flex-wrap: wrap;
+  /* Evita que se rompa en pantallas pequeñas */
+  margin-bottom: 1rem;
+
+}
+
+/* Edit button */
+.btn-outline-primary {
+  border-color: #000000;
+  color: #000000;
+}
+
+.btn-outline-primary:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Delete button */
+.btn-outline-danger {
+  border-color: #000000;
+  color: #000000;
+}
+
+.btn-outline-danger:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Back button */
+.btn-outline-secondary {
+  border-color: #000000;
+  color: #000000;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
