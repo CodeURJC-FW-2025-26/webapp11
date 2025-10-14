@@ -191,4 +191,7 @@ footer { /* Footer style */
     gap: 25px;
   }
 }
-
+/* ==== NEW_BRAND STYLES ==== */
+.w-45{
+  width: 45%;
+}

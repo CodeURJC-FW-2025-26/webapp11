@@ -213,6 +213,52 @@
         </div>
     </section>
 
+    <!-- FORM SECTION -->
+    <section class="brands">
+        <h2>Add New Model</h2>
+        <div class="container d-flex justify-content-center">
+        <form class="car-form p-4 shadow rounded bg-white" style="max-width: 600px; width: 100%;">
+            <div class="mb-3">
+            <label for="brand" class="form-label">Name</label>
+            <input type="text" class="form-control" id="brand" placeholder="e.g. Ferrari" required>
+            </div>
+
+
+            <div class="mb-3">
+            <label for="year" class="form-label">Year of Release</label>
+            <input type="number" class="form-control" id="year" placeholder="e.g. 2010" required>
+            </div>
+
+            <div class="mb-3">
+            <label for="year" class="form-label">Country of Origin</label>
+            <input type="text" class="form-control" id="country" placeholder="e.g. Italy" required>
+            </div>
+
+            <div class="mb-3">
+            <label for="price" class="form-label">Daily price</label>
+            <input type="text" class="form-control" id="price" placeholder="e.g. 5000$/day" required>
+            </div>
+
+            <div class="mb-3">
+            <label for="image" class="form-label">Model Image</label>
+            <input class="form-control" type="file" id="image" accept="image/*" required>
+            </div>
+
+            <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" rows="3" placeholder="Brief description about the car..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-dark w-100">Create</button>
+            
+                
+                
+                
+        </form>
+        </div>
+    </section>
+
+
     <!-- FOOTER -->
     <footer id="contact">
         © 2025 LuxeCars. All rights reserved.
