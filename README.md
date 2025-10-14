@@ -71,20 +71,41 @@ It allows users to explore different models, apply filters to find vehicles by b
 # Team members' participation
 ## Ángel Murciano Baena
 
-### Descripción textual de las tareas realizadas en la fase:
-- Adaptación de páginas a Bootstrap.
-- Ajuste de elementos para modelo responsive.
-- Implementación de página de contacto.
+### Textual description of the tasks performed in the phase:
+- Adaptation of pages to Bootstrap.
+- Adjustment of elements for a responsive template.
+- Implementation of a contact page.
 
-### Listado de los 5 commits más significativos:
+### List of the 5 most significant commits:
 1. [Adaptation of main page using Bootstrap](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/57bd2ba1a48b61e27a0cf7aa4364eadf9227466f)
 2. [Addition of 'contact' page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/a8485f79f618d8cca18b982d39af9f6f0ffdaafd)
 3. [Main page adaptation to Bootstrap's grid](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/04716ad8f9ebc2327cb3200ad63c83d41334c069)
 4. [Adaptation of brand container for responsive design](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/d0304dc7cb66872b4c74a97fa35d6a258f174512)
 5. [Further adjustment of new model form to include missing information](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/b933e0e0603cfdb4187c8d9dd0d7bd002a8dbf25)
 
-### Listado de los 5 ficheros en los que más haya participado:
+### List of the files I have contributed the most to:
 1. [contact.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/contact.html)
 2. [index.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/index.html)
 3. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/info.html)
 4. [style.css](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/style.css)
+
+## Ramón Nieto Villegas
+
+### Textual description of the tasks performed in the phase:
+- Creation of a highly advanced base for the index and info pages.
+- Global CSS design of the website with a minimalist grayscale approach, with hovers that enhance the visual impact by focusing the color on your selection.
+- Searching, filtering, selecting, inserting, and adjusting header images, branding, and logos.
+  
+### List of the 5 most significant commits:
+1. [My most important commit restyling everything,adding css and hovers everywhere](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/e46d09e7fc5ecb13f716376654fe40b56ddd9e2e)
+2. [Models page advanced structure with info,images and header button links](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/4d198069fb7db55fa4dd82e21b8d1f0a65915a99)
+3. [Repairing structure mistake from info.html based in stacked car brand models page to specific brand car page with info and secondary entity in it](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/5b7eaa4f0401454cd524764bbf5b188e413af389)
+4. [Adding a lot of css to the pages](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/91f053e7246d31e917f1c729fe8ca66a5a13961b)
+5. [Uploading almost every car images](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/1847ab8ed47b23a443a080e87c28f3557e5b7ccf)
+
+### List of the files I have contributed the most to:
+1. [index.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/index.html)
+2. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/info.html)
+3. [style.css](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/style.css)
+4. [IMAGES](https://github.com/CodeURJC-FW-2025-26/webapp11/tree/main/FASE_1/IMAGES)
+
