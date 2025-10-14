@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LuxeCars | Our Models</title>
+  <title>LuxeCars | Ferrari</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -12,11 +12,11 @@
 
 <body class="luxecars">
 
-  <!-- HEADER -->
-  <header class="header-info">
+  <!-- HEADER FERRARI -->
+  <header class="header-info" style="background-image: url('/FASE_1/IMAGES/imagen principal del info.jpeg');">
     <div class="main-title-info">
-      <h2>Explore Our Fleet</h2>
-      <p>Luxury. Power. Elegance. Choose your dream car.</p>
+      <h2>Ferrari</h2>
+      <p>Pasión, velocidad y excelencia italiana en su máxima expresión.</p>
     </div>
   </header>
 
@@ -24,18 +24,34 @@
   <div class="row justify-content-center">
     <div class="btn-group" role="group" aria-label="Navigation">
       <a href="index.html" class="btn">Brands</a>
-      <a href="info.html" class="btn">Models</a>
-      <a href="contact.html" class="btn">Contact</a>
+      <a href="info.html" class="btn active">Models</a>
+      <a href="#contact" class="btn">Contact</a>
     </div>
   </div>
 
-  <!-- MODELS -->
+  <!-- FERRARI INFO -->
+  <section class="brands">
+    <div class="container text-center">
+      <div class="mb-0" style="max-width: 800px; margin: 0 auto;">
+        <div class="d-flex align-items-center justify-content-center gap-3 mb-3">
+          <img src="/FASE_1/IMAGES/Ferrari/nuevo logo ferrari.jpg" alt="Ferrari Logo" style="width:60px; height:auto;">
+          <h2 class="m-0">Ferrari</h2>
+        </div>
+        <p style="font-size: 1rem; color: #444;">
+          Fundada en 1939 por Enzo Ferrari, la marca se ha convertido en el símbolo supremo del lujo automovilístico
+          y la ingeniería de precisión. Desde su icónico color rojo hasta sus potentes motores V12,
+          Ferrari representa la combinación perfecta entre arte, tecnología y velocidad.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FERRARI MODELS -->
   <section class="brands">
     <h2>Available Models</h2>
 
     <div class="container">
-      <!-- FERRARI -->
-      <div class="brand-card" id="ferrari">
+      <div class="brand-card">
         <img src="/FASE_1/IMAGES/Ferrari/488_pista.jpg" alt="Ferrari 488 Pista">
         <span class="car-name">Ferrari 488 Pista</span>
         <span class="car-details">2018 • 720 CV</span>
@@ -55,13 +71,11 @@
         <span class="car-details">2022 • 725 CV</span>
         <span class="car-price">1000$/day</span>
       </div>
-
-      
     </div>
   </section>
 
   <!-- FORM SECTION -->
-  <section class="brands">
+  <section class="brands mt-2">
     <h2>Add New Model</h2>
     <div class="container d-flex justify-content-center">
       <form class="car-form p-4 shadow rounded bg-white" style="max-width: 600px; width: 100%;">
@@ -92,7 +106,8 @@
 
         <div class="mb-3">
           <label for="description" class="form-label">Description</label>
-          <textarea class="form-control" id="description" rows="3" placeholder="Brief description about the car..."></textarea>
+          <textarea class="form-control" id="description" rows="3"
+            placeholder="Brief description about the car..."></textarea>
         </div>
 
         <button type="submit" class="btn btn-dark w-100">Create</button>
@@ -106,4 +121,5 @@
   </footer>
 
 </body>
+
 </html>

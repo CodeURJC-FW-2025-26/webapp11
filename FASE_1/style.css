@@ -1,5 +1,6 @@
 /* ==== GLOBAL CSS STYLES ==== */
-body.luxecars { /* Body style */
+body.luxecars {
+  /* Body style */
   background-color: #fafafa;
   color: #111;
   font-family: "Poppins", "Helvetica Neue", sans-serif;
@@ -9,35 +10,42 @@ body.luxecars { /* Body style */
 }
 
 /* ==== HEADER INDEX STYLES ==== */
-.header-index { /* Header from index style */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end; 
-    align-items: center;       
-    height: 175px;            
-    color: white;
-    padding: 20px 0;
-    margin-bottom: 5px;
-    background-image: url('/FASE_1/IMAGES/imagen principal index.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
+.header-index {
+  /* Header from index style */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 175px;
+  color: white;
+  padding: 20px 0;
+  margin-bottom: 5px;
+  background-image: url('/FASE_1/IMAGES/imagen principal index.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
 }
 
-.header-index::before { /* Dark overlay effect */
+.header-index::before {
+  /* Dark overlay effect */
   content: "";
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: rgba(0, 0, 0, 0.55);
 }
 
-.main-title-index { /* Title index position */
+.main-title-index {
+  /* Title index position */
   position: relative;
   z-index: 1;
 }
 
-.main-title-index h2 { /* Main title index style */
+.main-title-index h2 {
+  /* Main title index style */
   font-size: 3.5rem;
   letter-spacing: 2px;
   font-weight: 600;
@@ -45,14 +53,16 @@ body.luxecars { /* Body style */
   text-transform: uppercase;
 }
 
-.main-title-index p { /* Subtitle index style */ 
+.main-title-index p {
+  /* Subtitle index style */
   font-size: 1.1rem;
   color: #ddd;
   margin-top: 15px;
 }
 
 /* ==== HEADER INFO STYLES ==== */
-.header-info { /* Header from info style */
+.header-info {
+  /* Header from info style */
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -110,7 +120,7 @@ body.luxecars { /* Body style */
 
 /* ==== BRANDS SECTION ==== */
 .brands {
-  padding: 60px 0;
+  padding: 30px;
   background-color: #fafafa;
 }
 
@@ -144,7 +154,7 @@ body.luxecars { /* Body style */
 
 .brand-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
 }
 
 .brand-card img {
@@ -181,9 +191,11 @@ footer {
   .main-title-index h2 {
     font-size: 2.5rem;
   }
+
   .main-title-index p {
     font-size: 1rem;
   }
+
   .container {
     gap: 25px;
   }
@@ -198,7 +210,7 @@ footer {
 .brand-card {
   background-color: #fff;
   border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   text-align: center;
   width: 100%;
@@ -208,7 +220,7 @@ footer {
 
 .brand-card:hover {
   transform: scale(1.03);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
 }
 
 .brand-card img {
