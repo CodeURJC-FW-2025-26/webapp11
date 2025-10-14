@@ -67,6 +67,20 @@ It allows users to explore different models, apply filters to find vehicles by b
 
 ---
 ##
+📸
+# Screenshots of the web application (Phase 1)
+
+### Main page
+![main_page.png](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/README_FILES/FASE1/main_page.png)
+
+### Info page
+![info_page.png](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/README_FILES/FASE1/info_page.png)
+
+### Brand creation page
+![new_brand_page.png](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/README_FILES/FASE1/new_brand_page.png)
+
+---
+##
 💪
 # Team members' participation
 ## Ángel Murciano Baena
