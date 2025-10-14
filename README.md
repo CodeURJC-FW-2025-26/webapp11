@@ -28,7 +28,6 @@ It allows users to explore different models, apply filters to find vehicles by b
     - `name`
     - `image`
     - `year of release`
-    - `description`
     - `technical specifications`
     - `rental conditions`
     - `interesting facts`
