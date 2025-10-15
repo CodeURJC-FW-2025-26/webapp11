@@ -144,3 +144,22 @@ It allows users to explore different models, apply filters to find vehicles by b
 3. [style.css](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/style.css)
 4. [IMAGES](https://github.com/CodeURJC-FW-2025-26/webapp11/tree/main/FASE_1/IMAGES)
 
+   
+## Adrián Varea Fernández
+
+### Textual description of the tasks performed in the phase:
+- Creation of the Add New Brand page.
+- Added the form of the info page.
+- Some adaptations of bottons and text.
+
+### List of the 5 most significant commits:
+1. [Initial template of the forms](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/f5cc47375d7ab7affa235984039676ed6abc3c24)
+2. [Changes to the form and styling](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/bb62c921e52a786186aeee44cb440ad19d0b6746)
+3. [Creation of new_brand page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/f834ba2655560ba9ab6dff79f82a4f31a3241ef0)
+4. [Added new model form in info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/4f456ef4b9334bbac7152fdcf7e00e69d8fcf667)
+5. [Adjustments to the new model form](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/2e521a926652fc1a7e00b2e55bc55d2569494f47)
+
+### List of the files I have contributed the most to:
+1. [new_brand.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/new_brand.html)
+2. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/info.html)
+3. [index.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/index.html)
