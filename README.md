@@ -123,3 +123,24 @@ It allows users to explore different models, apply filters to find vehicles by b
 3. [style.css](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/style.css)
 4. [IMAGES](https://github.com/CodeURJC-FW-2025-26/webapp11/tree/main/FASE_1/IMAGES)
 
+## Jorge Mariscal Rubiales
+
+## Textual description of the tasks performed in the phase:
+- Create the main structure of the index page.
+- Add buttons and attributes to the info page.
+- Enhance some brand logo images.
+
+## List of the 5 most significant commits:
+1. [Upload main structure of index page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/5d64e7967aa5db68e4406333e3e8a2a20b54eb4c)
+2. [Add title, logo, description, and complete main identity page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/019e1d33bc95d7809756119afa91e4ad6e38941f)
+3. [Add Delete, Edit, and Back buttons to info page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/d0640b56d502e9da28d94b0d459407c9f1308059)
+4. [Add attributes to the models on the info page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/58be205dd182610a293558082df865591ffc79b4)
+5. [Updated text language to English on the info page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/ef3bd05fdc14fa2ac0060b9c16bc87a29d5aa56f)
+
+
+## List of the files I have contributed the most to:
+1. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/info.html)
+2. [index.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/index.html)
+3. [style.css](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/style.css)
+4. [IMAGES](https://github.com/CodeURJC-FW-2025-26/webapp11/tree/main/FASE_1/IMAGES)
+
