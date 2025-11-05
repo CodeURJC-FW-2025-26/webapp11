@@ -19,10 +19,10 @@ router.get('/', async (req, res) => {
 router.post('/post/new', upload.single('image'), async (req, res) => {
 
     let post = {
-        user: req.body.user,
+        brand: req.body.brand,
         title: req.body.title,
-        text: req.body.text,
-        imageFilename: req.file?.filename
+        description: req.body.description,
+        logos: req.file?.filename
     };
 
     await board.addPost(post);
@@ -42,8 +42,8 @@ router.get('/post/:id/delete', async (req, res) => {
 
     let post = await board.deletePost(req.params.id);
 
-    if (post && post.imageFilename) {
-        await fs.rm(board.UPLOADS_FOLDER + '/' + post.imageFilename);
+    if (post && post.logos) {
+        await fs.rm(board.UPLOADS_FOLDER + '/' + post.logos);
     }
 
     res.render('deleted_post');
@@ -53,7 +53,7 @@ router.get('/post/:id/image', async (req, res) => {
 
     let post = await board.getPost(req.params.id);
 
-    res.download(board.UPLOADS_FOLDER + '/' + post.imageFilename);
+    res.download(board.UPLOADS_FOLDER + '/' + post.logos);
 
 });
 
