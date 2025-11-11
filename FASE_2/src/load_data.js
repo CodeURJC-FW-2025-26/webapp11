@@ -14,7 +14,7 @@ const brands = JSON.parse(dataString);
 
 // Delete whatever was in the database, then include demo brands with models
 await catalog.delete();
-for(let brand of brands){
+for (let brand of brands) {
     await catalog.addBrand(brand);
 }
 
