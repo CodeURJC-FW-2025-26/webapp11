@@ -55,7 +55,7 @@ router.get('/brand/:id/delete', async (req, res) => {
 });
 
 // Showing a specific brand's logo, must obtain ID through website path
-router.get('/post/:id/image', async (req, res) => {
+router.get('/brand/:id/image', async (req, res) => {
 
     let brands = await catalog.getBrand(req.params.id);
 
