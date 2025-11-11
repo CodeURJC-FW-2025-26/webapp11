@@ -5,18 +5,36 @@
         "description": "Barata, barata",
         "logos": "nuevo logo ferrari.jpg",
         "models": [
-        {"name": "Purosangue", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" } ,
-        {"name": "488 Pista", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" },
-        {"name": "LaFerrari", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" }
+        {
+        "name": "Purosangue",
+        "HP": "725",
+        "year": "2022",
+        "daily price": "1000$",
+        "image": "ferrari-purosangue.jpg",
+        "technical specifications": "6.5L V12 engine, 725 HP, 716 Nm torque, 0-100 km/h in 3.3s, top speed 310 km/h, 8-speed dual-clutch, AWD",
+        "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
+        "interesting facts": "The Purosangue is Ferraris first-ever four-door, four-seater production model, blending SUV practicality with Ferrari performance."
+        },
+        {
+        "name": "488 Pista",
+        "HP": "720",
+        "year": "2020",
+        "daily price": "950$",
+        "image": "488_pista.jpg",
+        "technical specifications": "3.9L twin-turbo V8 engine, 720 HP, 770 Nm torque, 0-100 km/h in 2.85s, top speed 340 km/h, 7-speed dual-clutch, RWD",
+        "rental conditions": "Minimum age 27, valid international license, €10,000 deposit",
+        "interesting facts": "The 488 Pista is inspired by Ferraris racing experience in the 488 Challenge and GTE series, with the most powerful V8 in Ferrari history at its release."
+        },
+        {
+        "name": "LaFerrari",
+        "HP": "963",
+        "year": "2015",
+        "daily price": "2000$",
+        "image": "LaFerrari.webp",
+        "technical specifications": "6.3L V12 hybrid engine with electric motor, combined 963 HP, 900 Nm torque, 0-100 km/h in 2.6s, top speed 350 km/h, 7-speed dual-clutch, RWD",
+        "rental conditions": "Minimum age 30, valid international license, €20,000 deposit",
+        "interesting facts": "LaFerrari was Ferraris first hybrid hypercar, combining a V12 engine with an F1-derived HY-KERS system for instant power delivery."
+        }
         ]
 
     },
@@ -26,18 +44,36 @@
         "description": "caro, caro",
         "logos": "lambo logo.png",
         "models": [
-        {"name": "Purosangue", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" } ,
-        {"name": "488 Pista", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" },
-        {"name": "LaFerrari", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" }
+        {
+        "name": "Aventador SVJ",
+        "HP": "770",
+        "year": "2022",
+        "daily price": "1000$",
+        "image": "aventador svj.jpg",
+        "technical specifications": "6.5L V12 engine, 770 HP, 720 Nm torque, 0-100 km/h in 2.8s, top speed 350 km/h, 7-speed ISR transmission, AWD",
+        "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
+        "interesting facts": "The Aventador SVJ holds the Nürburgring Nordschleife lap record for production cars, set in 2018."
+        },
+        {
+        "name": "Huracán STO",
+        "HP": "640",
+        "year": "2022",
+        "daily price": "950$",
+        "image": "huracán sto.jpg",
+        "technical specifications": "5.2L V10 engine, 640 HP, 565 Nm torque, 0-100 km/h in 3.0s, top speed 310 km/h, 7-speed dual-clutch, RWD",
+        "rental conditions": "Minimum age 27, valid international license, €10,000 deposit",
+        "interesting facts": "The Huracán STO (Super Trofeo Omologata) is a road-legal version of Lamborghini’s Super Trofeo EVO race car."
+        },
+        {
+        "name": "Urus Performante",
+        "HP": "666",
+        "year": "2022",
+        "daily price": "900$",
+        "image": "urus-performante.jpg",
+        "technical specifications": "4.0L twin-turbo V8 engine, 666 HP, 850 Nm torque, 0-100 km/h in 3.3s, top speed 306 km/h, 8-speed automatic, AWD",
+        "rental conditions": "Minimum age 27, valid international license, €8,000 deposit",
+        "interesting facts": "The Urus Performante is one of the fastest SUVs in the world and set a Pikes Peak hill climb record for production SUVs in 2022."
+        }
         ]
     },
     {
@@ -46,18 +82,36 @@
         "description": "Muy lenta",
         "logos": "mclaren logo.png",
         "models": [
-        {"name": "Purosangue", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" } ,
-        {"name": "488 Pista", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" },
-        {"name": "LaFerrari", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" }
+        {
+        "name": "765 LT",
+        "HP": "755",
+        "year": "2022",
+        "daily price": "950$",
+        "image": "McLaren-765LT.jpg",
+        "technical specifications": "4.0L twin-turbo V8 engine, 755 HP, 800 Nm torque, 0-100 km/h in 2.8s, top speed 330 km/h, 7-speed dual-clutch, RWD",
+        "rental conditions": "Minimum age 27, valid international license, €10,000 deposit",
+        "interesting facts": "The 765LT (Longtail) is a lighter, more track-focused version of the 720S, with over 80 kg weight reduction and extreme aerodynamics."
+        },
+        {
+        "name": "P1",
+        "HP": "903",
+        "year": "2015",
+        "daily price": "1800$",
+        "image": "p1.jpg",
+        "technical specifications": "3.8L twin-turbo V8 engine + electric motor, combined 903 HP, 900 Nm torque, 0-100 km/h in 2.8s, top speed 350 km/h, 7-speed dual-clutch, RWD",
+        "rental conditions": "Minimum age 30, valid international license, €20,000 deposit",
+        "interesting facts": "The McLaren P1 was part of the 'Holy Trinity' of hypercars alongside the LaFerrari and Porsche 918 Spyder, featuring F1-style hybrid technology."
+        },
+        {
+        "name": "Senna",
+        "HP": "800",
+        "year": "2019",
+        "daily price": "1500$",
+        "image": "senna.jpg",
+        "technical specifications": "4.0L twin-turbo V8 engine, 800 HP, 800 Nm torque, 0-100 km/h in 2.7s, top speed 335 km/h, 7-speed dual-clutch, RWD",
+        "rental conditions": "Minimum age 30, valid international license, €18,000 deposit",
+        "interesting facts": "Named after legendary F1 driver Ayrton Senna, this car was built for maximum performance and aerodynamic efficiency on track."
+        }
         ]
     },
     {
@@ -66,18 +120,36 @@
         "description": "Muy rapida",
         "logos": "porsche logo.jpeg",
         "models": [
-        {"name": "Purosangue", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" } ,
-        {"name": "488 Pista", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" },
-        {"name": "LaFerrari", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" }
+        {
+        "name": "992 GT3 RS",
+        "HP": "525",
+        "year": "2025",
+        "daily price": "900$",
+        "image": "gt3 rs.avif",
+        "technical specifications": "4.0L naturally aspirated flat-six engine, 525 HP, 465 Nm torque, 0-100 km/h in 3.2s, top speed 296 km/h, 7-speed PDK, RWD",
+        "rental conditions": "Minimum age 27, valid international license, €10,000 deposit",
+        "interesting facts": "The 992 GT3 RS uses F1-style active aerodynamics, including a drag reduction system (DRS) — a first for a street-legal Porsche."
+        },
+        {
+        "name": "Carrera GT",
+        "HP": "612",
+        "year": "2004",
+        "daily price": "1800$",
+        "image": "carrera gt.jpg",
+        "technical specifications": "5.7L V10 engine, 612 HP, 590 Nm torque, 0-100 km/h in 3.9s, top speed 330 km/h, 6-speed manual, RWD",
+        "rental conditions": "Minimum age 30, valid international license, €20,000 deposit",
+        "interesting facts": "The Carrera GT features a carbon fiber monocoque chassis and a race-derived V10 originally developed for Formula 1."
+        },
+        {
+        "name": "Cayenne Turbo GT",
+        "HP": "640",
+        "year": "2022",
+        "daily price": "850$",
+        "image": "cayenne turbo gt.jpg",
+        "technical specifications": "4.0L twin-turbo V8 engine, 640 HP, 850 Nm torque, 0-100 km/h in 3.3s, top speed 300 km/h, 8-speed Tiptronic S, AWD",
+        "rental conditions": "Minimum age 27, valid international license, €8,000 deposit",
+        "interesting facts": "The Cayenne Turbo GT is Porsches most powerful SUV and once held the Nürburgring lap record for production SUVs."
+        }
         ]
     },
     {
@@ -86,18 +158,36 @@
         "description": "Barata, barata",
         "logos": "logo aston.png",
         "models": [
-        {"name": "Purosangue", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" } ,
-        {"name": "488 Pista", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" },
-        {"name": "LaFerrari", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" }
+        {
+        "name": "Vantage",
+        "HP": "665",
+        "year": "2024",
+        "daily price": "900$",
+        "image": "vantage.jpeg",
+        "technical specifications": "4.0L twin-turbo V8 engine, 665 HP, 800 Nm torque, 0-100 km/h in 3.4s, top speed 325 km/h, 8-speed automatic, RWD",
+        "rental conditions": "Minimum age 27, valid international license, €10,000 deposit",
+        "interesting facts": "The 2024 Vantage features Aston Martins most powerful V8 ever in a Vantage model and a completely redesigned interior."
+        },
+        {
+        "name": "Valkyrie",
+        "HP": "1160",
+        "year": "2022",
+        "daily price": "3000$",
+        "image": "valkyrie.avif",
+        "technical specifications": "6.5L naturally aspirated V12 hybrid engine, 1160 HP, 900 Nm torque, 0-100 km/h in 2.5s, top speed 354 km/h, 7-speed sequential, RWD",
+        "rental conditions": "Minimum age 30, valid international license, €25,000 deposit",
+        "interesting facts": "The Valkyrie was co-developed with Red Bull Racing and designed by Adrian Newey, featuring F1-level aerodynamics and performance."
+        },
+        {
+        "name": "DBX707",
+        "HP": "707",
+        "year": "2022",
+        "daily price": "850$",
+        "image": "dbx707.webp",
+        "technical specifications": "4.0L twin-turbo V8 engine, 707 HP, 900 Nm torque, 0-100 km/h in 3.3s, top speed 310 km/h, 9-speed automatic, AWD",
+        "rental conditions": "Minimum age 27, valid international license, €8,000 deposit",
+        "interesting facts": "The DBX707 is the worlds most powerful luxury SUV, blending Aston Martin craftsmanship with supercar-level performance."
+        }
         ]
     },
     {
