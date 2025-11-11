@@ -13,7 +13,7 @@ const dataString = await fs.readFile(DATA_FOLDER + '/' + dataFile, 'utf8');
 const brands = JSON.parse(dataString);
 
 // Delete whatever was in the database, then include demo brands with models
-await catalog.delete();
+await catalog.deleteBrands();
 for (let brand of brands) {
     await catalog.addBrand(brand);
 }
@@ -21,6 +21,6 @@ for (let brand of brands) {
 // Remake uploads folder and copy demo images
 await fs.rm(UPLOADS_FOLDER, { recursive: true, force: true });
 await fs.mkdir(UPLOADS_FOLDER);
-await fs.cp(DATA_FOLDER + '/IMAGES', UPLOADS_FOLDER, { recursive: true });
+await fs.cp(DATA_FOLDER + '/images', UPLOADS_FOLDER, { recursive: true });
 
 console.log('Demo brands and models loaded');
