@@ -22,7 +22,7 @@ router.post('/brand/new', upload.single('image'), async (req, res) => {
 
     // By default a brand has no models; these can be included later
     let brandEntity = {
-        brand: req.body.brand,
+        brandName: req.body.brandName,
         country: req.body.country,
         description: req.body.description,
         logo: req.file?.filename,
