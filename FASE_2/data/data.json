@@ -1,184 +1,344 @@
 [
-    {
-        "brand": "Ferrari",
-        "country": "Italy",
-        "description": "Barata, barata",
-        "logos": "nuevo logo ferrari.jpg",
-        "models": [
-        {"name": "Purosangue", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" } ,
-        {"name": "488 Pista", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" },
-        {"name": "LaFerrari", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" }
-        ]
-
-    },
-    {
-        "brand": "Lamborghini",
-        "country": "Italy",
-        "description": "caro, caro",
-        "logos": "lambo logo.png",
-        "models": [
-        {"name": "Purosangue", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" } ,
-        {"name": "488 Pista", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" },
-        {"name": "LaFerrari", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" }
-        ]
-    },
-    {
-        "brand": "Mclaren",
-        "country": "England",
-        "description": "Muy lenta",
-        "logos": "mclaren logo.png",
-        "models": [
-        {"name": "Purosangue", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" } ,
-        {"name": "488 Pista", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" },
-        {"name": "LaFerrari", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" }
-        ]
-    },
-    {
-        "brand": "Porsche",
-        "country": "Germany",
-        "description": "Muy rapida",
-        "logos": "porsche logo.jpeg",
-        "models": [
-        {"name": "Purosangue", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" } ,
-        {"name": "488 Pista", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" },
-        {"name": "LaFerrari", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" }
-        ]
-    },
-    {
-        "brand": "Aston Martin",
-        "country": "England",
-        "description": "Barata, barata",
-        "logos": "logo aston.png",
-        "models": [
-        {"name": "Purosangue", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" } ,
-        {"name": "488 Pista", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" },
-        {"name": "LaFerrari", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" }
-        ]
-    },
-    {
-        "brand": "BMW",
-        "country": "Germany",
-        "description": "Barata, barata",
-        "logos": "bmw logo.png",
-        "models": [
-        {"name": "Purosangue", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" } ,
-        {"name": "488 Pista", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" },
-        {"name": "LaFerrari", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" }
-        ]
-    },
-    {
-        "brand": "Audi",
-        "country": "Germany",
-        "description": "Barata, barata",
-        "logos": "audi logo.png",
-        "models": [
-        {"name": "Purosangue", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" } ,
-        {"name": "488 Pista", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" },
-        {"name": "LaFerrari", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" }
-        ]
-    },
-    {
-        "brand": "Mercedes Benz",
-        "country": "Germany",
-        "description": "Barata, barata",
-        "logos": "mercedes logo.png",
-        "models": [
-        {"name": "Purosangue", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" } ,
-        {"name": "488 Pista", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" },
-        {"name": "LaFerrari", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" }
-        ]
-    },
-     {
-        "brand": "Rolls Royce",
-        "country": "England",
-        "description": "Barata, barata",
-        "logos": "rolls royce logo.png",
-        "models": [
-        {"name": "Purosangue", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" } ,
-        {"name": "488 Pista", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" },
-        {"name": "LaFerrari", "HP": "725", "year": "2022", "daily price": "1000$",
-         "image": "ferrari-purosangue.jpg", "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s" ,
-         "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
-          "interesting facts": "Ferrari's first-ever four-door, four-seater production model" }
-        ]
-    }
-    
+  {
+    "brand": "Ferrari",
+    "country": "Italy",
+    "description": "Barata, barata",
+    "logos": "nuevo logo ferrari.jpg",
+    "models": [
+      {
+        "name": "Purosangue",
+        "HP": "725",
+        "year": "2022",
+        "daily price": "1000$",
+        "image": "ferrari-purosangue.jpg",
+        "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s",
+        "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
+        "interesting facts": "Ferrari's first-ever four-door, four-seater production model"
+      },
+      {
+        "name": "488 Pista",
+        "HP": "725",
+        "year": "2022",
+        "daily price": "1000$",
+        "image": "ferrari-purosangue.jpg",
+        "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s",
+        "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
+        "interesting facts": "Ferrari's first-ever four-door, four-seater production model"
+      },
+      {
+        "name": "LaFerrari",
+        "HP": "725",
+        "year": "2022",
+        "daily price": "1000$",
+        "image": "ferrari-purosangue.jpg",
+        "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s",
+        "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
+        "interesting facts": "Ferrari's first-ever four-door, four-seater production model"
+      }
+    ]
+  },
+  {
+    "brand": "Lamborghini",
+    "country": "Italy",
+    "description": "caro, caro",
+    "logos": "lambo logo.png",
+    "models": [
+      {
+        "name": "Purosangue",
+        "HP": "725",
+        "year": "2022",
+        "daily price": "1000$",
+        "image": "ferrari-purosangue.jpg",
+        "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s",
+        "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
+        "interesting facts": "Ferrari's first-ever four-door, four-seater production model"
+      },
+      {
+        "name": "488 Pista",
+        "HP": "725",
+        "year": "2022",
+        "daily price": "1000$",
+        "image": "ferrari-purosangue.jpg",
+        "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s",
+        "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
+        "interesting facts": "Ferrari's first-ever four-door, four-seater production model"
+      },
+      {
+        "name": "LaFerrari",
+        "HP": "725",
+        "year": "2022",
+        "daily price": "1000$",
+        "image": "ferrari-purosangue.jpg",
+        "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s",
+        "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
+        "interesting facts": "Ferrari's first-ever four-door, four-seater production model"
+      }
+    ]
+  },
+  {
+    "brand": "Mclaren",
+    "country": "England",
+    "description": "Muy lenta",
+    "logos": "mclaren logo.png",
+    "models": [
+      {
+        "name": "Purosangue",
+        "HP": "725",
+        "year": "2022",
+        "daily price": "1000$",
+        "image": "ferrari-purosangue.jpg",
+        "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s",
+        "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
+        "interesting facts": "Ferrari's first-ever four-door, four-seater production model"
+      },
+      {
+        "name": "488 Pista",
+        "HP": "725",
+        "year": "2022",
+        "daily price": "1000$",
+        "image": "ferrari-purosangue.jpg",
+        "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s",
+        "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
+        "interesting facts": "Ferrari's first-ever four-door, four-seater production model"
+      },
+      {
+        "name": "LaFerrari",
+        "HP": "725",
+        "year": "2022",
+        "daily price": "1000$",
+        "image": "ferrari-purosangue.jpg",
+        "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s",
+        "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
+        "interesting facts": "Ferrari's first-ever four-door, four-seater production model"
+      }
+    ]
+  },
+  {
+    "brand": "Porsche",
+    "country": "Germany",
+    "description": "Muy rapida",
+    "logos": "porsche logo.jpeg",
+    "models": [
+      {
+        "name": "Purosangue",
+        "HP": "725",
+        "year": "2022",
+        "daily price": "1000$",
+        "image": "ferrari-purosangue.jpg",
+        "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s",
+        "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
+        "interesting facts": "Ferrari's first-ever four-door, four-seater production model"
+      },
+      {
+        "name": "488 Pista",
+        "HP": "725",
+        "year": "2022",
+        "daily price": "1000$",
+        "image": "ferrari-purosangue.jpg",
+        "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s",
+        "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
+        "interesting facts": "Ferrari's first-ever four-door, four-seater production model"
+      },
+      {
+        "name": "LaFerrari",
+        "HP": "725",
+        "year": "2022",
+        "daily price": "1000$",
+        "image": "ferrari-purosangue.jpg",
+        "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s",
+        "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
+        "interesting facts": "Ferrari's first-ever four-door, four-seater production model"
+      }
+    ]
+  },
+  {
+    "brand": "Aston Martin",
+    "country": "England",
+    "description": "Barata, barata",
+    "logos": "logo aston.png",
+    "models": [
+      {
+        "name": "Purosangue",
+        "HP": "725",
+        "year": "2022",
+        "daily price": "1000$",
+        "image": "ferrari-purosangue.jpg",
+        "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s",
+        "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
+        "interesting facts": "Ferrari's first-ever four-door, four-seater production model"
+      },
+      {
+        "name": "488 Pista",
+        "HP": "725",
+        "year": "2022",
+        "daily price": "1000$",
+        "image": "ferrari-purosangue.jpg",
+        "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s",
+        "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
+        "interesting facts": "Ferrari's first-ever four-door, four-seater production model"
+      },
+      {
+        "name": "LaFerrari",
+        "HP": "725",
+        "year": "2022",
+        "daily price": "1000$",
+        "image": "ferrari-purosangue.jpg",
+        "technical specifications": "6.5L V12 engine, 725 HP, 0-100 km/h in 3.3s",
+        "rental conditions": "Minimum age 27, valid international license, €12,000 deposit",
+        "interesting facts": "Ferrari's first-ever four-door, four-seater production model"
+      }
+    ]
+  },
+  {
+    "brand": "BMW",
+    "country": "Germany",
+    "description": "Barata, barata",
+    "logos": "bmw logo.png",
+    "models": [
+      {
+        "name": "BMW M2 CS",
+        "HP": "530",
+        "year": "2025",
+        "daily price": "€650",
+        "image": "m2 cs.jpg",
+        "technical specifications": "3.0L inline-6 twin-turbo engine, 530 HP, 0-100 km/h in 3.8s",
+        "rental conditions": "Minimum age 25, valid international driving licence, security deposit €15,000",
+        "interesting facts": "Tracks-focused edition of the M2 with 30kg weight reduction and upgraded carbon-fibre body panels"
+      },
+      {
+        "name": "BMW M3 Competition",
+        "HP": "510",
+        "year": "2024",
+        "daily price": "€550",
+        "image": "m3 competition.webp",
+        "technical specifications": "3.0L inline-6 twin-turbo engine, 510 HP, 0-100 km/h in 3.9s",
+        "rental conditions": "Minimum age 25, valid international driving licence, security deposit €15,000",
+        "interesting facts": "Features a carbon-fibre roof, 650 Nm of torque and is available in both RWD and xDrive variants"
+      },
+      {
+        "name": "BMW M5 CS",
+        "HP": "635",
+        "year": "2021",
+        "daily price": "€1,200",
+        "image": "m5 cs.webp",
+        "technical specifications": "4.4L twin-turbo V8 engine, 635 HP, 0-100 km/h in 3.0s",
+        "rental conditions": "Minimum age 30, valid driving licence, security deposit €25,000",
+        "interesting facts": "Most powerful production BMW M car ever at launch; weight reduced 70kg vs M5 Competition; features carbon fibre bodywork and exclusive Gold Bronze trim accents"
+      }
+    ]
+  },
+  {
+    "brand": "Audi",
+    "country": "Germany",
+    "description": "Barata, barata",
+    "logos": "audi logo.png",
+    "models": [
+      {
+        "name": "Audi R8",
+        "HP": "620",
+        "year": "2023",
+        "daily price": "€850",
+        "image": "r8.avif",
+        "technical specifications": "5.2L V10 engine, 620 HP, 0-100 km/h in 3.2s",
+        "rental conditions": "Minimum age 27, valid international driving licence, security deposit €20,000",
+        "interesting facts": "Naturally aspirated V10 mid-engine layout; production version of a car developed with motorsport DNA and reaches over 330km/h"
+      },
+      {
+        "name": "Audi RS3 ABT",
+        "HP": "500",
+        "year": "2022",
+        "daily price": "€550",
+        "image": "audi_rs3_abt.jpg",
+        "technical specifications": "2.5L five-cyl turbo engine, 500 HP, 0-100 km/h in 3.3s",
+        "rental conditions": "Minimum age 25, valid international driving licence, security deposit €12,000",
+        "interesting facts": "Prepared by ABT Sportsline to increase the stock RS3 power up to 500HP with upgraded intercooler, exhaust and aero kit; limited edition in many markets."
+      },
+      {
+        "name": "Audi RS Q8 Performance",
+        "HP": "640",
+        "year": "2025",
+        "daily price": "€750",
+        "image": "audi_rs_q8_performance.jpg",
+        "technical specifications": "4.0L twin-turbo V8 engine, 640 HP, 0-100 km/h in 3.6s",
+        "rental conditions": "Minimum age 30, valid international driving licence, security deposit €30,000",
+        "interesting facts": "Most powerful combustion-engine SUV from Audi Sport; set a Nürburgring Nordschleife lap of 7:36.698 for production SUVs"
+      }
+    ]
+  },
+  {
+    "brand": "Mercedes Benz",
+    "country": "Germany",
+    "description": "Barata, barata",
+    "logos": "mercedes logo.png",
+    "models": [
+      {
+        "name": "Mercedes-AMG GTR bs",
+        "HP": "720",
+        "year": "2022",
+        "daily price": "€1,500",
+        "image": "amg_gt_r_bs.jpg",
+        "technical specifications": "4.0L twin-turbo V8 engine, 720 HP, 0-100 km/h in 3.2sh",
+        "rental conditions": "Minimum age 30, valid driving licence, security deposit €50,000",
+        "interesting facts": "Most extreme road-going AMG to date, with track-derived aerodynamics, over 800Nm of torque and only ~1,615kg kerb weight"
+      },
+      {
+        "name": "Mercedes-AMG ONE",
+        "HP": "1,063",
+        "year": "2022",
+        "daily price": "€5,000",
+        "image": "amg one.webp",
+        "technical specifications": "1.6L V6 turbo + hybrid system, 1,063 HP, 0-100 km/h in 2.9s",
+        "rental conditions": "Minimum age 30, valid international driving licence, security deposit €500,000",
+        "interesting facts": "Formula 1 derived powertrain, only 275 units planned, active aerodynamics with DRS and push-rod suspension"
+      },
+      {
+        "name": "Mercedes-AMG G63 Mansory",
+        "HP": "850",
+        "year": "2023",
+        "daily price": "€2,500",
+        "image": "g63 mansory.webp",
+        "technical specifications": "4.0L twin-turbo V8 engine (tuned), 850 HP, 0-100 km/h in 4.5s",
+        "rental conditions": "Minimum age 30, valid international driving licence, security deposit €80,000",
+        "interesting facts": "Limited-edition Mansory conversion of the G-Class; only 10 units built with 1,000 Nm torque and full carbon wide-body kit"
+      }
+    ]
+  },
+  {
+    "brand": "Rolls Royce",
+    "country": "England",
+    "description": "Barata, barata",
+    "logos": "rolls royce logo.png",
+    "models": [
+      {
+        "name": "Cullinan",
+        "HP": "563",
+        "year": "2018",
+        "daily price": "1000$",
+        "image": "cullinan.jpg",
+        "technical specifications": "6.75L V12 twin-turbo engine, 563 hp, 0-100 km/h in 5.2 s",
+        "rental conditions": "Minimum age 25, valid international driving license, €15,000 deposit",
+        "interesting facts": "The suspension system uses cameras and sensors to read the road ahead and smooth out bumps before you hit them. The ride is tuned to feel like you are gliding."
+      },
+      {
+        "name": "Phantom",
+        "HP": "563",
+        "year": "2027",
+        "daily price": "1000$",
+        "image": "phantom.jpg",
+        "technical specifications": "6.75L twin-turbo V12 engine, 563 HP, 0-100 km/h in 5.1s",
+        "rental conditions": "Minimum age 30, valid driving licence, security deposit €100,000",
+        "interesting facts": "Hand-built at Goodwood with over 44,000 exterior paint colour options and bespoke craftsmanship throughout"
+      },
+      {
+        "name": "Wraith",
+        "HP": "624",
+        "year": "2013",
+        "daily price": "900$",
+        "image": "wraith.jpg",
+        "technical specifications": "6.6L V12 twin-turbo engine, 624 HP, 0-100 km/h in 4.6s",
+        "rental conditions": "Minimum age 30, valid international driving license, €20,000 deposit",
+        "interesting facts": "Most powerful production Rolls-Royce at its launch; debuted with 'Satellite-Aided Transmission' using GPS to pre-select gears"
+      }
+    ]
+  }
 ]
