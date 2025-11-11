@@ -20,7 +20,7 @@ body.luxecars {
   color: white;
   padding: 20px 0;
   margin-bottom: 5px;
-  background-image: url('/IMAGES/imagen principal index.jpg');
+  background-image: url('imagen principal index.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -71,7 +71,7 @@ body.luxecars {
   color: white;
   padding: 20px 0;
   margin-bottom: 5px;
-  background-image: url('/IMAGES/imagen principal del info.jpeg');
+  background-image: url('imagen principal del info.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
