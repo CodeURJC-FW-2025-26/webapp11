@@ -80,7 +80,7 @@ router.get('/brand/:id', async (req, res) => {
     if (!brand) {
         return res.status(404).render('error', { message: "Brand not found" });
     }
-    res.render('show_brand', { brand });
+    res.render('info', { brand });
 });
 
 // ===================== DELETE BRAND =====================
