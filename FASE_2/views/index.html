@@ -15,24 +15,24 @@
     {{> header_index }}
 
     {{> nav_bar }}
-    
-        <!-- Search bar + Add Brand button -->
-        <div class="search-add-container">
-            <form method="GET" action="/">
-                <input type="text" name="search" class="form-control" placeholder="Search by brand name..."
-                    value="{{search}}">
-                <button type="submit" class="btn btn-dark rounded-pill px-4">Search</button>
-            </form>
-            <a href="/brand/new" class="btn btn-dark rounded-pill px-4 add-brand-btn">Add New Brand</a>
-        </div>
 
-        <!-- Filter buttons by country -->
-        <div class="filter-buttons">
-            <a href="/" class="btn btn-dark rounded-pill">All</a>
-            <a href="/?country=Italy" class="btn btn-outline-dark px-4">Italy</a>
-            <a href="/?country=Germany" class="btn btn-outline-dark">Germany</a>
-            <a href="/?country=England" class="btn btn-outline-dark">England</a>
-        </div>
+    <!-- Search bar + Add Brand button -->
+    <div class="search-add-container">
+        <form method="GET" action="/">
+            <input type="text" name="search" class="form-control" placeholder="Search by brand name..."
+                value="{{search}}">
+            <button type="submit" class="btn btn-dark rounded-pill px-4">Search</button>
+        </form>
+        <a href="new_brand.html" class="btn btn-dark rounded-pill px-4 add-brand-btn">Add New Brand</a>
+    </div>
+
+    <!-- Filter buttons by country -->
+    <div class="filter-buttons">
+        <a href="/" class="btn btn-dark rounded-pill">All</a>
+        <a href="/?country=Italy" class="btn btn-outline-dark px-4">Italy</a>
+        <a href="/?country=Germany" class="btn btn-outline-dark">Germany</a>
+        <a href="/?country=England" class="btn btn-outline-dark">England</a>
+    </div>
     <div class="container mt-4">
         <!-- Brands grid -->
         <section class="brands">
