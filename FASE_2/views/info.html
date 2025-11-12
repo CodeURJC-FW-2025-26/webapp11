@@ -12,7 +12,7 @@
 
 <body class="luxecars">
 
-    <header class="header-info" style="background-image: url('/FASE_1/IMAGES/imagen principal del info.jpeg');">
+    <header class="header-info" style="background-image: url('/imagen principal del info.jpeg');">
         <div class="main-title-info">
             <h2>{{brand.brandName}}</h2>
         </div>
@@ -35,7 +35,7 @@
                     <a class="btn btn-sm btn-outline-primary">Edit</a>
                     <button class="btn btn-sm btn-outline-danger">Delete</button>
                     <!-- CAMBIAR DIRECCIONAMIENTO -->
-                    <a href="index.html" class="btn btn-sm btn-outline-secondary">Back</a>
+                    <a href="/" class="btn btn-sm btn-outline-secondary">Back</a>
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
         <div class="brand-card">
             <div class="mt-3">
                 <!-- CAMBIAR DIRECCIONAMIENTO -->
-                <img src="/FASE_1/IMAGES/Ferrari/488_pista.jpg" alt="Ferrari 488 Pista">
+                <img src="/brand/{{brand.id}}/model/{{name}}/image" alt="{{name}}">
                 <span class="car-name">{{name}}</span>
                 <span class="car-details">{{year}} • {{HP}} HP</span>
                 <span class="car-price">{{daily_price}}$/day</span>

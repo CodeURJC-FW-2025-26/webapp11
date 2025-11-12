@@ -72,6 +72,7 @@ router.post('/brand/new', upload.single('image'), async (req, res) => {
     await catalog.addBrand(brandEntity);
 
     res.render('saved_brand', { _id: result.insertedId.toString() });
+    
 });
 
 // ===================== SPECIFIC BRAND PAGE =====================
@@ -103,3 +104,13 @@ router.get('/brand/:id/image', async (req, res) => {
     console.log(brand.logo);
     res.download(`${catalog.UPLOADS_FOLDER}/${brand.logo}`);
 });
+/*
+// ===================== SERVE MODEL IMAGE =====================
+router.get('/brand/:id/model/:name/image', async (req, res) => {
+    const modelImage = await catalog.getModelImage(req.params.brandId, req.params.name);
+    if (!modelImage || !modelImage.image) {
+        return res.status(404).send("Image not found");
+    }
+    console.log(modelImage.image);
+    res.download(`${catalog.UPLOADS_FOLDER}/${modelImage.image}`);
+}); */
