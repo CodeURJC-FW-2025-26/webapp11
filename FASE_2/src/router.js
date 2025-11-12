@@ -19,15 +19,15 @@ router.get('/', async (req, res) => {
 
     // Filter by search term (case-insensitive)
     if (search) {
-        allBrands = allBrands.filter(b =>
-            b.brandName.toLowerCase().includes(search.toLowerCase())
+        allBrands = allBrands.filter(brandNameSearch =>
+            brandNameSearch.brandName.toLowerCase().includes(search.toLowerCase())
         );
     }
 
     // Filter by country
     if (country) {
-        allBrands = allBrands.filter(b =>
-            b.country.toLowerCase() === country.toLowerCase()
+        allBrands = allBrands.filter(brandCountrySearch =>
+            brandCountrySearch.country.toLowerCase() === country.toLowerCase()
         );
     }
 
