@@ -100,5 +100,6 @@ router.get('/brand/:id/image', async (req, res) => {
     if (!brand || !brand.logo) {
         return res.status(404).send("Image not found");
     }
-    res.sendFile(`${process.cwd()}/${catalog.UPLOADS_FOLDER}/${brand.logo}`);
+    console.log(brand.logo);
+    res.download(`${catalog.UPLOADS_FOLDER}/${brand.logo}`);
 });

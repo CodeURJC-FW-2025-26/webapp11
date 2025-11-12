@@ -3,7 +3,7 @@
     "brandName": "Ferrari",
     "country": "Italy",
     "description": "Ferrari is a world-renowned Italian luxury sports car manufacturer, celebrated for its passion, innovation, and racing heritage. Founded in 1939 by Enzo Ferrari, the brand symbolizes performance, craftsmanship, and Italian excellence both on and off the track.",
-    "logos": "nuevo logo ferrari.jpg",
+    "logo": "nuevo logo ferrari.jpg",
     "models": [
       {
         "name": "Purosangue",
@@ -41,7 +41,7 @@
     "brandName": "Lamborghini",
     "country": "Italy",
     "description": "Automobili Lamborghini is an Italian manufacturer of exclusive supercars known for their bold design, extreme performance, and unmistakable V12 and V10 engines. Founded in 1963 by Ferruccio Lamborghini, the brand embodies innovation, power, and Italian craftsmanship.",
-    "logos": "lambo logo.png",
+    "logo": "lambo logo.png",
     "models": [
       {
         "name": "Aventador SVJ",
@@ -79,7 +79,7 @@
     "brandName": "Mclaren",
     "country": "England",
     "description": "McLaren Automotive is a British manufacturer of high-performance sports cars and hypercars, blending Formula 1 technology with cutting-edge engineering. Founded in 1963 by Bruce McLaren, the brand is synonymous with precision, speed, and innovation on both road and track.",
-    "logos": "mclaren logo.png",
+    "logo": "mclaren logo.png",
     "models": [
       {
         "name": "765 LT",
@@ -117,7 +117,7 @@
     "brandName": "Porsche",
     "country": "Germany",
     "description": "Porsche is a German luxury car manufacturer famous for its precision engineering, timeless design, and motorsport excellence. Founded in 1931 by Ferdinand Porsche, the brand is best known for iconic models like the 911, combining everyday usability with race-bred performance.",
-    "logos": "porsche logo.jpeg",
+    "logo": "porsche logo.jpeg",
     "models": [
       {
         "name": "992 GT3 RS",
@@ -155,7 +155,7 @@
     "brandName": "Aston Martin",
     "country": "England",
     "description": "Aston Martin is a British luxury car manufacturer renowned for elegant design, handcrafted interiors, and high-performance grand tourers. Founded in 1913, the brand combines sophistication, power, and a rich heritage, famously associated with James Bond films.",
-    "logos": "logo aston.png",
+    "logo": "logo aston.png",
     "models": [
       {
         "name": "Vantage",
@@ -193,7 +193,7 @@
     "brandName": "BMW",
     "country": "Germany",
     "description": "BMW (Bayerische Motoren Werke) is a German luxury car manufacturer known for its performance-oriented vehicles, innovative technology, and driver-focused design. Founded in 1916, BMW produces a range of cars and SUVs combining sportiness, comfort, and engineering excellence.",
-    "logos": "bmw logo.png",
+    "logo": "bmw logo.png",
     "models": [
       {
         "name": "BMW M2 CS",
@@ -231,7 +231,7 @@
     "brandName": "Audi",
     "country": "Germany",
     "description": "Audi is a German luxury car manufacturer known for cutting-edge technology, quattro all-wheel-drive performance, and elegant design. Founded in 1909, Audi combines sportiness, innovation, and premium quality across its lineup of sedans, SUVs, and sports cars.",
-    "logos": "audi logo.png",
+    "logo": "audi logo.png",
     "models": [
       {
         "name": "Audi R8",
@@ -269,7 +269,7 @@
     "brandName": "Mercedes Benz",
     "country": "Germany",
     "description": "Mercedes-Benz is a German luxury automobile manufacturer renowned for innovation, premium engineering, and timeless design. Founded in 1926, the brand produces a wide range of vehicles from high-performance sports cars to sophisticated SUVs, combining comfort, safety, and advanced technology.",
-    "logos": "mercedes logo.png",
+    "logo": "mercedes logo.png",
     "models": [
       {
         "name": "Mercedes-AMG GTR bs",
@@ -307,7 +307,7 @@
     "brandName": "Rolls Royce",
     "country": "England",
     "description": "Rolls-Royce Motor Cars is a British luxury automobile manufacturer known for unparalleled craftsmanship, elegance, and bespoke customization. Founded in 1906, the brand produces ultra-luxury vehicles that combine exquisite design, advanced engineering, and a serene driving experience.",
-    "logos": "rolls royce logo.png",
+    "logo": "rolls royce logo.png",
     "models": [
       {
         "name": "Cullinan",
