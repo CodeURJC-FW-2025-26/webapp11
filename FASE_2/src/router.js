@@ -95,6 +95,35 @@ router.get('/brand/:id/delete', async (req, res) => {
     res.render('deleted_brand');
 });
 
+// ===================== EDIT BRAND (FORM) =====================
+router.get('/brand/:id/edit', async (req, res) => {
+    const brand = await catalog.getBrand(req.params.id);
+    if (!brand) {
+        return res.status(404).render('error', { message: "Brand not found" });
+    }
+    res.render('edit_brand', { brand });
+});
+
+// ===================== UPDATE BRAND (FORM SUBMIT) =====================
+router.post('/brand/:id/edit', upload.single('image'), async (req, res) => {
+    const id = req.params.id;
+    const oldBrand = await catalog.getBrand(id);
+    if (!oldBrand) {
+        return res.status(404).render('error', { message: "Brand not found" });
+    }
+
+    const updatedBrand = {
+        brandName: req.body.brandName || oldBrand.brandName,
+        country: req.body.country || oldBrand.country,
+        description: req.body.description || oldBrand.description,
+        logo: req.file ? req.file.filename : oldBrand.logo,
+    };
+
+    await catalog.updateBrand(id, updatedBrand);
+
+    res.render('updated_brand', { brand: updatedBrand });
+});
+
 // ===================== SERVE BRAND LOGO =====================
 router.get('/brand/:id/image', async (req, res) => {
     const brand = await catalog.getBrand(req.params.id);
@@ -114,3 +143,4 @@ router.get('/brand/:id/model/:name/image', async (req, res) => {
     console.log(modelImage.image);
     res.download(`${catalog.UPLOADS_FOLDER}/${modelImage.image}`);
 }); */
+

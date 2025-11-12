@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit {{brand.brandName}}</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body class="luxecars">
+
+    <!-- HEADER implemented with Mustache Partials -->
+    <header class="header-info" style="background-image: url('/imagen principal del info.jpeg');">
+        <div class="main-title-info">
+            <h2>Edit {{brand.brandName}}</h2>
+        </div>
+    </header>
+
+    <!-- NAVBAR implemented with Mustache Partials -->
+    {{> nav_bar }}
+
+    <!-- Main Edit section-->
+    <section class="edit-brand-page">
+        <div class="container" style="max-width: 700px; margin: auto;">
+            <form action="/brand/{{brand._id}}/edit" method="POST" enctype="multipart/form-data">
+                
+                <div class="mb-3">
+                    <label>Brand Name</label>
+                    <input type="text" name="brandName" class="form-control" value="{{brand.brandName}}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label>Country</label>
+                    <input type="text" name="country" class="form-control" value="{{brand.country}}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label>Description</label>
+                    <textarea name="description" class="form-control" rows="4" required>{{brand.description}}</textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label>Logo (optional)</label>
+                    <input type="file" name="image" class="form-control">
+                    <small>Current image: {{brand.logo}}</small>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn btn-outline-dark">Save Changes</button>
+                    <a href="/brand/{{brand._id}}" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    {{> footer }}
+
+</body>
+</html>
