@@ -29,9 +29,8 @@
   <!-- NAV -->
   <div class="row justify-content-center">
     <div class="btn-group" role="group" aria-label="Navigation">
-      <a href="index.html" class="btn">Brands</a>
-      <a href="info.html" class="btn">Models</a>
-      <a href="#contact" class="btn">Contact</a>
+      <a href="/" class="btn">Home</a>
+
     </div>
   </div>
 
@@ -43,23 +42,23 @@
         style="max-width: 600px; width: 100%;">
         <div class="mb-3">
           <label for="brandName" class="form-label">Name</label>
-          <input type="text" class="form-control" id="brandName" placeholder="e.g. Ferrari" required>
+          <input type="text" class="form-control" id="brandName" name="brandName" placeholder="e.g. Ferrari" required>
         </div>
 
 
         <div class="mb-3">
           <label for="country" class="form-label">Country of Origin</label>
-          <input type="text" class="form-control" id="country" placeholder="e.g. Italy" required>
+          <input type="text" class="form-control" id="country" name="country" placeholder="e.g. Italy" required>
         </div>
 
         <div class="mb-3">
           <label for="image" class="form-label">Brand Image</label>
-          <input class="form-control" type="file" id="image" accept="image/*" required>
+          <input class="form-control" type="file" id="image" name="logo" accept="image/*" required>
         </div>
 
         <div class="mb-3">
           <label for="description" class="form-label">Description</label>
-          <textarea class="form-control" id="description" rows="3"
+          <textarea class="form-control" id="description" name="description" rows="3"
             placeholder="Brief description about the car..."></textarea>
         </div>
         <div class="d-flex justify-content-between">

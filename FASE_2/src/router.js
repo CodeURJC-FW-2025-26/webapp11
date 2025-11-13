@@ -58,9 +58,10 @@ router.get('/', async (req, res) => {
     });
 });
 
+
 // ===================== BRAND CREATION =====================
 
-router.post('/brand/new', upload.single('image'), async (req, res) => {
+router.post('/brand/new', upload.single('logo'), async (req, res) => {
     let brandEntity = {
         brandName: req.body.brandName,
         country: req.body.country,
@@ -69,10 +70,13 @@ router.post('/brand/new', upload.single('image'), async (req, res) => {
         models: []
     };
 
-    await catalog.addBrand(brandEntity);
+    const result = await catalog.addBrand(brandEntity);
 
-    res.render('saved_brand', { _id: result.insertedId.toString() });
-    
+    res.render('saved_brand', {
+        brandName: brandEntity.brandName,
+        country: brandEntity.country,
+        description: brandEntity.description
+    });
 });
 
 // ===================== SPECIFIC BRAND PAGE =====================
