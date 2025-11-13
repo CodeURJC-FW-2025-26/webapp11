@@ -16,22 +16,22 @@ export async function addBrand(brand) {
     return await brands.insertOne(brand);
 }
 
-export async function deleteBrand(id){
+export async function deleteBrand(id) {
 
     return await brands.findOneAndDelete({ _id: new ObjectId(id) });
 }
 
-export async function deleteBrands(){
+export async function deleteBrands() {
 
     return await brands.deleteMany();
 }
 
-export async function getBrands(){
+export async function getBrands() {
 
     return await brands.find().toArray();
 }
 
-export async function getBrand(id){
+export async function getBrand(id) {
 
     return await brands.findOne({ _id: new ObjectId(id) });
 }
@@ -39,5 +39,12 @@ export async function getBrand(id){
 // ------------------ UPDATE BRAND ------------------ 
 export async function updateBrand(id, updatedBrand) {
 
-    return await brands.updateOne({ _id: new ObjectId(id) },{ $set: updatedBrand });
+    return await brands.updateOne({ _id: new ObjectId(id) }, { $set: updatedBrand });
+}
+
+export async function findModelByName(id, modelName) {
+    return await brands.findOne(
+        {_id: new ObjectId(id)},
+        {projection: {models: {$elemMatch: {name: modelName}}}}
+    );
 }

@@ -134,17 +134,15 @@ router.get('/brand/:id/image', async (req, res) => {
     if (!brand || !brand.logo) {
         return res.status(404).send("Image not found");
     }
-    console.log(brand.logo);
     res.download(`${catalog.UPLOADS_FOLDER}/${brand.logo}`);
 });
-/*
+
 // ===================== SERVE MODEL IMAGE =====================
 router.get('/brand/:id/model/:name/image', async (req, res) => {
-    const modelImage = await catalog.getModelImage(req.params.brandId, req.params.name);
-    if (!modelImage || !modelImage.image) {
+    const modelImage = await catalog.findModelByName(req.params.id, req.params.name);
+    const imagenModelo = modelImage.models[0].image;
+    if (!modelImage || !imagenModelo) {
         return res.status(404).send("Image not found");
     }
-    console.log(modelImage.image);
-    res.download(`${catalog.UPLOADS_FOLDER}/${modelImage.image}`);
-}); */
-
+    res.download(`${catalog.UPLOADS_FOLDER}/${imagenModelo}`);
+});
