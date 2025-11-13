@@ -152,7 +152,7 @@
     ]
   },
   {
-    "brandName": "Aston Martin",
+    "brandName": "Aston-Martin",
     "country": "England",
     "description": "Aston Martin is a British luxury car manufacturer renowned for elegant design, handcrafted interiors, and high-performance grand tourers. Founded in 1913, the brand combines sophistication, power, and a rich heritage, famously associated with James Bond films.",
     "logo": "logo aston.png",
@@ -266,7 +266,7 @@
     ]
   },
   {
-    "brandName": "Mercedes Benz",
+    "brandName": "Mercedes-Benz",
     "country": "Germany",
     "description": "Mercedes-Benz is a German luxury automobile manufacturer renowned for innovation, premium engineering, and timeless design. Founded in 1926, the brand produces a wide range of vehicles from high-performance sports cars to sophisticated SUVs, combining comfort, safety, and advanced technology.",
     "logo": "mercedes logo.png",
@@ -304,7 +304,7 @@
     ]
   },
   {
-    "brandName": "Rolls Royce",
+    "brandName": "Rolls-Royce",
     "country": "England",
     "description": "Rolls-Royce Motor Cars is a British luxury automobile manufacturer known for unparalleled craftsmanship, elegance, and bespoke customization. Founded in 1906, the brand produces ultra-luxury vehicles that combine exquisite design, advanced engineering, and a serene driving experience.",
     "logo": "rolls royce logo.png",
