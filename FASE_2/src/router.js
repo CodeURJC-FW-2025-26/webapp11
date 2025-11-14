@@ -182,7 +182,7 @@ router.post('/brand/:id/model/:name/edit', upload.single('image'), async (req, r
     };
 
     console.log(updatedModelObject);
-    await catalog.updateModel(brandId, updatedModelObject);
+    await catalog.updateModel(brandId, oldModelName, updatedModelObject);
 
     res.render('updated_element', {element : 'Model', link : `/brand/${brandId}`});
 });

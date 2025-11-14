@@ -47,9 +47,10 @@ export async function findModelByName(id, modelName) {
     );
 }
 
-export async function updateModel(id, model) {
+export async function updateModel(id, oldName, model) {
     return await brands.updateOne(
-        { _id: new ObjectId(id), 'models.name': model.name },
-        { $set: { 'models.$': model } }
+        { _id: new ObjectId(id), 'models.name': oldName },
+        { $set: { 'models.$': model } },
+        { $set : {'models.$.name' : model.name}}
     );
 }
