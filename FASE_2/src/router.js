@@ -130,7 +130,7 @@ router.post('/brand/:id/edit', upload.single('image'), async (req, res) => {
 
     await catalog.updateBrand(id, updatedBrand);
 
-    res.render('updated_brand', { brand: updatedBrand });
+    res.render('updated_element', { element : 'Brand', link: '/' });
 });
 
 // ===================== SERVE BRAND LOGO =====================
@@ -184,5 +184,5 @@ router.post('/brand/:id/model/:name/edit', upload.single('image'), async (req, r
     console.log(updatedModelObject);
     await catalog.updateModel(brandId, updatedModelObject);
 
-    res.render('updated_model', {newModel : updatedModelObject});
+    res.render('updated_element', {element : 'Model', link : `/brand/${brandId}`});
 });
