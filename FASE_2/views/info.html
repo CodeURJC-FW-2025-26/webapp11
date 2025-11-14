@@ -36,9 +36,8 @@
                 </div>
                 <p style="font-size: 1rem; color: #444;">{{brand.description}}</p>
                 <div class="button-group mb-4">
-                    <a class="btn btn-sm btn-outline-primary">Edit</a>
-                    <button class="btn btn-sm btn-outline-danger">Delete</button>
-                    <!-- CAMBIAR DIRECCIONAMIENTO -->
+                    <a href="/brand/{{brand._id}}/edit" class="btn btn-sm btn-outline-primary">Edit</a>
+                    <a href="/brand/{{brand._id}}/delete" class="btn btn-sm btn-outline-danger">Delete</a>
                     <a href="/" class="btn btn-sm btn-outline-secondary">Back</a>
                 </div>
             </div>

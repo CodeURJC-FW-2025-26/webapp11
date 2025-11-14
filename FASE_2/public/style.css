@@ -192,6 +192,7 @@ body.luxecars {
   overflow: hidden;
   padding: 50px 100px;
   transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .brand-card:hover {
@@ -217,6 +218,7 @@ body.luxecars {
   font-size: 0.7rem;
   font-weight: 500;
   color: #111;
+  text-decoration: none;
 }
 
 /* ==== PAGINATION ==== */
