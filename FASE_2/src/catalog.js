@@ -51,6 +51,13 @@ export async function updateModel(id, oldName, model) {
     return await brands.updateOne(
         { _id: new ObjectId(id), 'models.name': oldName },
         { $set: { 'models.$': model } },
-        { $set : {'models.$.name' : model.name}}
+        { $set: { 'models.$.name': model.name } }
     );
+}
+
+export async function deleteModel(brandId, modelName) {
+    return await brands.updateOne(
+        { _id: new ObjectId(brandId) },
+        { $pull: { models: { name: modelName } } }
+    )
 }
