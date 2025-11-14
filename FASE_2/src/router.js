@@ -64,7 +64,6 @@ router.get('/brand/new', (req, res) => {
 });
 
 // ===================== BRAND CREATION =====================
-
 router.post('/brand/new', upload.single('logo'), async (req, res) => {
     let brandEntity = {
         brandName: req.body.brandName,
@@ -145,11 +144,45 @@ router.get('/brand/:id/image', async (req, res) => {
 
 // ===================== SERVE MODEL IMAGE =====================
 router.get('/brand/:id/model/:name/image', async (req, res) => {
-    const modelImage = await catalog.findModelByName(req.params.id, req.params.name);
-    const imagenModelo = modelImage.models[0].image;
-    if (!modelImage || !imagenModelo) {
+    const modelObject = await catalog.findModelByName(req.params.id, req.params.name);
+    const imagenModelo = modelObject.models[0].image;
+    if (!modelObject || !imagenModelo) {
         return res.status(404).send("Image not found");
     }
     res.download(`${catalog.UPLOADS_FOLDER}/${imagenModelo}`);
 });
 
+// ===================== EDIT MODEL INFO =====================
+router.get('/brand/:id/model/:name/edit', async (req, res) => {
+    const modelObject = await catalog.findModelByName(req.params.id, req.params.name);
+    const brandId = modelObject._id;
+    const model = modelObject.models[0];
+    res.render('edit_model', { id: brandId, model: model });
+});
+
+router.post('/brand/:id/model/:name/edit', upload.single('image'), async (req, res) => {
+    const brandId = req.params.id;
+    const oldModelName = req.params.name;
+    const oldModelObject = await catalog.findModelByName(brandId, oldModelName);
+    if (!oldModelObject) {
+        res.status(404).render('error', { message: 'Model not found' });
+    }
+
+    const sentModel = req.body;
+
+    const updatedModelObject = {
+        name : sentModel.modelName || oldModelObject.name,
+        HP : sentModel.HP || oldModelObject.HP,
+        year : sentModel.year || oldModelObject.year,
+        daily_price : sentModel.daily_price || oldModelObject.daily_price,
+        image : req.file ? req.file.filename : oldModelObject.models[0].image,
+        technical_specifications : sentModel.technical_specifications || oldModelObject.technical_specifications,
+        rental_conditions : sentModel.technical_specifications || oldModelObject.rental_conditions,
+        interesting_facts : sentModel.interesting_facts || oldModelObject.interesting_facts
+    };
+
+    console.log(updatedModelObject);
+    await catalog.updateModel(brandId, updatedModelObject);
+
+    res.render('updated_model', {newModel : updatedModelObject});
+});

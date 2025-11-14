@@ -36,15 +36,20 @@ export async function getBrand(id) {
     return await brands.findOne({ _id: new ObjectId(id) });
 }
 
-// ------------------ UPDATE BRAND ------------------ 
 export async function updateBrand(id, updatedBrand) {
-
     return await brands.updateOne({ _id: new ObjectId(id) }, { $set: updatedBrand });
 }
 
 export async function findModelByName(id, modelName) {
     return await brands.findOne(
-        {_id: new ObjectId(id)},
-        {projection: {models: {$elemMatch: {name: modelName}}}}
+        { _id: new ObjectId(id) },
+        { projection: { models: { $elemMatch: { name: modelName } } } }
+    );
+}
+
+export async function updateModel(id, model) {
+    return await brands.updateOne(
+        { _id: new ObjectId(id), 'models.name': model.name },
+        { $set: { 'models.$': model } }
     );
 }
