@@ -58,6 +58,10 @@ router.get('/', async (req, res) => {
     });
 });
 
+// ===================== FORM PAGE: NEW BRAND =====================
+router.get('/brand/new', (req, res) => {
+    res.render('new_brand');
+});
 
 // ===================== BRAND CREATION =====================
 
@@ -78,6 +82,8 @@ router.post('/brand/new', upload.single('logo'), async (req, res) => {
         description: brandEntity.description
     });
 });
+
+
 
 // ===================== SPECIFIC BRAND PAGE =====================
 router.get('/brand/:id', async (req, res) => {
@@ -146,3 +152,4 @@ router.get('/brand/:id/model/:name/image', async (req, res) => {
     }
     res.download(`${catalog.UPLOADS_FOLDER}/${imagenModelo}`);
 });
+
