@@ -101,7 +101,7 @@ router.get('/brand/:id/delete', async (req, res) => {
         await fs.rm(`${catalog.UPLOADS_FOLDER}/${brand.value.logo}`, { force: true });
     }
 
-    res.render('deleted_brand');
+    res.render('deleted_element', {element : 'Brand', link : '/'});
 });
 
 // ===================== EDIT BRAND (FORM) =====================
@@ -185,4 +185,15 @@ router.post('/brand/:id/model/:name/edit', upload.single('image'), async (req, r
     await catalog.updateModel(brandId, oldModelName, updatedModelObject);
 
     res.render('updated_element', {element : 'Model', link : `/brand/${brandId}`});
+});
+
+router.get('/brand/:id/model/:name/delete', async (req, res) => {
+    const modelObject = await catalog.deleteModel(req.params.id, req.params.name);
+    const modelObjectImage = modelObject?.value?.image
+
+    if (modelObjectImage) {
+        await fs.rm(`${catalog.UPLOADS_FOLDER}/${modelObjectImage}`, { force: true });
+    }
+
+    res.render('deleted_element', {element : 'Model', link : `/brand/${req.params.id}`});
 });
