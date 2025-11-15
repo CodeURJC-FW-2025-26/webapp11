@@ -11,6 +11,8 @@ const brands = db.collection('brands');
 
 export const UPLOADS_FOLDER = './uploads';
 
+// ========== BRAND QUERIES ==========
+
 export async function addBrand(brand) {
 
     return await brands.insertOne(brand);
@@ -39,6 +41,8 @@ export async function getBrand(id) {
 export async function updateBrand(id, updatedBrand) {
     return await brands.updateOne({ _id: new ObjectId(id) }, { $set: updatedBrand });
 }
+
+// ========== MODEL QUERIES ==========
 
 export async function findModelByName(id, modelName) {
     return await brands.findOne(
