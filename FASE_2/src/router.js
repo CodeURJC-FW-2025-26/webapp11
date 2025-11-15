@@ -145,11 +145,11 @@ router.get('/brand/:id/image', async (req, res) => {
 // ===================== SERVE MODEL IMAGE =====================
 router.get('/brand/:id/model/:name/image', async (req, res) => {
     const modelObject = await catalog.findModelByName(req.params.id, req.params.name);
-    const imagenModelo = modelObject.models[0].image;
-    if (!modelObject || !imagenModelo) {
+    const modelImage = modelObject.models[0].image;
+    if (!modelObject || !modelImage) {
         return res.status(404).send("Image not found");
     }
-    res.download(`${catalog.UPLOADS_FOLDER}/${imagenModelo}`);
+    res.download(`${catalog.UPLOADS_FOLDER}/${modelImage}`);
 });
 
 // ===================== EDIT MODEL PAGE =====================
@@ -188,7 +188,7 @@ router.post('/brand/:id/model/:name/edit', upload.single('image'), async (req, r
     res.render('updated_element', { element: 'Model', link: `/brand/${brandId}` });
 });
 
-// ===================== MODEL DELETION =====================
+// ===================== MODEL DELETION REQUEST =====================
 router.get('/brand/:id/model/:name/delete', async (req, res) => {
     const modelObject = await catalog.deleteModel(req.params.id, req.params.name);
     const modelObjectImage = modelObject?.value?.image
