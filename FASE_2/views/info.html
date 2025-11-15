@@ -77,6 +77,55 @@
         {{/brand.models}}
     </div>
 
+    <!-- FORM SECTION -->
+    <section class="brands mt-2">
+        <h2>Add New Model</h2>
+        <div class="container d-flex justify-content-center">
+            <form class="car-form p-4 shadow rounded bg-white" style="max-width: 600px; width: 100%;" method="POST" action="/brand/{{brand._id}}/model/create" enctype="multipart/form-data">
+                <div class="mb-3"> 
+                    <label for="modelName" class="form-label">Name</label>
+                    <input type="text" class="form-control" name="modelName" placeholder="e.g. Ferrari" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="year" class="form-label">Year of Release</label>
+                    <input type="number" class="form-control" name="year" placeholder="e.g. 2010" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="HP" class="form-label">Horsepower</label>
+                    <input type="number" class="form-control" name="HP" placeholder="e.g. 700" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="daily_price" class="form-label">Daily Price</label>
+                    <input type="number" class="form-control" name="daily_price" placeholder="e.g. 5000" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Model Image</label>
+                    <input class="form-control" type="file" name="image" accept="image/*" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="technical_specifications" class="form-label">Technical Specifications</label>
+                    <textarea class="form-control" name="technical_specifications" rows="3" placeholder="Specifications of the car..." required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="rental_conditions" class="form-label">Rental conditions</label>
+                    <textarea class="form-control" name="rental_conditions" rows="3" placeholder="Conditions to rent the car..." required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="interesting_facts" class="form-label">Interesting Facts</label>
+                    <textarea class="form-control" name="interesting_facts" rows="3" placeholder="Some data about the car..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-dark w-100">Create</button>
+            </form>
+    </section>
+
     <!-- Footer implemented with Mustache Partials -->
     {{> footer }}
 

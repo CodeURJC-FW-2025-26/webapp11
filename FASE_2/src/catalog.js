@@ -59,5 +59,12 @@ export async function deleteModel(brandId, modelName) {
     return await brands.updateOne(
         { _id: new ObjectId(brandId) },
         { $pull: { models: { name: modelName } } }
-    )
+    );
+}
+
+export async function addModel(brandId, model) {
+    return await brands.updateOne(
+        { _id: new ObjectId(brandId) },
+        { $push: { models: model } }
+    );
 }

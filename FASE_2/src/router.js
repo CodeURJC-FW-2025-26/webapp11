@@ -101,7 +101,7 @@ router.get('/brand/:id/delete', async (req, res) => {
         await fs.rm(`${catalog.UPLOADS_FOLDER}/${brand.value.logo}`, { force: true });
     }
 
-    res.render('deleted_element', {element : 'Brand', link : '/'});
+    res.render('deleted_element', { element: 'Brand', link: '/' });
 });
 
 // ===================== EDIT BRAND (FORM) =====================
@@ -130,7 +130,7 @@ router.post('/brand/:id/edit', upload.single('image'), async (req, res) => {
 
     await catalog.updateBrand(id, updatedBrand);
 
-    res.render('updated_element', { element : 'Brand', link: '/' });
+    res.render('updated_element', { element: 'Brand', link: '/' });
 });
 
 // ===================== SERVE BRAND LOGO =====================
@@ -152,7 +152,7 @@ router.get('/brand/:id/model/:name/image', async (req, res) => {
     res.download(`${catalog.UPLOADS_FOLDER}/${imagenModelo}`);
 });
 
-// ===================== EDIT MODEL INFO =====================
+// ===================== EDIT MODEL PAGE =====================
 router.get('/brand/:id/model/:name/edit', async (req, res) => {
     const modelObject = await catalog.findModelByName(req.params.id, req.params.name);
     const brandId = modelObject._id;
@@ -160,6 +160,7 @@ router.get('/brand/:id/model/:name/edit', async (req, res) => {
     res.render('edit_model', { id: brandId, model: model });
 });
 
+// ===================== DATABASE MODEL EDIT REQUEST =====================
 router.post('/brand/:id/model/:name/edit', upload.single('image'), async (req, res) => {
     const brandId = req.params.id;
     const oldModelName = req.params.name;
@@ -171,22 +172,23 @@ router.post('/brand/:id/model/:name/edit', upload.single('image'), async (req, r
     const sentModel = req.body;
 
     const updatedModelObject = {
-        name : sentModel.modelName || oldModelObject.name,
-        HP : sentModel.HP || oldModelObject.HP,
-        year : sentModel.year || oldModelObject.year,
-        daily_price : sentModel.daily_price || oldModelObject.daily_price,
-        image : req.file ? req.file.filename : oldModelObject.models[0].image,
-        technical_specifications : sentModel.technical_specifications || oldModelObject.technical_specifications,
-        rental_conditions : sentModel.technical_specifications || oldModelObject.rental_conditions,
-        interesting_facts : sentModel.interesting_facts || oldModelObject.interesting_facts
+        name: sentModel.modelName || oldModelObject.name,
+        HP: sentModel.HP || oldModelObject.HP,
+        year: sentModel.year || oldModelObject.year,
+        daily_price: sentModel.daily_price || oldModelObject.daily_price,
+        image: req.file ? req.file.filename : oldModelObject.models[0].image,
+        technical_specifications: sentModel.technical_specifications || oldModelObject.technical_specifications,
+        rental_conditions: sentModel.rental_conditions || oldModelObject.rental_conditions,
+        interesting_facts: sentModel.interesting_facts || oldModelObject.interesting_facts
     };
 
     console.log(updatedModelObject);
     await catalog.updateModel(brandId, oldModelName, updatedModelObject);
 
-    res.render('updated_element', {element : 'Model', link : `/brand/${brandId}`});
+    res.render('updated_element', { element: 'Model', link: `/brand/${brandId}` });
 });
 
+// ===================== MODEL DELETION =====================
 router.get('/brand/:id/model/:name/delete', async (req, res) => {
     const modelObject = await catalog.deleteModel(req.params.id, req.params.name);
     const modelObjectImage = modelObject?.value?.image
@@ -195,5 +197,35 @@ router.get('/brand/:id/model/:name/delete', async (req, res) => {
         await fs.rm(`${catalog.UPLOADS_FOLDER}/${modelObjectImage}`, { force: true });
     }
 
-    res.render('deleted_element', {element : 'Model', link : `/brand/${req.params.id}`});
+    res.render('deleted_element', { element: 'Model', link: `/brand/${req.params.id}` });
 });
+
+// ===================== DATABASE MODEL ADDITION REQUEST =====================
+router.post('/brand/:id/model/create', upload.single('image'), async (req, res) => {
+    const brandId = req.params.id;
+    const sentFormInfo = req.body;
+
+    const newModelObject = {
+        name: sentFormInfo.modelName,
+        HP: sentFormInfo.HP,
+        year: sentFormInfo.year,
+        daily_price: sentFormInfo.daily_price,
+        image: req.file ? req.file.filename : null,
+        technical_specifications: sentFormInfo.technical_specifications,
+        rental_conditions: sentFormInfo.rental_conditions,
+        interesting_facts: sentFormInfo.interesting_facts
+    };
+
+    const modelInDatabase = await catalog.findModelByName(brandId, newModelObject.name);
+
+    const modelExists = modelInDatabase.models;
+
+    if (modelExists) {
+        res.status(404).render('error', { message: 'Model already exists for this brand. Edit that one instead.' });
+    }
+    
+    await catalog.addModel(brandId, newModelObject);
+
+    res.render('saved_model', { element: newModelObject, link: `/brand/${brandId}` });
+});
+
