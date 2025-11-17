@@ -65,13 +65,33 @@ router.get('/brand/new', (req, res) => {
 
 // ===================== BRAND CREATION =====================
 router.post('/brand/new', upload.single('logo'), async (req, res) => {
+    //Validations
 
+    //Empty fields
     if (!req.body.brandName || !req.body.country || !req.body.description) {
-        return res.status(400).render('error', { message: "Some fields are missing" });
+        return res.status(400).render('error', { message: "Some fields are missing" ,link : "/new_brand.html"});
     }
     if (!req.file) {
-        return res.status(400).render('error', { message: "You must upload a brand logo" });
+        return res.status(400).render('error', { message: "You must upload a brand logo",link : "/new_brand.html" });
     }
+    //Valid brand 
+    if (!/^[A-ZÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]{0,29}$/.test(req.body.brandName)) {
+        return res.status(400).render('error', { message: "Brand name must start with an uppercase letter and have a maximum of 30 characters",link : "/brand/new" });
+}
+    //Checks if the brand name already exists
+    const existingBrand = await catalog.getBrandByName(req.body.brandName);
+    if (existingBrand) {
+        return res.status(400).render('error', { message: "Brand name already exists",link : "/new_brand.html"});
+    }
+    //Description lenght
+    if (req.body.description.length < 10 || req.body.description.length > 300) {
+        return res.status(400).render('error', { message: "Description must be between 10 and 300 characters",link : "/new_brand.html"});
+    }
+    //Country
+    if (!/^[A-Za-zÁÉÍÓÚÑáéíóúñ\s]{2,60}$/.test(req.body.country)) {
+        return res.status(400).render('error', { message: "Country must contain only letters and must be between 2 and 60 characters",link : "/new_brand.html"});
+    }
+
     let brandEntity = {
         brandName: req.body.brandName,
         country: req.body.country,
@@ -127,6 +147,7 @@ router.post('/brand/:id/edit', upload.single('image'), async (req, res) => {
     if (!oldBrand) {
         return res.status(404).render('error', { message: "Brand not found" });
     }
+    
 
     const updatedBrand = {
         brandName: req.body.brandName || oldBrand.brandName,

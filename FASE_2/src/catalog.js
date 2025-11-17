@@ -37,6 +37,10 @@ export async function getBrand(id) {
 
     return await brands.findOne({ _id: new ObjectId(id) });
 }
+export async function getBrandByName(name) {
+    return await brands.findOne({ brandName: name });
+}
+
 
 export async function updateBrand(id, updatedBrand) {
     return await brands.updateOne({ _id: new ObjectId(id) }, { $set: updatedBrand });
