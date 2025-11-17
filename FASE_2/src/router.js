@@ -65,6 +65,13 @@ router.get('/brand/new', (req, res) => {
 
 // ===================== BRAND CREATION =====================
 router.post('/brand/new', upload.single('logo'), async (req, res) => {
+
+    if (!req.body.brandName || !req.body.country || !req.body.description) {
+        return res.status(400).render('error', { message: "Some fields are missing" });
+    }
+    if (!req.file) {
+        return res.status(400).render('error', { message: "You must upload a brand logo" });
+    }
     let brandEntity = {
         brandName: req.body.brandName,
         country: req.body.country,
@@ -72,7 +79,7 @@ router.post('/brand/new', upload.single('logo'), async (req, res) => {
         logo: req.file?.filename,
         models: []
     };
-
+    
     const result = await catalog.addBrand(brandEntity);
 
     res.render('saved_brand', {
