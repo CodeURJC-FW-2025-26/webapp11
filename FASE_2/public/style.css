@@ -7,6 +7,7 @@ body.luxecars {
   margin: 0;
   padding: 0;
   text-align: center;
+  min-height: 100vh;
 }
 
 /* ==== HEADER INDEX STYLES ==== */
@@ -162,6 +163,7 @@ body.luxecars {
 .brands {
   padding: 0px;
   background-color: #fafafa;
+  flex: 1;
 }
 
 .brands h2 {
@@ -237,6 +239,7 @@ footer {
   border-top: 1px solid #eee;
   font-size: 0.9rem;
   color: #777;
+  margin-top: auto;
 }
 
 /* ==== RESPONSIVE ==== */
@@ -407,7 +410,7 @@ form .mb-3 textarea:focus {
   outline: none;
 }
 
-form button,
+form button.btn,
 form a.btn {
   border-radius: 30px;
   padding: 0.6rem 1.5rem;
