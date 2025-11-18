@@ -66,7 +66,7 @@ router.get('/brand/new', (req, res) => {
 // ===================== BRAND CREATION =====================
 router.post('/brand/new', upload.single('logo'), async (req, res) => {
     //Validations
-
+    
     //Empty fields
     if (!req.body.brandName || !req.body.country || !req.body.description) {
         return res.status(400).render('error', { message: "Some fields are missing" ,link : "/brand/new",page:"New Brand"});
@@ -151,7 +151,7 @@ router.post('/brand/:id/edit', upload.single('image'), async (req, res) => {
     //LINKS NO FUNCIONAN BIEN
     //Empty fields
     if (!req.body.brandName || !req.body.country || !req.body.description) {
-        return res.status(400).render('error', { message: "Some fields are missing" ,link : `/brand/${id}/edit`,page:"Edit Brand"});
+        return res.status(400).render('error', { message: "Some fields are missing" ,link : `${id}/edit`,page:`Edit`});
     }
     //Valid brand 
     if (!/^[A-ZÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]{0,29}$/.test(req.body.brandName)) {
@@ -316,8 +316,14 @@ router.post('/brand/:id/model/create', upload.single('image'), async (req, res) 
         return res.status(400).render('error', { message: "Model name already exists",link : `/brand/${id}/edit`,page:"Edit Brand"});
     }
     //Year
-
+    if (sentFormInfo.year <1850 || sentFormInfo.year > (Date.getFullYear()+1)){
+        return res.status(400).render('error', { message: "Year must be between 1850 and current year",link : `/`,page:"Edit Brand" });
+    }
+    
     //HP
+    if (sentFormInfo.HP > 10000){
+        return res.status(400).render('error', { message: "HP must be lower than 10000",link : `/`,page:"Edit Brand" });
+    }
 
     //Daily Price
 
