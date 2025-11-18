@@ -219,7 +219,7 @@ router.post('/brand/:id/model/:name/edit', upload.single('image'), async (req, r
         res.status(404).render('error', { message: 'Model not found' });
     }
     const sentFormInfo = req.body;
-     const date = new Date();
+    const date = new Date();
 
     const updatedModelObject = {
         name: sentFormInfo.modelName || oldModelObject.name,
@@ -239,27 +239,27 @@ router.post('/brand/:id/model/:name/edit', upload.single('image'), async (req, r
     // CODIGO INCOMPLETO; SE ESTA TRABAJANDO, LOS LINKS TAMPOCO ESTÁN
     //Empty fields
     if (!updatedModelObject.name || !updatedModelObject.HP || !updatedModelObject.year|| !updatedModelObject.daily_price|| !updatedModelObject.technical_specifications|| !updatedModelObject.rental_conditions|| !updatedModelObject.interesting_facts) {
-        return res.status(400).render('error', { message: "Some fields are missing" ,link : `/brand/${id}/edit`,page:"Edit Brand"});
+        return res.status(400).render('error',  {message: "Some fields are missing" ,link : `/brand/:${brandId}/model/:${updatedModelObject.name}/edit`,page:`Edit ${updatedModelObject.name}`});
     }
     if (!updatedModelObject.image) {
-        return res.status(400).render('error', { message: "You must upload a model image",link : "/brand/new",page:"New Brand" });
+        return res.status(400).render('error', { message: "You must upload a model image",link : `/brand/:${brandId}/model/:${updatedModelObject.name}/edit`,page:`Edit ${updatedModelObject.name}`});
     }
     //Valid model name
     if (!/^[A-Z0-9ÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]{0,29}$/.test(updatedModelObject.name)) {
-        return res.status(400).render('error', { message: "Model name must start with an uppercase letter and have a maximum of 30 characters",link : `/brand/${brandId}`,page:"Edit Brand" });
+        return res.status(400).render('error', { message: "Model name must start with an uppercase letter and have a maximum of 30 characters",link : `/brand/:${brandId}/model/:${updatedModelObject.name}/edit`,page:`Edit ${updatedModelObject.name}`});
 }
     //Checks if the model name already exists
     const existingModel = await catalog.findModelByName(brandId,oldModelObject.name);
     if (existingModel.models) {
-        return res.status(400).render('error', { message: "Model name already exists",link : `/brand/${brandId}/edit`,page:"Edit Brand"});
+        return res.status(400).render('error', { message: "Model name already exists",link : `/brand/:${brandId}/model/:${updatedModelObject.name}/edit`,page:`Edit ${updatedModelObject.name}`});
     }
     //Year
     if (updatedModelObject.year <1850 || updatedModelObject.year > (date.getFullYear()+1)){
-        return res.status(400).render('error', { message: "Year must be between 1850 and current year",link : `/brand/${brandId}`,page:"Edit Brand" });
+        return res.status(400).render('error', { message: "Year must be between 1850 and current year",link : `/brand/:${brandId}/model/:${updatedModelObject.name}/edit`,page:`Edit ${updatedModelObject.name}`});
     }
     //HP
     if (sentFormInfo.HP > 10000){
-        return res.status(400).render('error', { message: "HP must be lower than 10000",link : `/brand/${brandId}`,page:"Edit Brand" });
+        return res.status(400).render('error', { message: "HP must be lower than 10000",link : `/brand/:${brandId}/model/:${updatedModelObject.name}/edit`,page:`Edit ${updatedModelObject.name}`});
     }
 
     //Daily Price
@@ -269,15 +269,15 @@ router.post('/brand/:id/model/:name/edit', upload.single('image'), async (req, r
     
     //Technical Specifications
     if (sentFormInfo.technical_specifications.length < 10 || sentFormInfo.technical_specifications.length > 300) {
-        return res.status(400).render('error', { message: "Technical Specifications must be between 10 and 300 characters",link : `/brand/${brandId}/edit`,page:"Edit Brand"});
+        return res.status(400).render('error', { message: "Technical Specifications must be between 10 and 300 characters",link : `/brand/:${brandId}/model/:${updatedModelObject.name}/edit`,page:`Edit ${updatedModelObject.name}`});
     }
     //Rental conditions
     if (sentFormInfo.rental_conditions.length < 10 || sentFormInfo.rental_conditions.length > 300) {
-        return res.status(400).render('error', { message: "Rental conditions must be between 10 and 300 characters",link : `/brand/${brandId}/edit`,page:"Edit Brand"});
+        return res.status(400).render('error', { message: "Rental conditions must be between 10 and 300 characters",link : `/brand/:${brandId}/model/:${updatedModelObject.name}/edit`,page:`Edit ${updatedModelObject.name}`});
     }
     //Interesting facts
     if (sentFormInfo.interesting_facts.length < 10 || sentFormInfo.interesting_facts.length > 300) {
-        return res.status(400).render('error', { message: "Interesting Facts must be between 10 and 300 characters",link : `/brand/${brandId}/edit`,page:"Edit Brand"});
+        return res.status(400).render('error', { message: "Interesting Facts must be between 10 and 300 characters",link : `/brand/:${brandId}/model/:${updatedModelObject.name}/edit`,page:`Edit ${updatedModelObject.name}`});
     }
 
     console.log(updatedModelObject);
