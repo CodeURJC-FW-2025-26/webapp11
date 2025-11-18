@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Brand created {{brand.brandName}}</title>
+    <title>Model created {{element.name}}</title>
     <link rel="stylesheet" href="/style.css">
 
     <!-- Bootstrap -->
@@ -11,7 +11,6 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
     <link rel="icon" type='image/jpeg' href="/Favicon Luxecars.jpeg"/>
 </head>
 
@@ -20,7 +19,7 @@
     
     <header class="header-info" style="background-image: url('/imagen principal index.jpg');">
         <div class="main-title-info">
-            <h2>Brand Created Successfully</h2>
+            <h2>Model Created Successfully</h2>
         </div>
     </header>
     
@@ -28,16 +27,16 @@
         <div class="container d-flex justify-content-center">
             <div class="car-form p-4 shadow rounded bg-white" style="max-width: 600px; width: 100%;">
 
-                <h2 class="mb-4 text-center">Brand created successfully!</h2>
+                <h2 class="mb-4 text-center">Model created successfully!</h2>
 
                 <div class="mb-3">
-                    <label class="form-label">Brand Name</label>
-                    <input type="text" class="form-control" value="{{brandName}}" disabled>
+                    <label class="form-label">Model Name</label>
+                    <input type="text" class="form-control" value="{{element.name}}" disabled>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Country</label>
-                    <input type="text" class="form-control" value="{{country}}" disabled>
+                    <input type="text" class="form-control" value="{{element.}}" disabled>
                 </div>
 
                 <div class="mb-3">
