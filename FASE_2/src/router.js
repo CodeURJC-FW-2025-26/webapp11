@@ -148,10 +148,10 @@ router.post('/brand/:id/edit', upload.single('image'), async (req, res) => {
         return res.status(404).render('error', { message: "Brand not found" });
     }
     //Validations, they are very similar as the ones in create brand, but with a few changes.
-    //LINKS NO FUNCIONAN BIEN
+    
     //Empty fields
     if (!req.body.brandName || !req.body.country || !req.body.description) {
-        return res.status(400).render('error', { message: "Some fields are missing" ,link : `${id}/edit`,page:`Edit`});
+        return res.status(400).render('error', { message: "Some fields are missing" ,link : `/brand/${id}/edit`,page:`Edit ${oldBrand.brandName}`});
     }
     //Valid brand 
     if (!/^[A-ZÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]{0,29}$/.test(req.body.brandName)) {
@@ -160,15 +160,15 @@ router.post('/brand/:id/edit', upload.single('image'), async (req, res) => {
     //Checks if the brand name already exists and its not old brand
     const existingBrand = await catalog.getBrandByName(req.body.brandName);
     if (existingBrand && existingBrand.id !== oldBrand.id) {
-        return res.status(400).render('error', { message: "Brand name already exists",link : `/brand/${id}/edit`,page:"Edit Brand"});
+        return res.status(400).render('error', { message: "Brand name already exists",link : `/brand/${id}/edit`,page:`Edit ${oldBrand.brandName}`});
     }
     //Description lenght
     if (req.body.description.length < 10 || req.body.description.length > 300) {
-        return res.status(400).render('error', { message: "Description must be between 10 and 300 characters",link : `/brand/${id}/edit`,page:"Edit Brand"});
+        return res.status(400).render('error', { message: "Description must be between 10 and 300 characters",link : `/brand/${id}/edit`,page:`Edit ${oldBrand.brandName}`});
     }
     //Country
     if (!/^[A-Za-zÁÉÍÓÚÑáéíóúñ\s]{2,60}$/.test(req.body.country)) {
-        return res.status(400).render('error', { message: "Country must contain only letters and must be between 2 and 60 characters",link : `/brand/${id}/edit`,page:"Edit Brand"});
+        return res.status(400).render('error', { message: "Country must contain only letters and must be between 2 and 60 characters",link : `/brand/${id}/edit`,page:`Edit ${oldBrand.brandName}`});
     }
 
     const updatedBrand = {
