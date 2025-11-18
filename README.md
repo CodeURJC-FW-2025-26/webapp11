@@ -181,7 +181,7 @@ The machine running the web app shall have:
 
 # Instructions to execute the server
 
-First, the source code needs to be opened in an IDE, such as Visual Studio Code. Then, we have to access the "FASE2" folder in the Command Prompt terminal (CMD, not Powershell, as you cannot execute node or npm commands in there).
+First, the source code directory needs to be opened in a terminal (CMD, not Powershell, as you cannot execute node or npm commands in there). Then, we have to access the "FASE2" folder in the terminal using the 'cd' command.
 
 Next, to make sure we download all of the dependencies in the code folder, we must run the command 'npm install'. This will install all of the needed dependencies and tools for the web app to work, such as Mustache or Multer.
 
