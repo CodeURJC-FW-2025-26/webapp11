@@ -166,12 +166,28 @@ It allows users to explore different models, apply filters to find vehicles by b
 3. [index.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/index.html)
 
 ---
+
 # (Phase 2): Node.js server implementation for the web application:
-##
-🚀
+## 🚀
 # Explanation step by step of how to successfully download, build and execute the application.
 
-# NO EXPLICADO TODAVIA - ANGEL
+To put the web app into fully functioning, downloading the source code is needed. For this, there is the release linked to this phase 2, containing all of the important assets for whoever wants to deploy the app.
+
+# Dependencies (client-wise)
+
+The machine running the web app shall have:
+- Node.js installed (Preferably the latest LTS version (that is, v24.11.1 of Node.js)
+- MongoDB installed (The web app will be fully operative with the v8.2.1 Community version, with 6.2.0 being the oldest operable version, but if one wants to check the database and manage it, MongoDB Compass is a great help for it)
+
+# Instructions to execute the server
+
+First, the source code needs to be opened in an IDE, such as Visual Studio Code. Then, we have to access the "FASE2" folder in the Command Prompt terminal (CMD, not Powershell, as you cannot execute node or npm commands in there).
+
+Next, to make sure we download all of the dependencies in the code folder, we must run the command 'npm install'. This will install all of the needed dependencies and tools for the web app to work, such as Mustache or Multer.
+
+Lastly, we shall run either the command 'npm start', or 'npm run watch' (A variation that uses Nodemon, which helps developing the web app) to have the server operational. If everything worked, the console shall display the demo data has been loaded, and the address of the web app.
+
+---
 
 - **Interactive catalog**: A clear and visually appealing gallery of luxury cars.
 - **Filtering options**: Search for a specific vehicle/letter in title or filter brands by country.
