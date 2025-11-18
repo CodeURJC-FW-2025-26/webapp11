@@ -197,12 +197,50 @@ Lastly, we shall run either the command 'npm start', or 'npm run watch' (A varia
 ##
 🚀
 # Files description
+- **data.json**: This file contains a structured catalog of luxury car brands and their high-end models. For each brand, it includes basic information such as name, country, description, logo, and a list of models. Each model provides technical specifications, images, rental conditions, horsepower, year, price per day, and interesting facts. The dataset covers multiple manufacturers including Ferrari, Lamborghini, McLaren, Porsche, Aston Martin, BMW, Audi, Mercedes-Benz, and Rolls-Royce.
+  
+- **style.css**: This file is responsible for the overall visual design and structure of the web pages it is linked to.
+  
+- **app.js**: This file is responsible for initializing and configuring the Express web server, setting up mustache-express as the template engine, serving static files from the ./public directory, using body-parser for handling form submissions, and routing all requests through ./router.js, finally starting the server on port 3000.
+ 
+- **router.js**: This file is an Express Router that defines all the API endpoints (routes) for the application, handling both GET (displaying pages, fetching data) and POST (submitting forms, creating/updating data) requests.
+  
+- **catalog.js**: This file acts as the Data Access Layer (DAL) for the application, establishing a connection to a MongoDB database and providing a set of asynchronous functions to perform CRUD (Create, Read, Update, Delete) operations on the brands collection.
+  
+- **load_data.js**: This file is responsible for initializing the application's environment, which includes clearing and loading demo brand and model data into the MongoDB database and resetting the file system's uploads folder with demo images.
+  
+- **index.html**: This file is responsible for rendering the specific Brand Details Page, displaying the brand's core information (name, country, description, and logo) and its list of associated car models with their individual details and action buttons, while also including the form for creating a new car model under this brand.
+  
+- **info.html**: This file is responsible for rendering the specific brand's detail page, which displays the brand information (logo, name, country, description, and links to edit/delete the brand), lists all associated car models with their specs and action buttons, and includes the form for adding a new car model to that brand.
+  
+- **deleted_element.html**: This HTML template is an informational page designed to confirm the successful deletion of an element, such as a brand or car model. It dynamically displays the name of the deleted item ({{element}}) and includes a button to navigate back to the relevant page.
+  
+- **edit_brand.html**: This HTML template renders the "Edit Brand" page, which displays a form pre-filled with the current data (name, country, description) of a specific brand. It allows the user to update the brand's details or optionally upload a new logo, submitting the changes to the server.
+  
+- **edit_model.html**: This HTML template renders the "Edit Model" page, displaying a form pre-filled with the current specifications of a specific car model (name, HP, year, price, technical facts, etc.). It allows the user to update all model details, including the option to upload a new image, and submits the modified data for the respective brand.
+  
+- **error.html**: This HTML template is the generic error page for the application. It is designed to display an error message ({{message}}) dynamically and provides a button that links the user back to the page where the error occurred ({{page}}), using the provided return link ({{link}}).
+  
+- **footer.html**: This HTML file is a Mustache partial that defines the footer section of the web application. Its only purpose is to display the copyright notice, specifically the text "© 2025 LuxeCars. All rights reserved."
+  
+- **header_index.html**: This HTML file is a Mustache partial that defines the main header for the application's index page. Its content is simple: it displays the main title "LuxeCars" and the tagline "Experience the Art of Driving Luxury".
+  
+- **nav_bar.html**: This HTML file is a Mustache partial that defines the application's navigation bar. It is designed to group navigation buttons, and currently contains a single link labeled "Home" which directs the user to the main brand catalog page.
+  
+- **new_brand.html**: This HTML template renders the "Add New Brand" page, providing a form that allows the user to register a new luxury brand in the application's catalog. The form is configured to collect the brand's name, country of origin, a description, and a logo image, submitting this data via a POST request to the /brand/new endpoint.
+  
+- **saved_brand.html**: This HTML template is a confirmation page that renders after a new brand has been successfully created and saved to the database. It displays the details of the newly created brand (name, country, and description) to the user and provides links to either view the brand's individual page or return to the main list of all brands.
+  
+- **saved_model.html**: This HTML template is a confirmation page that renders after a new car model has been successfully created or edited. It displays the detailed specifications of the saved model (name, HP, price, technical facts, etc.) and provides a button to return to the brand's main information page ({{link}}).
+  
+- **updated_element.html**: This HTML template is a simple confirmation page designed to notify the user that an element, such as a brand or model ({{element}}), has been successfully updated. It includes a button that redirects the user back to the detailed page for the modified element.
+  
+- **package.json**: This file is the Node.js package manifest for the project, defining its name, version, and type. It lists the required dependencies for the application to run (like express, mongodb, and mustache-express), and specifies development tools like nodemon and the start and watch scripts used to run the application.
+  
+- **package-lock.json**: This file is an auto-generated manifest that records the exact version tree of all project dependencies and their sub-dependencies. It guarantees consistent installations across different environments by locking down the entire dependency graph, ensuring that every developer or machine uses the same code versions.
 
-# NO EXPLICADO TODAVIA
+- **node-modules**: The node_modules folder is a massive directory that stores all the third-party dependencies (libraries and packages like express and mongodb) required for the Node.js project, as specified in package.json. It is automatically generated by the package manager (npm or yarn) and is typically excluded from version control due to its large size and ephemeral nature.
 
-- **Interactive catalog**: A clear and visually appealing gallery of luxury cars.
-- **Filtering options**: Search for a specific vehicle/letter in title or filter brands by country.
-- **Detail pages**: Individual pages for each brand models with specifications, images, and interesting facts.
 
 ---
 ##
