@@ -238,7 +238,7 @@ router.post('/brand/:id/model/:name/edit', upload.single('image'), async (req, r
     };
 
 
-    console.log(sentFormInfo);
+    
 
     //Validations for model edition
     
@@ -293,7 +293,7 @@ router.post('/brand/:id/model/:name/edit', upload.single('image'), async (req, r
         return res.status(400).render('error', { message: "Interesting Facts must be between 10 and 300 characters",link : `/brand/${brandId}/model/${oldModelName}/edit`,page:`Edit ${oldModelName}`});
     }
 
-    console.log(updatedModelObject);
+    
     await catalog.updateModel(brandId, oldModelName, updatedModelObject);
 
     res.render('updated_element', { element: 'Model', link: `/brand/${brandId}` });
