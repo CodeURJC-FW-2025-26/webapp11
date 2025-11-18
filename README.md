@@ -335,21 +335,24 @@ Lastly, we shall run either the command 'npm start', or 'npm run watch' (A varia
 4. [IMAGES](https://github.com/CodeURJC-FW-2025-26/webapp11/tree/main/FASE_1/IMAGES)
 
    
-## Adrián Varea Fernández (POR COMPLETAR)
+## Adrián Varea Fernández
 
 ### Textual description of the tasks performed in the phase:
-- Creation of the Add New Brand page.
-- Added the form of the info page.
-- Some adaptations of bottons and text.
+- Creation of the error page.
+- Detection of the ways the data in the forms could be wrong.
+- Added the validations in create brand, edit brand, create model and edit model.
+- Added the links to redirect to any kind of error possible.
+- Helped with some problems with the links to the pages.
+- Extended catalog with needed function.
 
 ### List of the 5 most significant commits:
-1. [Initial template of the forms](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/f5cc47375d7ab7affa235984039676ed6abc3c24)
-2. [Changes to the form and styling](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/bb62c921e52a786186aeee44cb440ad19d0b6746)
-3. [Creation of new_brand page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/f834ba2655560ba9ab6dff79f82a4f31a3241ef0)
-4. [Added new model form in info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/4f456ef4b9334bbac7152fdcf7e00e69d8fcf667)
-5. [Adjustments to the new model form](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/2e521a926652fc1a7e00b2e55bc55d2569494f47)
+1. [Main structure of validations](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/145237731b278d431108605950d691dc3986c7ad)
+2. [Provisional error page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/2fb61ae8e1491b18fb1d2b2ca1d6a08f3ed3588b)
+3. [Completion of validations and error checking](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/6b6cf450502e9aac681fec1a3c6067b31d45f752)
+4. [Fixed some links and messages](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/cd483c5c586b66de2c128f90c3baca4cd910c617)
+5. [Detection of possible errors in the form data](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/4b09ce91e602f339e23b71e8f62a1b1377a83bf9)
 
 ### List of the files I have contributed the most to:
-1. [new_brand.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/new_brand.html)
-2. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/info.html)
-3. [index.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/index.html)
+1. [router.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/router.js)
+2. [error.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/error.html)
+3. [catalog.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/catalog.js)
