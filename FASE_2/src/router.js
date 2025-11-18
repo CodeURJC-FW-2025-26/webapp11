@@ -152,7 +152,7 @@ router.post('/brand/:id/edit', upload.single('image'), async (req, res) => {
     if (!oldBrand) {
         return res.status(404).render('error', { message: "Brand not found" });
     }
-    //Validations, they are very similar as the ones in create brand, but with a few changes.
+    //Validations, they are similar as the ones in create brand, but with a few changes.
     
     //Empty fields
     if (!req.body.brandName || !req.body.country || !req.body.description) {
@@ -160,7 +160,7 @@ router.post('/brand/:id/edit', upload.single('image'), async (req, res) => {
     }
     //Valid brand 
     if (!/^[A-ZÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]{0,29}$/.test(req.body.brandName)) {
-        return res.status(400).render('error', { message: "Brand name must start with an uppercase letter and have a maximum of 30 characters",link : `/brand/${brandId}`,page:"Edit Brand" });
+        return res.status(400).render('error', { message: "Brand name must start with an uppercase letter and have a maximum of 30 characters",link : `/brand/${id}/edit`,page:`Edit ${oldBrand.brandName}`});
 }
     //Checks if the brand name already exists and its not old brand
     const existingBrand = await catalog.getBrandByName(req.body.brandName);
@@ -240,49 +240,57 @@ router.post('/brand/:id/model/:name/edit', upload.single('image'), async (req, r
 
     console.log(sentFormInfo);
 
-    //Validations for model edition, De momento está full copiado de crear, hay que adaptarlo.
-    // CODIGO INCOMPLETO; SE ESTA TRABAJANDO, LOS LINKS TAMPOCO ESTÁN
+    //Validations for model edition
+    
     //Empty fields
     if (!updatedModelObject.name || !updatedModelObject.HP || !updatedModelObject.year|| !updatedModelObject.daily_price|| !updatedModelObject.technical_specifications|| !updatedModelObject.rental_conditions|| !updatedModelObject.interesting_facts) {
-        return res.status(400).render('error',  {message: "Some fields are missing" ,link : `/brand/:${brandId}/model/:${updatedModelObject.name}/edit`,page:`Edit ${updatedModelObject.name}`});
+        return res.status(400).render('error',  {message: "Some fields are missing" ,link : `/brand/${brandId}/model/${oldModelName}/edit`,page:`Edit ${oldModelName}`});
     }
     if (!updatedModelObject.image) {
-        return res.status(400).render('error', { message: "You must upload a model image",link : `/brand/:${brandId}/model/:${updatedModelObject.name}/edit`,page:`Edit ${updatedModelObject.name}`});
+        return res.status(400).render('error', { message: "You must upload a model image",link : `/brand/${brandId}/model/${oldModelName}/edit`,page:`Edit ${oldModelName}`});
     }
     //Valid model name
     if (!/^[A-Z0-9ÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]{0,29}$/.test(updatedModelObject.name)) {
-        return res.status(400).render('error', { message: "Model name must start with an uppercase letter and have a maximum of 30 characters",link : `/brand/:${brandId}/model/:${updatedModelObject.name}/edit`,page:`Edit ${updatedModelObject.name}`});
+        return res.status(400).render('error', { message: "Model name must start with an uppercase letter and have a maximum of 30 characters",link : `/brand/${brandId}/model/${oldModelName}/edit`,page:`Edit ${oldModelName}`});
 }
     //Checks if the model name already exists
     const existingModel = await catalog.findModelByName(brandId,oldModelObject.name);
     if (existingModel.models) {
-        return res.status(400).render('error', { message: "Model name already exists",link : `/brand/:${brandId}/model/:${updatedModelObject.name}/edit`,page:`Edit ${updatedModelObject.name}`});
+        return res.status(400).render('error', { message: "Model name already exists",link : `/brand/${brandId}/model/${oldModelName}/edit`,page:`Edit ${oldModelName}`});
     }
     //Year
     if (updatedModelObject.year <1850 || updatedModelObject.year > (date.getFullYear()+1)){
-        return res.status(400).render('error', { message: "Year must be between 1850 and current year",link : `/brand/:${brandId}/model/:${updatedModelObject.name}/edit`,page:`Edit ${updatedModelObject.name}`});
+        return res.status(400).render('error', { message: "Year must be between 1850 and current year",link : `/brand/${brandId}/model/${oldModelName}/edit`,page:`Edit ${oldModelName}`});
+    }
+    if (!/^[0-9]+$/.test(updatedModelObject.year)) {
+        return res.status(400).render('error', { message: "Year must only contain numbers",link : `/brand/${brandId}/model/${oldModelName}/edit`,page:`Edit ${oldModelName}`});
     }
     //HP
-    if (sentFormInfo.HP > 10000){
-        return res.status(400).render('error', { message: "HP must be lower than 10000",link : `/brand/:${brandId}/model/:${updatedModelObject.name}/edit`,page:`Edit ${updatedModelObject.name}`});
+    if (updatedModelObject.HP > 10000){
+        return res.status(400).render('error', { message: "HP must be lower than 10000",link : `/brand/${brandId}/model/${oldModelName}/edit`,page:`Edit ${oldModelName}`});
     }
-
+    if (!/^[0-9]+$/.test(updatedModelObject.HP)) {
+        return res.status(400).render('error', { message: "HP must only contain numbers",link : `/brand/${brandId}/model/${oldModelName}/edit`,page:`Edit ${oldModelName}`});
+    }
     //Daily Price
-
-    //img
-
-
+    if (updatedModelObject.daily_price > 1000000){
+        return res.status(400).render('error', { message: "Daily price must be lower than 1 000 000",link : `/brand/${brandId}/model/${oldModelName}/edit`,page:`Edit ${oldModelName}`});
+    }
+    if (!/^[0-9]+$/.test(updatedModelObject.daily_price)) {
+        return res.status(400).render('error', { message: "Daily price must only contain numbers",link : `/brand/${brandId}/model/${oldModelName}/edit`,page:`Edit ${oldModelName}`});
+    }
+    
     //Technical Specifications
-    if (sentFormInfo.technical_specifications.length < 10 || sentFormInfo.technical_specifications.length > 300) {
-        return res.status(400).render('error', { message: "Technical Specifications must be between 10 and 300 characters",link : `/brand/:${brandId}/model/:${updatedModelObject.name}/edit`,page:`Edit ${updatedModelObject.name}`});
+    if (updatedModelObject.technical_specifications.length < 10 || updatedModelObject.technical_specifications.length > 300) {
+        return res.status(400).render('error', { message: "Technical Specifications must be between 10 and 300 characters",link : `/brand/${brandId}/model/${oldModelName}/edit`,page:`Edit ${oldModelName}`});
     }
     //Rental conditions
-    if (sentFormInfo.rental_conditions.length < 10 || sentFormInfo.rental_conditions.length > 300) {
-        return res.status(400).render('error', { message: "Rental conditions must be between 10 and 300 characters",link : `/brand/:${brandId}/model/:${updatedModelObject.name}/edit`,page:`Edit ${updatedModelObject.name}`});
+    if (updatedModelObject.rental_conditions.length < 10 || updatedModelObject.rental_conditions.length > 300) {
+        return res.status(400).render('error', { message: "Rental conditions must be between 10 and 300 characters",link : `/brand/${brandId}/model/${oldModelName}/edit`,page:`Edit ${oldModelName}`});
     }
     //Interesting facts
-    if (sentFormInfo.interesting_facts.length < 10 || sentFormInfo.interesting_facts.length > 300) {
-        return res.status(400).render('error', { message: "Interesting Facts must be between 10 and 300 characters",link : `/brand/:${brandId}/model/:${updatedModelObject.name}/edit`,page:`Edit ${updatedModelObject.name}`});
+    if (updatedModelObject.interesting_facts.length < 10 || updatedModelObject.interesting_facts.length > 300) {
+        return res.status(400).render('error', { message: "Interesting Facts must be between 10 and 300 characters",link : `/brand/${brandId}/model/${oldModelName}/edit`,page:`Edit ${oldModelName}`});
     }
 
     console.log(updatedModelObject);
@@ -308,51 +316,62 @@ router.post('/brand/:id/model/create', upload.single('image'), async (req, res) 
     const brandId = req.params.id;
     const sentFormInfo = req.body;
     const date = new Date();
+    const brand = await catalog.getBrand(brandId);
+    if (!brand) {
+        return res.status(404).render('error', { message: "Brand not found" });
+    }
 
     //Validations for model addition
-    // CODIGO INCOMPLETO; SE ESTA TRABAJANDO, LOS LINKS TAMPOCO ESTÁN
+    
     //Empty fields
     if (!sentFormInfo.modelName || !sentFormInfo.HP || !sentFormInfo.year|| !sentFormInfo.daily_price|| !sentFormInfo.technical_specifications|| !sentFormInfo.rental_conditions|| !sentFormInfo.interesting_facts) {
-        return res.status(400).render('error', { message: "Some fields are missing" ,link : `/brand/${brandId}/edit`,page:"Edit Brand"});
+        return res.status(400).render('error', { message: "Some fields are missing" ,link : `/brand/${brandId}`,page:`${brand.brandName}`});
     }
     if (!req.file) {
-        return res.status(400).render('error', { message: "You must upload a model image",link : `/brand/${brandId}`,page:"Model Info" });
+        return res.status(400).render('error', { message: "You must upload a model image",link : `/brand/${brandId}`,page:`${brand.brandName}` });
     }
     //Valid model name
     if (!/^[A-Z0-9ÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]{0,29}$/.test(sentFormInfo.modelName)) {
-        return res.status(400).render('error', { message: "Model name must start with an uppercase letter and have a maximum of 30 characters",link : `/brand/${brandId}`,page:"Edit Brand" });
+        return res.status(400).render('error', { message: "Model name must start with an uppercase letter or a number, and have a maximum of 30 characters",link : `/brand/${brandId}`,page:`${brand.brandName}`});
 }
     //Checks if the model name already exists
     const existingModel = await catalog.findModelByName(brandId,sentFormInfo.modelName);
     if (existingModel.models) {
-        return res.status(400).render('error', { message: "Model name already exists",link : `/brand/${brandId}/edit`,page:"Edit Brand"});
+        return res.status(400).render('error', { message: "Model name already exists",link : `/brand/${brandId}`,page:`${brand.brandName}`});
     }
     //Year
     if (sentFormInfo.year <1850 || sentFormInfo.year > (date.getFullYear()+1)){
-        return res.status(400).render('error', { message: "Year must be between 1850 and current year",link : `/brand/${brandId}`,page:"Edit Brand" });
+        return res.status(400).render('error', { message: "Year must be between 1850 and current year",link : `/brand/${brandId}`,page:`${brand.brandName}`});
     }
-
+    if (!/^[0-9]+$/.test(sentFormInfo.year)) {
+        return res.status(400).render('error', { message: "Year must only contain numbers",link : `/brand/${brandId}`,page:`${brand.brandName}`});
+    }
     //HP
     if (sentFormInfo.HP > 10000){
-        return res.status(400).render('error', { message: "HP must be lower than 10000",link : `/brand/${brandId}`,page:"Edit Brand" });
+        return res.status(400).render('error', { message: "HP must be lower than 10000",link : `/brand/${brandId}`,page:`${brand.brandName}`});
     }
-
+    if (!/^[0-9]+$/.test(sentFormInfo.HP)) {
+        return res.status(400).render('error', { message: "HP must only contain numbers",link : `/brand/${brandId}`,page:`${brand.brandName}`});
+    }
     //Daily Price
-
-    //img
-
+    if (sentFormInfo.daily_price > 1000000){
+        return res.status(400).render('error', { message: "Daily price must be lower than 1 000 000",link : `/brand/${brandId}`,page:`${brand.brandName}`});
+    }
+    if (!/^[0-9]+$/.test(sentFormInfo.daily_price)) {
+        return res.status(400).render('error', { message: "Daily price must only contain numbers",link : `/brand/${brandId}`,page:`${brand.brandName}`});
+    }
 
     //Technical Specifications
     if (sentFormInfo.technical_specifications.length < 10 || sentFormInfo.technical_specifications.length > 300) {
-        return res.status(400).render('error', { message: "Technical Specifications must be between 10 and 300 characters",link : `/brand/${brandId}/edit`,page:"Edit Brand"});
+        return res.status(400).render('error', { message: "Technical Specifications must be between 10 and 300 characters",link : `/brand/${brandId}`,page:`${brand.brandName}`});
     }
     //Rental conditions
     if (sentFormInfo.rental_conditions.length < 10 || sentFormInfo.rental_conditions.length > 300) {
-        return res.status(400).render('error', { message: "Rental conditions must be between 10 and 300 characters",link : `/brand/${brandId}/edit`,page:"Edit Brand"});
+        return res.status(400).render('error', { message: "Rental conditions must be between 10 and 300 characters",link : `/brand/${brandId}`,page:`${brand.brandName}`});
     }
     //Interesting facts
     if (sentFormInfo.interesting_facts.length < 10 || sentFormInfo.interesting_facts.length > 300) {
-        return res.status(400).render('error', { message: "Interesting Facts must be between 10 and 300 characters",link : `/brand/${brandId}/edit`,page:"Edit Brand"});
+        return res.status(400).render('error', { message: "Interesting Facts must be between 10 and 300 characters",link : `/brand/${brandId}`,page:`${brand.brandName}`});
     }
 
 
