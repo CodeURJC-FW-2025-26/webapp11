@@ -247,10 +247,8 @@ Lastly, we shall run either the command 'npm start', or 'npm run watch' (A varia
 📸
 # Youtube video demo showing the web application functionalities behaviour (Phase 2)
 
-# NO HECHO TODAVIA
-
 ### YT link
-(https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/README_FILES/FASE1/main_page.png)
+(https://youtu.be/3WP4kmhL83c)
 
 ---
 ##
