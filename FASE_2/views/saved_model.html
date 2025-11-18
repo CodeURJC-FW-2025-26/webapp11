@@ -30,22 +30,44 @@
                 <h2 class="mb-4 text-center">Model created successfully!</h2>
 
                 <div class="mb-3">
-                    <label class="form-label">Model Name</label>
+                    <label class="form-label">Name</label>
                     <input type="text" class="form-control" value="{{element.name}}" disabled>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Country</label>
-                    <input type="text" class="form-control" value="{{element.}}" disabled>
+                    <label class="form-label">Year of Release</label>
+                    <input type="text" class="form-control" value="{{element.year}}" disabled>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Description</label>
-                    <textarea class="form-control" rows="4" disabled>{{description}}</textarea>
+                    <label class="form-label">Horsepower</label>
+                    <input type="text" class="form-control" value="{{element.HP}}" disabled>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Daily Price</label>
+                    <input type="text" class="form-control" value="{{element.daily_price}}" disabled>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Technical Specifications</label>
+                    <textarea class="form-control" rows="4" disabled>{{element.technical_specifications}}</textarea>
+                </div>
+
+                
+                <div class="mb-3">
+                    <label class="form-label">Rental Conditions</label>
+                    <textarea class="form-control" rows="4" disabled>{{element.rental_conditions}}</textarea>
+                </div>
+
+                
+                <div class="mb-3">
+                    <label class="form-label">Interesting Facts</label>
+                    <textarea class="form-control" rows="4" disabled>{{element.interesting_facts}}</textarea>
                 </div>
 
                 <div class="mt-4 d-flex justify-content-center">
-                    <a href="/" class="btn btn-outline-dark">Back to brand list</a>
+                    <a href="{{link}}" class="btn btn-outline-dark">Back to brand info</a>
                 </div>
 
             </div>
