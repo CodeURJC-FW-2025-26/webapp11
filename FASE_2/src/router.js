@@ -218,25 +218,40 @@ router.post('/brand/:id/model/:name/edit', upload.single('image'), async (req, r
     if (!oldModelObject) {
         res.status(404).render('error', { message: 'Model not found' });
     }
-    const sentModel = req.body;
+    const sentFormInfo = req.body;
+
+
+    const updatedModelObject = {
+        name: sentFormInfo.modelName || oldModelObject.name,
+        HP: sentFormInfo.HP || oldModelObject.HP,
+        year: sentFormInfo.year || oldModelObject.year,
+        daily_price: sentFormInfo.daily_price || oldModelObject.daily_price,
+        image: req.file ? req.file.filename : oldModelObject.models[0].image,
+        technical_specifications: sentFormInfo.technical_specifications || oldModelObject.technical_specifications,
+        rental_conditions: sentFormInfo.rental_conditions || oldModelObject.rental_conditions,
+        interesting_facts: sentFormInfo.interesting_facts || oldModelObject.interesting_facts
+    };
+
+
+    console.log(sentFormInfo);
 
      //Validations for model edition, De momento está full copiado de crear, hay que adaptarlo.
     // CODIGO INCOMPLETO; SE ESTA TRABAJANDO, LOS LINKS TAMPOCO ESTÁN
     //Empty fields
-    if (!sentFormInfo.modelName || !sentFormInfo.HP || !sentFormInfo.year|| !sentFormInfo.daily_price|| !sentFormInfo.technical_specifications|| !sentFormInfo.rental_conditions|| !sentFormInfo.interesting_facts) {
+    if (!updatedModelObject.name || !updatedModelObject.HP || !updatedModelObject.year|| !updatedModelObject.daily_price|| !updatedModelObject.technical_specifications|| !updatedModelObject.rental_conditions|| !updatedModelObject.interesting_facts) {
         return res.status(400).render('error', { message: "Some fields are missing" ,link : `/brand/${id}/edit`,page:"Edit Brand"});
     }
-    if (!sentFormInfo.image) {
+    if (!updatedModelObject.image) {
         return res.status(400).render('error', { message: "You must upload a model image",link : "/brand/new",page:"New Brand" });
     }
     //Valid model name
-    if (!/^[A-ZÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]{0,29}$/.test(sentFormInfo.modelName)) {
+    if (!/^[A-ZÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]{0,29}$/.test(updatedModelObject.name)) {
         return res.status(400).render('error', { message: "Model name must start with an uppercase letter and have a maximum of 30 characters",link : `/`,page:"Edit Brand" });
 }
     //Checks if the model name already exists
-    const existingModel = await catalog.findModelByName(id,sentFormInfo.modelName);
-    if (existingModel) {
-        return res.status(400).render('error', { message: "Model name already exists",link : `/brand/${id}/edit`,page:"Edit Brand"});
+    const existingModel = await catalog.findModelByName(brandId,oldModelObject.name);
+    if (existingModel.models) {
+        return res.status(400).render('error', { message: "Model name already exists",link : `/brand/${brandId}/edit`,page:"Edit Brand"});
     }
     //Year
 
@@ -249,28 +264,16 @@ router.post('/brand/:id/model/:name/edit', upload.single('image'), async (req, r
     
     //Technical Specifications
     if (sentFormInfo.technical_specifications.length < 10 || sentFormInfo.technical_specifications.length > 300) {
-        return res.status(400).render('error', { message: "Technical Specifications must be between 10 and 300 characters",link : `/brand/${id}/edit`,page:"Edit Brand"});
+        return res.status(400).render('error', { message: "Technical Specifications must be between 10 and 300 characters",link : `/brand/${brandId}/edit`,page:"Edit Brand"});
     }
     //Rental conditions
     if (sentFormInfo.rental_conditions.length < 10 || sentFormInfo.rental_conditions.length > 300) {
-        return res.status(400).render('error', { message: "Rental conditions must be between 10 and 300 characters",link : `/brand/${id}/edit`,page:"Edit Brand"});
+        return res.status(400).render('error', { message: "Rental conditions must be between 10 and 300 characters",link : `/brand/${brandId}/edit`,page:"Edit Brand"});
     }
     //Interesting facts
     if (sentFormInfo.interesting_facts.length < 10 || sentFormInfo.interesting_facts.length > 300) {
-        return res.status(400).render('error', { message: "Interesting Facts must be between 10 and 300 characters",link : `/brand/${id}/edit`,page:"Edit Brand"});
+        return res.status(400).render('error', { message: "Interesting Facts must be between 10 and 300 characters",link : `/brand/${brandId}/edit`,page:"Edit Brand"});
     }
-
-
-    const updatedModelObject = {
-        name: sentModel.modelName || oldModelObject.name,
-        HP: sentModel.HP || oldModelObject.HP,
-        year: sentModel.year || oldModelObject.year,
-        daily_price: sentModel.daily_price || oldModelObject.daily_price,
-        image: req.file ? req.file.filename : oldModelObject.models[0].image,
-        technical_specifications: sentModel.technical_specifications || oldModelObject.technical_specifications,
-        rental_conditions: sentModel.rental_conditions || oldModelObject.rental_conditions,
-        interesting_facts: sentModel.interesting_facts || oldModelObject.interesting_facts
-    };
 
     console.log(updatedModelObject);
     await catalog.updateModel(brandId, oldModelName, updatedModelObject);
