@@ -225,22 +225,36 @@ It allows users to explore different models, apply filters to find vehicles by b
 ## Ramón Nieto Villegas
 
 ### Textual description of the tasks performed in the phase:
-- Creation of a highly advanced base for the index and info pages.
-- Global CSS design of the website with a minimalist grayscale approach, with hovers that enhance the visual impact by focusing the color on your selection.
-- Searching, filtering, selecting, inserting, and adjusting header images, branding, and logos.
+- Migrate all Phase 1 files and create base structure for Phase 2.
+- Create data.json and fix header and index images.
+- Add index template, CSS styles, country filter button, and brand name search bar.
+- Implement generic footer, header_index for Mustache, and partials for navbar.
+- Update router to support filters and pagination on the index.
+- Remove unnecessary/omittable information from Git.
+- Add edit/delete functionality for main entity.
+- Create edit form page, edit confirmation page, and delete confirmation page.
+- Add brand logo images on detail page and fix CSS loading issues.
+- Improve form styling and ensure consistency with the rest of the pages.
+- Add catalog query to update brands in the database.
+- Add router logic for editing and updating brands.
+- Fix various syntax and style errors.
+- Add favicon to all pages.
+- Fix validations for edit model and new model forms.
+- Create saved-model page with partials.
   
 ### List of the 5 most significant commits:
-1. [My most important commit restyling everything,adding css and hovers everywhere](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/e46d09e7fc5ecb13f716376654fe40b56ddd9e2e)
-2. [Models page advanced structure with info,images and header button links](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/4d198069fb7db55fa4dd82e21b8d1f0a65915a99)
-3. [Repairing structure mistake from info.html based in stacked car brand models page to specific brand car page with info and secondary entity in it](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/5b7eaa4f0401454cd524764bbf5b188e413af389)
-4. [Adding a lot of css to the pages](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/91f053e7246d31e917f1c729fe8ca66a5a13961b)
-5. [Uploading almost every car images](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/1847ab8ed47b23a443a080e87c28f3557e5b7ccf)
+1. [I add functionality to the edit and delete buttons for the main entity, creating an edit form page, an edit confirmation page, and a delete confirmation page. I also add the brand logo images to the detail page and manage to make the page use the CSS stylesheet that was previously bugged. I add several CSS styles so the form visually matches the rest of the pages. I add the query in the catalog to update a brand in the database, and finally, I add the router code to edit and update brands through the form.](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/7ba9260bb67248124180431d558d02b63ac4a2cc)
+2. [I create the index template, add CSS, add a country filter triggered by a button and a search bar for brand names. I also create a generic footer and a header_index for Mustache, along with router changes for the index filters and pagination (IMPORTANT COMMIT).](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/f0b5f760f2071ebe23a01f8dbe4ba0f3c69e44bf)
+3. [We create the saved_model.html page with Mustache partials (Important)](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/0b4c85caa4d525e444dba66cb32fb8c2f0ae9fbe)
+4. [Edit model fixed (Important)](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/5c9010a007beca67b86253ecfb8651e1bc95dea0)
+5. [Images are working (IMPORTANT)](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/05775ca705c5aafb0b2ade850e882f57cec23346)
 
 ### List of the files I have contributed the most to:
-1. [index.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/index.html)
-2. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/info.html)
-3. [style.css](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/style.css)
-4. [IMAGES](https://github.com/CodeURJC-FW-2025-26/webapp11/tree/main/FASE_1/IMAGES)
+1. [index.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/index.html)
+2. [router.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/router.js)
+3. [edit_brand.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/edit_brand.html)
+4. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/info.html)
+5. [saved_model.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/saved_model.html)
 
 ## Jorge Mariscal Rubiales (POR COMPLETAR)
 
