@@ -218,25 +218,28 @@ Lastly, we shall run either the command 'npm start', or 'npm run watch' (A varia
 ##
 💪
 # Team members' participation (Phase 2)
-## Ángel Murciano Baena (POR COMPLETAR)
+## Ángel Murciano Baena
 
 ### Textual description of the tasks performed in the phase:
-- Adaptation of pages to Bootstrap.
-- Adjustment of elements for a responsive template.
-- Implementation of a contact page.
+- Structuring of router management for the web app.
+- Implementation of queries regarding models in the database.
+- Implementation of info page as a dynamic template.
+- Implementation of buttons to add, edit and delete a model.
+- Adaptation of JS files to suit them into the web app.
 
 ### List of the 5 most significant commits:
-1. [Adaptation of main page using Bootstrap](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/57bd2ba1a48b61e27a0cf7aa4364eadf9227466f)
-2. [Addition of 'contact' page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/a8485f79f618d8cca18b982d39af9f6f0ffdaafd)
-3. [Main page adaptation to Bootstrap's grid](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/04716ad8f9ebc2327cb3200ad63c83d41334c069)
-4. [Adaptation of brand container for responsive design](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/d0304dc7cb66872b4c74a97fa35d6a258f174512)
-5. [Further adjustment of new model form to include missing information](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/b933e0e0603cfdb4187c8d9dd0d7bd002a8dbf25)
+1. [Addition of info page adapted to a template](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/c73a6cf0e63170240b10d6dec6c186a2f7a72371)
+2. [Edit model functionality added](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/e933a1b221a848b6688d63395bdb0adc15edb3be)
+3. [Delete model functionality added](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/0ffef292b702a2c92bf24243ac1de9143ce11415)
+4. [Adding model functionality added](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/ef506fa55a3fee3580d1660566f4e734fa9aef93)
+5. [Model images now show properly on the info page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/8becce02793c1f539d1a2489d46ca94700957851)
 
 ### List of the files I have contributed the most to:
-1. [contact.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/contact.html)
-2. [index.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/index.html)
-3. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/info.html)
-4. [style.css](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/style.css)
+1. [router.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/router.js)
+2. [catalog.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/catalog.js)
+3. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/info.html)
+4. [saved_model.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/saved_model.html)
+5. [edit_model.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/edit_model.html)
 
 ## Ramón Nieto Villegas
 
