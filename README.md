@@ -3,15 +3,15 @@
 
 This project is a **website designed to showcase a luxury car rental catalog**.
 
-It allows users to explore different models, apply filters to find vehicles by brand or type, and access pages with detailed information about each car such as **its name, model, specifications and price**.
+It allows users to explore different models, apply filters to find vehicles by brand/letters in title or country and access to pages with detailed information about each car such as **its name, hp, specifications and daily price**.
 
 ---
 ##
 🚀
 # Features
 - **Interactive catalog**: A clear and visually appealing gallery of luxury cars.
-- **Filtering options**: Search for a specific vehicle, filter by brand, vehicle type, price range.
-- **Detail pages**: Individual pages for each car with specifications, images, and interesting facts.
+- **Filtering options**: Search for a specific vehicle/letter in title or filter brands by country.
+- **Detail pages**: Individual pages for each brand models with specifications, images, and interesting facts.
 
 ---
 ##
@@ -44,6 +44,7 @@ It allows users to explore different models, apply filters to find vehicles by b
 - **JavaScript** (for interactivity and filtering)
 - **Node.js** (to create a scalable backend environment for the webapp)
 - **Bootstrap** (to allow for easier frontend tampering)
+- **MongoDB** (to give data backup, storage and interactivity throughout queries to the database)
 
 ---
 ##
@@ -146,6 +147,157 @@ It allows users to explore different models, apply filters to find vehicles by b
 
    
 ## Adrián Varea Fernández
+
+### Textual description of the tasks performed in the phase:
+- Creation of the Add New Brand page.
+- Added the form of the info page.
+- Some adaptations of bottons and text.
+
+### List of the 5 most significant commits:
+1. [Initial template of the forms](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/f5cc47375d7ab7affa235984039676ed6abc3c24)
+2. [Changes to the form and styling](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/bb62c921e52a786186aeee44cb440ad19d0b6746)
+3. [Creation of new_brand page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/f834ba2655560ba9ab6dff79f82a4f31a3241ef0)
+4. [Added new model form in info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/4f456ef4b9334bbac7152fdcf7e00e69d8fcf667)
+5. [Adjustments to the new model form](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/2e521a926652fc1a7e00b2e55bc55d2569494f47)
+
+### List of the files I have contributed the most to:
+1. [new_brand.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/new_brand.html)
+2. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/info.html)
+3. [index.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/index.html)
+
+---
+
+# (Phase 2): Node.js server implementation for the web application:
+## 🚀
+# Explanation step by step of how to successfully download, build and execute the application.
+
+To put the web app into fully functioning, downloading the source code is needed. For this, there is the release linked to this phase 2, containing all of the important assets for whoever wants to deploy the app.
+
+# Dependencies (client-wise)
+
+The machine running the web app shall have:
+- Node.js installed (Preferably the latest LTS version (that is, v24.11.1 of Node.js)
+- MongoDB installed (The web app will be fully operative with the v8.2.1 Community version, with 6.2.0 being the oldest operable version, but if one wants to check the database and manage it, MongoDB Compass is a great help for it)
+
+# Instructions to execute the server
+
+First, the source code needs to be opened in an IDE, such as Visual Studio Code. Then, we have to access the "FASE2" folder in the Command Prompt terminal (CMD, not Powershell, as you cannot execute node or npm commands in there).
+
+Next, to make sure we download all of the dependencies in the code folder, we must run the command 'npm install'. This will install all of the needed dependencies and tools for the web app to work, such as Mustache or Multer.
+
+Lastly, we shall run either the command 'npm start', or 'npm run watch' (A variation that uses Nodemon, which helps developing the web app) to have the server operational. If everything worked, the console shall display the demo data has been loaded, and the address of the web app.
+
+---
+
+- **Interactive catalog**: A clear and visually appealing gallery of luxury cars.
+- **Filtering options**: Search for a specific vehicle/letter in title or filter brands by country.
+- **Detail pages**: Individual pages for each brand models with specifications, images, and interesting facts.
+
+---
+##
+🚀
+# Files description
+
+# NO EXPLICADO TODAVIA
+
+- **Interactive catalog**: A clear and visually appealing gallery of luxury cars.
+- **Filtering options**: Search for a specific vehicle/letter in title or filter brands by country.
+- **Detail pages**: Individual pages for each brand models with specifications, images, and interesting facts.
+
+---
+##
+📸
+# Youtube video demo showing the web application functionalities behaviour (Phase 2)
+
+# NO HECHO TODAVIA
+
+### YT link
+(https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/README_FILES/FASE1/main_page.png)
+
+---
+##
+💪
+# Team members' participation (Phase 2)
+## Ángel Murciano Baena
+
+### Textual description of the tasks performed in the phase:
+- Structuring of router management for the web app.
+- Implementation of queries regarding models in the database.
+- Implementation of info page as a dynamic template.
+- Implementation of buttons to add, edit and delete a model.
+- Adaptation of JS files to suit them into the web app.
+
+### List of the 5 most significant commits:
+1. [Addition of info page adapted to a template](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/c73a6cf0e63170240b10d6dec6c186a2f7a72371)
+2. [Edit model functionality added](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/e933a1b221a848b6688d63395bdb0adc15edb3be)
+3. [Delete model functionality added](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/0ffef292b702a2c92bf24243ac1de9143ce11415)
+4. [Adding model functionality added](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/ef506fa55a3fee3580d1660566f4e734fa9aef93)
+5. [Model images now show properly on the info page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/8becce02793c1f539d1a2489d46ca94700957851)
+
+### List of the files I have contributed the most to:
+1. [router.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/router.js)
+2. [catalog.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/catalog.js)
+3. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/info.html)
+4. [saved_model.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/saved_model.html)
+5. [edit_model.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/edit_model.html)
+
+## Ramón Nieto Villegas
+
+### Textual description of the tasks performed in the phase:
+- Migrate all Phase 1 files and create base structure for Phase 2.
+- Create data.json and fix header and index images.
+- Add index template, CSS styles, country filter button, and brand name search bar.
+- Implement generic footer, header_index for Mustache, and partials for navbar.
+- Update router to support filters and pagination on the index.
+- Remove unnecessary/omittable information from Git.
+- Add edit/delete functionality for main entity.
+- Create edit form page, edit confirmation page, and delete confirmation page.
+- Add brand logo images on detail page and fix CSS loading issues.
+- Improve form styling and ensure consistency with the rest of the pages.
+- Add catalog query to update brands in the database.
+- Add router logic for editing and updating brands.
+- Fix various syntax and style errors.
+- Add favicon to all pages.
+- Fix validations for edit model and new model forms.
+- Create saved-model page with partials.
+  
+### List of the 5 most significant commits:
+1. [I add functionality to the edit and delete buttons for the main entity, creating an edit form page, an edit confirmation page, and a delete confirmation page. I also add the brand logo images to the detail page and manage to make the page use the CSS stylesheet that was previously bugged. I add several CSS styles so the form visually matches the rest of the pages. I add the query in the catalog to update a brand in the database, and finally, I add the router code to edit and update brands through the form.](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/7ba9260bb67248124180431d558d02b63ac4a2cc)
+2. [I create the index template, add CSS, add a country filter triggered by a button and a search bar for brand names. I also create a generic footer and a header_index for Mustache, along with router changes for the index filters and pagination (IMPORTANT COMMIT).](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/f0b5f760f2071ebe23a01f8dbe4ba0f3c69e44bf)
+3. [We create the saved_model.html page with Mustache partials (Important)](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/0b4c85caa4d525e444dba66cb32fb8c2f0ae9fbe)
+4. [Edit model fixed (Important)](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/5c9010a007beca67b86253ecfb8651e1bc95dea0)
+5. [Images are working (IMPORTANT)](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/05775ca705c5aafb0b2ade850e882f57cec23346)
+
+### List of the files I have contributed the most to:
+1. [index.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/index.html)
+2. [router.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/router.js)
+3. [edit_brand.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/edit_brand.html)
+4. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/info.html)
+5. [saved_model.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/saved_model.html)
+
+## Jorge Mariscal Rubiales (POR COMPLETAR)
+
+## Textual description of the tasks performed in the phase:
+- Create the main structure of the index page.
+- Add buttons and attributes to the info page.
+- Enhance some brand logo images.
+
+## List of the 5 most significant commits:
+1. [Upload main structure of index page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/5d64e7967aa5db68e4406333e3e8a2a20b54eb4c)
+2. [Add title, logo, description, and complete main identity page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/019e1d33bc95d7809756119afa91e4ad6e38941f)
+3. [Add Delete, Edit, and Back buttons to info page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/d0640b56d502e9da28d94b0d459407c9f1308059)
+4. [Add attributes to the models on the info page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/58be205dd182610a293558082df865591ffc79b4)
+5. [Updated text language to English on the info page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/ef3bd05fdc14fa2ac0060b9c16bc87a29d5aa56f)
+
+
+## List of the files I have contributed the most to:
+1. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/info.html)
+2. [index.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/index.html)
+3. [style.css](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/style.css)
+4. [IMAGES](https://github.com/CodeURJC-FW-2025-26/webapp11/tree/main/FASE_1/IMAGES)
+
+   
+## Adrián Varea Fernández (POR COMPLETAR)
 
 ### Textual description of the tasks performed in the phase:
 - Creation of the Add New Brand page.
