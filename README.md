@@ -181,7 +181,7 @@ The machine running the web app shall have:
 
 # Instructions to execute the server
 
-First, the source code needs to be opened in an IDE, such as Visual Studio Code. Then, we have to access the "FASE2" folder in the Command Prompt terminal (CMD, not Powershell, as you cannot execute node or npm commands in there).
+First, the source code directory needs to be opened in a terminal (CMD, not Powershell, as you cannot execute node or npm commands in there). Then, we have to access the "FASE2" folder in the terminal using the 'cd' command.
 
 Next, to make sure we download all of the dependencies in the code folder, we must run the command 'npm install'. This will install all of the needed dependencies and tools for the web app to work, such as Mustache or Multer.
 
@@ -247,10 +247,8 @@ Lastly, we shall run either the command 'npm start', or 'npm run watch' (A varia
 📸
 # Youtube video demo showing the web application functionalities behaviour (Phase 2)
 
-# NO HECHO TODAVIA
-
 ### YT link
-(https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/README_FILES/FASE1/main_page.png)
+(https://youtu.be/3WP4kmhL83c)
 
 ---
 ##
@@ -313,43 +311,51 @@ Lastly, we shall run either the command 'npm start', or 'npm run watch' (A varia
 4. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/info.html)
 5. [saved_model.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/saved_model.html)
 
-## Jorge Mariscal Rubiales (POR COMPLETAR)
+## Jorge Mariscal Rubiales
 
 ## Textual description of the tasks performed in the phase:
-- Create the main structure of the index page.
-- Add buttons and attributes to the info page.
-- Enhance some brand logo images.
+- Add brand's info to data.json.
+- Create add new brand form.
+- Fixed the image paths of the main entity.
+- Create the new brand confirmation page.
+- Make the confirmation page and add new brand form buttons to redirect to the correct page.
+- Updated the navbar of the New Brand page.
+
 
 ## List of the 5 most significant commits:
-1. [Upload main structure of index page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/5d64e7967aa5db68e4406333e3e8a2a20b54eb4c)
-2. [Add title, logo, description, and complete main identity page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/019e1d33bc95d7809756119afa91e4ad6e38941f)
-3. [Add Delete, Edit, and Back buttons to info page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/d0640b56d502e9da28d94b0d459407c9f1308059)
-4. [Add attributes to the models on the info page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/58be205dd182610a293558082df865591ffc79b4)
-5. [Updated text language to English on the info page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/ef3bd05fdc14fa2ac0060b9c16bc87a29d5aa56f)
+1. [Add new brand page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/3628446f66a95f8daec97538c4cc79c95cf6a600)
+2. [Added information for half of the car brands](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/b9eae24e7569b607244e916caa22b9693890ee13)
+3. [Add route for Add New Brand form](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/3628446f66a95f8daec97538c4cc79c95cf6a600)
+4. [Add functionality for Save button and confirmation screen for created brand](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/cf59e035e0b8f5e88b2d3d310510348d6fda4a40)
+5. [Add button that redirects to the created brand on Brand Successfully Created page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/748999ead9dc87d6c28e848d750cca462c8e0dff)
 
 
 ## List of the files I have contributed the most to:
-1. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/info.html)
-2. [index.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/index.html)
-3. [style.css](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/style.css)
-4. [IMAGES](https://github.com/CodeURJC-FW-2025-26/webapp11/tree/main/FASE_1/IMAGES)
+1. [new_brand.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/new_brand.html)
+2. [saved_brand.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/saved_brand.html)
+3. [router.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/router.js)
+4. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/info.html)
+5. [data.json](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/data/data.json)
 
    
-## Adrián Varea Fernández (POR COMPLETAR)
+## Adrián Varea Fernández
 
 ### Textual description of the tasks performed in the phase:
-- Creation of the Add New Brand page.
-- Added the form of the info page.
-- Some adaptations of bottons and text.
+- Creation of the error page.
+- Detection of the ways the data in the forms could be wrong.
+- Added the validations in create brand, edit brand, create model and edit model.
+- Added the links to redirect to any kind of error possible.
+- Helped with some problems with the links to the pages.
+- Extended catalog with needed function.
 
 ### List of the 5 most significant commits:
-1. [Initial template of the forms](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/f5cc47375d7ab7affa235984039676ed6abc3c24)
-2. [Changes to the form and styling](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/bb62c921e52a786186aeee44cb440ad19d0b6746)
-3. [Creation of new_brand page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/f834ba2655560ba9ab6dff79f82a4f31a3241ef0)
-4. [Added new model form in info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/4f456ef4b9334bbac7152fdcf7e00e69d8fcf667)
-5. [Adjustments to the new model form](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/2e521a926652fc1a7e00b2e55bc55d2569494f47)
+1. [Main structure of validations](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/145237731b278d431108605950d691dc3986c7ad)
+2. [Provisional error page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/2fb61ae8e1491b18fb1d2b2ca1d6a08f3ed3588b)
+3. [Completion of validations and error checking](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/6b6cf450502e9aac681fec1a3c6067b31d45f752)
+4. [Fixed some links and messages](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/cd483c5c586b66de2c128f90c3baca4cd910c617)
+5. [Detection of possible errors in the form data](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/4b09ce91e602f339e23b71e8f62a1b1377a83bf9)
 
 ### List of the files I have contributed the most to:
-1. [new_brand.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/new_brand.html)
-2. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/info.html)
-3. [index.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_1/index.html)
+1. [router.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/router.js)
+2. [error.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/error.html)
+3. [catalog.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/catalog.js)
