@@ -8,53 +8,50 @@ export default router;
 
 const upload = multer({ dest: catalog.UPLOADS_FOLDER });
 
-// ===================== MAIN PAGE WITH PAGINATION AND FILTERS FOR SEARCH AND COUNTRY =====================
-
+// ===================== MAIN PAGE WITH INFINITE SCROLL AND FILTERS FOR SEARCH AND COUNTRY ================
 router.get('/', async (req, res) => {
-
     let allBrands = await catalog.getBrands();
 
     const search = req.query.search || "";
     const country = req.query.country || "";
 
-    // Filter by search term (case-insensitive)
+    // Search filter
     if (search) {
-        allBrands = allBrands.filter(brandNameSearch =>
-            brandNameSearch.brandName.toLowerCase().includes(search.toLowerCase())
+        allBrands = allBrands.filter(brand =>
+            brand.brandName.toLowerCase().includes(search.toLowerCase())
         );
     }
-
-    // Filter by country
+    // Country filter
     if (country) {
-        allBrands = allBrands.filter(brandCountrySearch =>
-            brandCountrySearch.country.toLowerCase() === country.toLowerCase()
+        allBrands = allBrands.filter(brand =>
+            brand.country.toLowerCase() === country.toLowerCase()
         );
     }
 
-    // Pagination
+    // Pagination logic
     const page = parseInt(req.query.page) || 1;
-    const itemsPerPage = 6;
+    const itemsPerPage = 6; // Number of items per page for infinite scroll 
     const totalItems = allBrands.length;
     const totalPages = Math.ceil(totalItems / itemsPerPage);
     const start = (page - 1) * itemsPerPage;
     const end = start + itemsPerPage;
 
-    const brands = allBrands.slice(start, end);
+    const brandsSlice = allBrands.slice(start, end);
 
-    const pages = [];
-    for (let i = 1; i <= totalPages; i++) {
-        pages.push({ number: i, isCurrent: i === page });
+    // [NUEVO] AJAX: If client reqs JSON, response JSON
+    if (req.query.format === 'json') {
+        return res.json({
+            brands: brandsSlice,
+            hasMore: page < totalPages
+        });
     }
 
+    // Render HTML (First load)
     res.render('index', {
-        brands,
+        brands: brandsSlice,
         search,
-        country,
-        pages,
-        hasPrev: page > 1,
-        hasNext: page < totalPages,
-        prevPage: page - 1,
-        nextPage: page + 1
+        country
+        // No need to send pagination info for initial load
     });
 });
 
