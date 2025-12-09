@@ -22,6 +22,11 @@
     <!-- Navbar implemented with Mustache Partials -->
     {{> nav_bar }}
 
+    <dialog>
+        <p>You're about to delete this brand! Are you sure?</p>
+        <button id="confirmDeletionButton" class="btn-outline-primary">Confirm</button><button autofocus id="cancelDeletionButton" class="btn-outline-danger">Cancel</button>
+    </dialog>
+
     <!-- Brand's info -->
     <div class="brands">
         <div class="container text-center">
@@ -38,7 +43,7 @@
                 <p style="font-size: 1rem; color: #444;">{{brand.description}}</p>
                 <div class="button-group mb-4">
                     <a href="/brand/{{brand._id}}/edit" class="btn btn-sm btn-outline-primary">Edit</a>
-                    <a href="/brand/{{brand._id}}/delete" class="btn btn-sm btn-outline-danger">Delete</a>
+                    <a onclick="confirmBrandDeletion()" class="btn btn-sm btn-outline-danger">Delete</a>
                     <a href="/" class="btn btn-sm btn-outline-secondary">Back</a>
                 </div>
             </div>
@@ -135,6 +140,7 @@
     <!-- Footer implemented with Mustache Partials -->
     {{> footer }}
 
+    
 </body>
-
-</html>
+    <script src="/client.js"></script>
+</html> 
