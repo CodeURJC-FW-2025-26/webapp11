@@ -119,42 +119,34 @@ function renderNewBrands(brands) {
 }
 
 // ===================== MODAL CODE =====================
-// Wait for DOM to load before setting up modal
+// Wait for DOM to load before setting up buttons to load modals
 document.addEventListener("DOMContentLoaded", () => {
-    setupDeleteModal();
-});
 
-function setupDeleteModal() {
-    // 1. Search for the dialog element in the page
-    let brandDeletionWindow = document.querySelector("dialog");
-    
-    // If the dialog doesn't exist, exit
-    if (!brandDeletionWindow) return; 
+    let deleteBrandButton = document.getElementById("brandDeletionButton");
 
-    // 2. Get buttons inside the dialog
-    let confirmButton = document.getElementById("confirmDeletionButton");
-    let cancelButton = document.getElementById("cancelDeletionButton");
-    
-    // querySelector to find the delete button on the main page
-    // (assumes there's only one delete button per page)
-    let deleteBrandButton = document.querySelector(".btn-outline-danger");
-
-    // 3. Setup delete button to open modal on click
     if (deleteBrandButton) {
-        deleteBrandButton.addEventListener("click", (e) => {
-            e.preventDefault(); // Prevent default link behavior
-            brandDeletionWindow.showModal();
+        deleteBrandButton.addEventListener("click", () => {
+            confirmBrandDeletion();
         });
     }
+});
 
-    // 4. Setup cancel button to close modal
+function confirmBrandDeletion() {
+    // Search of elements of the respective dialog (If the dialog pop-up itself does not exist, exit)
+    let brandDeletionWindow = document.getElementById("deleteBrandModal");
+    if (!brandDeletionWindow) return; 
+    let confirmButton = document.getElementById("confirmDeletionButton");
+    let cancelButton = document.getElementById("cancelDeletionButton");
+
+    // Display of the pop-up dialog
+    brandDeletionWindow.showModal();
+
+    // Button handling inside the pop-up (cancelButton closes the window, but Esc key or clicking outside is also allowed)
     if (cancelButton) {
         cancelButton.addEventListener("click", () => {
             brandDeletionWindow.close();
         });
     }
-    
-    // 5. Setup confirm button to handle deletion 
     if (confirmButton) {
         confirmButton.addEventListener("click", () => {
             console.log("Confirmado: Borrando marca...");

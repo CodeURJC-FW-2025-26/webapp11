@@ -22,7 +22,8 @@
     <!-- Navbar implemented with Mustache Partials -->
     {{> nav_bar }}
 
-    <dialog id="deleteBrandModal" class="p-4 border-0 rounded shadow">
+    <!-- Brand deletion confirmation pop-up -->
+    <dialog id="deleteBrandModal" class="p-4 border-0 rounded shadow" closedby="any">
         <h3 class="h5 mb-3">Are you sure?</h3>
         <p>Do you really want to delete this brand? This action cannot be undone.</p>
         <div class="d-flex justify-content-end gap-2 mt-4">
@@ -30,6 +31,7 @@
             <button id="confirmDeletionButton" class="btn-outline-primary">Yes, Delete</button>
         </div>
     </dialog>
+
 
     <!-- Brand's info -->
     <div class="brands">
@@ -47,7 +49,7 @@
                 <p style="font-size: 1rem; color: #444;">{{brand.description}}</p>
                 <div class="button-group mb-4">
                     <a href="/brand/{{brand._id}}/edit" class="btn btn-sm btn-outline-primary">Edit</a>
-                    <a onclick="confirmBrandDeletion()" class="btn btn-sm btn-outline-danger">Delete</a>
+                    <a class="btn btn-sm btn-outline-danger" id="brandDeletionButton">Delete</a>
                     <a href="/" class="btn btn-sm btn-outline-secondary">Back</a>
                 </div>
             </div>
