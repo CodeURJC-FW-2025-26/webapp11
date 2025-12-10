@@ -23,14 +23,7 @@
     {{> nav_bar }}
 
     <!-- Brand deletion confirmation pop-up -->
-    <dialog id="deleteBrandModal" class="p-4 border-0 rounded shadow" closedby="any">
-        <h3 class="h5 mb-3">Are you sure?</h3>
-        <p>Do you really want to delete this brand? This action cannot be undone.</p>
-        <div class="d-flex justify-content-end gap-2 mt-4">
-            <button id="cancelDeletionButton" class="btn-outline-primary">Cancel</button>
-            <button id="confirmDeletionButton" class="btn-outline-primary">Yes, Delete</button>
-        </div>
-    </dialog>
+    {{> dialog_popup}}
 
 
     <!-- Brand's info -->
@@ -49,7 +42,7 @@
                 <p style="font-size: 1rem; color: #444;">{{brand.description}}</p>
                 <div class="button-group mb-4">
                     <a href="/brand/{{brand._id}}/edit" class="btn btn-sm btn-outline-primary">Edit</a>
-                    <a class="btn btn-sm btn-outline-danger" id="brandDeletionButton">Delete</a>
+                    <a class="btn btn-sm btn-outline-danger" id="brandDeletionButton" data-brandid="{{brand._id}}">Delete</a>
                     <a href="/" class="btn btn-sm btn-outline-secondary">Back</a>
                 </div>
             </div>

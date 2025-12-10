@@ -1,19 +1,16 @@
 // ===================== State vars =====================
-let page = 1;       
-let loading = false; 
-let hasMore = true; 
+let page = 1;
+let loading = false;
+let hasMore = true;
 
 // ===================== INITIALIZING =====================
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     // [NUEVO] 1. Resaltar el botón del país activo
     highlightActiveCountry();
 
     // 1. Configure Infinite Scroll
     window.addEventListener('scroll', handleScroll);
-
-    // 2. Configure Delete Modal
-    setupDeleteModal();
 });
 
 // ===================== FILTER BUTTONS LOGIC (NEW) =====================
@@ -29,7 +26,7 @@ function highlightActiveCountry() {
     // 3. Iterate and highlight
     buttons.forEach(btn => {
         const countryAttr = btn.getAttribute('data-country');
-        
+
         // Check if this button's country matches the current country
         const isActive = countryAttr.toLowerCase() === currentCountry.toLowerCase();
 
@@ -46,10 +43,10 @@ function handleScroll() {
     if (loading) return;
 
     const bottomSpinner = document.getElementById('infinite-scroll-spinner');
-    
+
     // Detectamos si estamos al final de la página
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
-        
+
         if (hasMore) {
             // ESCENARIO A: Aún quedan coches en la base de datos
             loadNextPage();
@@ -63,10 +60,10 @@ function handleScroll() {
 
 function loadNextPage() {
     loading = true;
-    
+
     const bottomSpinner = document.getElementById('infinite-scroll-spinner');
     const finishMsg = document.getElementById('finish-line-msg');
-    
+
     // UI: Mostrar spinner, ocultar meta (por si acaso)
     if (bottomSpinner) bottomSpinner.classList.remove('d-none');
     if (finishMsg) finishMsg.classList.add('d-none');
@@ -74,8 +71,8 @@ function loadNextPage() {
     const params = new URLSearchParams(window.location.search);
     const search = params.get('search') || '';
     const country = params.get('country') || '';
-    
-    page++; 
+
+    page++;
 
     // Promesa A: Petición
     const dataFetch = fetch(`/?page=${page}&search=${search}&country=${country}&format=json`)
@@ -88,8 +85,8 @@ function loadNextPage() {
     const minDelay = new Promise(resolve => setTimeout(resolve, 800));
 
     Promise.all([dataFetch, minDelay])
-        .then(([data, _]) => { 
-            
+        .then(([data, _]) => {
+
             if (data.brands && data.brands.length > 0) {
                 renderNewBrands(data.brands);
             }
@@ -101,7 +98,7 @@ function loadNextPage() {
                 // FIN DEL CONTENIDO
                 // 1. Mostramos la bandera
                 if (finishMsg) finishMsg.classList.remove('d-none');
-                
+
                 // 2. IMPORTANTE: Ocultamos el spinner temporalmente.
                 // Si el usuario deja de hacer scroll, verá solo la bandera.
                 // Si SIGUE haciendo scroll, 'handleScroll' se activará de nuevo y mostrará el spinner abajo.
@@ -110,26 +107,26 @@ function loadNextPage() {
         })
         .catch(err => {
             console.error("Error:", err);
-            page--; 
+            page--;
             // Si hay error, ocultamos spinner
             if (bottomSpinner) bottomSpinner.classList.add('d-none');
         })
         .finally(() => {
             // Solo liberamos el flag de loading para permitir nuevos eventos
             loading = false;
-            
+
             // NOTA: En el 'finally' normal ocultaríamos el spinner, 
             // pero aquí lo gestionamos dentro del 'then' para soportar el caso "sin datos".
             // Solo lo ocultamos si NO hemos llegado al final o si hubo error.
             if (hasMore && bottomSpinner) {
-                 bottomSpinner.classList.add('d-none');
+                bottomSpinner.classList.add('d-none');
             }
         });
 }
 
 function renderNewBrands(brands) {
     const container = document.getElementById('brands-container');
-    
+
     brands.forEach(brand => {
         // Generate HTML. Important: ` ` (backticks)
         const cardHTML = `
@@ -147,37 +144,76 @@ function renderNewBrands(brands) {
 // ===================== MODAL CODE =====================
 // Wait for DOM to load before setting up buttons to load modals
 document.addEventListener("DOMContentLoaded", () => {
+    let dialog = loadDialogWindow();
 
     let deleteBrandButton = document.getElementById("brandDeletionButton");
-
     if (deleteBrandButton) {
         deleteBrandButton.addEventListener("click", () => {
-            confirmBrandDeletion();
+            let brandid = deleteBrandButton.getAttribute("data-brandid");
+            confirmBrandDeletion(dialog, brandid);
         });
     }
+
+    // ------------------------------------------------------
+    // MORE BUTTONS THAT NEED TO USE THE DIALOG MODEL GO HERE
+    // ------------------------------------------------------
 });
 
-function confirmBrandDeletion() {
-    // Search of elements of the respective dialog (If the dialog pop-up itself does not exist, exit)
-    let brandDeletionWindow = document.getElementById("deleteBrandModal");
-    if (!brandDeletionWindow) return; 
-    let confirmButton = document.getElementById("confirmDeletionButton");
-    let cancelButton = document.getElementById("cancelDeletionButton");
+function confirmBrandDeletion(dialog, brandid) {
+    // Set-up of dialog text
+    dialog.headtext.innerText = "Are you sure?";
+    dialog.bodytext.innerText = "Do you really want to delete this brand? This action cannot be undone.";
+    dialog.subtext.style.display = "none";
+    dialog.confirmButton.style.display = "block";
+    dialog.confirmButton.innerText = "Yes, delete";
+    dialog.cancelButton.style.display = "block";
+    dialog.cancelButton.innerText = "Cancel";
 
     // Display of the pop-up dialog
-    brandDeletionWindow.showModal();
+    dialog.window.showModal();
 
     // Button handling inside the pop-up (cancelButton closes the window, but Esc key or clicking outside is also allowed)
     if (cancelButton) {
         cancelButton.addEventListener("click", () => {
-            brandDeletionWindow.close();
+            dialog.window.close();
         });
     }
     if (confirmButton) {
-        confirmButton.addEventListener("click", () => {
-            console.log("Confirmado: Borrando marca...");
-            
-            // Aquí pondrás tu fetch() más adelante
+        // Deletion of brand
+        confirmButton.addEventListener("click", async () => {
+            let response = await fetch(`/brand/${brandid+1}/delete`);
+
+            // When successful, user is sent back to main page
+            if (response.status === 200) {
+                window.location.href = "/";
+            }
+            // When failed, a pop-up is shown with the error code
+            else {
+                dialog.window.close();
+                dialog.headtext.innerText = "Something went wrong!";
+                dialog.bodytext.innerText = "Please, try again.";
+                dialog.subtext.style.display = "block";
+                dialog.subtext.innerText = `ERROR CODE: ${response.status} - ${response.statusText}`;
+                dialog.confirmButton.style.display = "none";
+                dialog.cancelButton.innerText = "Close";
+                dialog.window.showModal();
+            }
         });
     }
+}
+
+function loadDialogWindow() {
+    // Search of elements of the respective dialog (If the dialog pop-up itself does not exist, exit)
+    let dialogWindow = document.getElementById("dialogModal");
+    if (!dialogWindow) return;
+    let result = {
+        window : dialogWindow,
+        confirmButton: document.getElementById("confirmButton"),
+        cancelButton: document.getElementById("cancelButton"),
+        headtext: document.getElementById("dialogHeader"),
+        bodytext: document.getElementById("dialogBody"),
+        subtext: document.getElementById("dialogIndicator")
+    }
+
+    return result;
 }
