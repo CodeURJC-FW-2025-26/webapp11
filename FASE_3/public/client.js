@@ -181,7 +181,7 @@ function confirmBrandDeletion(dialog, brandid) {
     if (confirmButton) {
         // Deletion of brand
         confirmButton.addEventListener("click", async () => {
-            let response = await fetch(`/brand/${brandid+1}/delete`);
+            let response = await fetch(`/brand/${brandid}/delete`);
 
             // When successful, user is sent back to main page
             if (response.status === 200) {
