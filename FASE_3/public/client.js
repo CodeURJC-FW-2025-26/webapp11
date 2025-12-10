@@ -6,12 +6,38 @@ let hasMore = true;
 // ===================== INITIALIZING =====================
 document.addEventListener("DOMContentLoaded", () => {
     
+    // [NUEVO] 1. Resaltar el botón del país activo
+    highlightActiveCountry();
+
     // 1. Configure Infinite Scroll
     window.addEventListener('scroll', handleScroll);
 
     // 2. Configure Delete Modal
     setupDeleteModal();
 });
+
+// ===================== FILTER BUTTONS LOGIC (NEW) =====================
+
+function highlightActiveCountry() {
+    // 1. Get current country from URL
+    const params = new URLSearchParams(window.location.search);
+    const currentCountry = params.get('country') || "";
+
+    // 2. Select all buttons with data-country attribute
+    const buttons = document.querySelectorAll('.filter-buttons a[data-country]');
+
+    // 3. Iterate and highlight
+    buttons.forEach(btn => {
+        const countryAttr = btn.getAttribute('data-country');
+        
+        // Check if this button's country matches the current country
+        const isActive = countryAttr.toLowerCase() === currentCountry.toLowerCase();
+
+        // Toggle classes based on active state
+        btn.classList.toggle('btn-dark', isActive);        // if active -> solid
+        btn.classList.toggle('btn-outline-dark', !isActive); // if not active -> outline
+    });
+}
 
 // ===================== INFINITE SCROLL =====================
 

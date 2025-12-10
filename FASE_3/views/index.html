@@ -32,15 +32,16 @@
     </div>
 
     <!-- Filter buttons by country -->
-    <div class="filter-buttons">
-        <a href="/" class="btn btn-dark rounded-pill">All</a>
-        <a href="/?country=Italy" class="btn btn-outline-dark px-4">Italy</a>
-        <a href="/?country=Germany" class="btn btn-outline-dark">Germany</a>
-        <a href="/?country=England" class="btn btn-outline-dark">England</a>
-        <a href="/?country=France" class="btn btn-outline-dark">France</a>
-        <a href="/?country=Sweden" class="btn btn-outline-dark">Sweden</a>
-        <a href="/?country=Croatia" class="btn btn-outline-dark">Croatia</a>
+     <div class="filter-buttons">
+        <a href="/" class="btn btn-outline-dark" data-country="">All</a>
+        <a href="/?country=Italy" class="btn btn-outline-dark" data-country="Italy">Italy</a>
+        <a href="/?country=Germany" class="btn btn-outline-dark" data-country="Germany">Germany</a>
+        <a href="/?country=England" class="btn btn-outline-dark" data-country="England">England</a>
+        <a href="/?country=France" class="btn btn-outline-dark" data-country="France">France</a>
+        <a href="/?country=Sweden" class="btn btn-outline-dark" data-country="Sweden">Sweden</a>
+        <a href="/?country=Croatia" class="btn btn-outline-dark" data-country="Croatia">Croatia</a>
     </div>
+
     <div class="container mt-4">
         <!-- Brands grid -->
         <section class="brands">
@@ -68,7 +69,7 @@
                     <p class="text-muted">The garage is empty. No more luxury cars to show.</p>
                 </div>
             </div>
-            
+
             <!-- Infinite scroll spinner -->
             <div id="infinite-scroll-spinner" class="d-none" style="text-align:center; padding: 20px;">
                 <div class="car-spinner-final" style="margin: 0 auto;">
