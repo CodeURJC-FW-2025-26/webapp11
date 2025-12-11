@@ -148,11 +148,17 @@ document.addEventListener("DOMContentLoaded", () => {
     let brandid = obtainBrandID();
 
     // Checker for whenever something is clicked. Used to detect which buttons are pressed.
-    document.addEventListener("click", (event) => {
+    document.addEventListener("click", async (event) => {
         // Button pressed is any of the model deletion buttons
         if (event.target.classList.contains("deleteModelButton")) {
-            let modelName = event.target.getAttribute("data-modelname");
-            deleteModel(modelName, brandid);
+            let modelName = obtainModelName(event.target);
+            let response = await deleteModel(modelName, brandid);
+            if (response.status === 200) {
+                document.getElementById(modelName).remove();
+            }
+            else {
+                showErrorWindow(dialog, response);
+            }
         }
         // Button pressed is the brand deletion button
         else if (event.target.id === "brandDeletionButton") {
@@ -168,9 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // AJAX function to delete a model from the page. Also removes the HTML model card that contains it in real time
 async function deleteModel(modelName, brandId) {
     let response = await fetch(`/brand/${brandId}/model/${modelName}/delete`);
-    if (response.status === 200) {
-        document.getElementById(modelName).remove();
-    }
+    return response;
 }
 
 // Function to obtain the ID from the brand.
@@ -178,44 +182,24 @@ function obtainBrandID() {
     return document.getElementById("brandField").getAttribute("data-brandid");
 }
 
+function obtainModelName(target) {
+    return target.getAttribute("data-modelname");
+}
+
 function confirmBrandDeletion(dialog, brandid) {
-    // Set-up of dialog text
-    dialog.headtext.innerText = "Are you sure?";
-    dialog.bodytext.innerText = "Do you really want to delete this brand? This action cannot be undone.";
-    dialog.subtext.style.display = "none";
-    dialog.confirmButton.style.display = "block";
-    dialog.confirmButton.innerText = "Yes, delete";
-    dialog.cancelButton.style.display = "block";
-    dialog.cancelButton.innerText = "Cancel";
+    brandConfirmationWindow(dialog);
 
-    // Display of the pop-up dialog
-    dialog.window.showModal();
-
-    // Button handling inside the pop-up (cancelButton closes the window, but Esc key or clicking outside is also allowed)
-    if (cancelButton) {
-        cancelButton.addEventListener("click", () => {
-            dialog.window.close();
-        });
-    }
-    if (confirmButton) {
+    if (dialog.confirmButton) {
         // Deletion of brand
         confirmButton.addEventListener("click", async () => {
             let response = await fetch(`/brand/${brandid}/delete`);
-
             // When successful, user is sent back to main page
             if (response.status === 200) {
                 window.location.href = "/";
             }
             // When failed, a pop-up is shown with the error code
             else {
-                dialog.window.close();
-                dialog.headtext.innerText = "Something went wrong!";
-                dialog.bodytext.innerText = "Please, try again.";
-                dialog.subtext.style.display = "block";
-                dialog.subtext.innerText = `ERROR CODE: ${response.status} - ${response.statusText}`;
-                dialog.confirmButton.style.display = "none";
-                dialog.cancelButton.innerText = "Close";
-                dialog.window.showModal();
+                showErrorWindow(dialog, response);
             }
         });
     }
@@ -234,7 +218,37 @@ function loadDialogWindow() {
         subtext: document.getElementById("dialogIndicator")
     }
 
+    // The cancel button will always close the window by default.
+    result.cancelButton.addEventListener("click", () => {
+        result.window.close();
+    });
+
     return result;
+}
+
+function showErrorWindow(dialog, response) {
+    dialog.window.close();
+    dialog.headtext.innerText = "Something went wrong!";
+    dialog.bodytext.innerText = "Please, try again.";
+    dialog.subtext.style.display = "block";
+    dialog.subtext.innerText = `ERROR CODE: ${response.status} - ${response.statusText}`;
+    dialog.confirmButton.style.display = "none";
+    dialog.cancelButton.innerText = "Close";
+    dialog.window.showModal();
+}
+
+function brandConfirmationWindow(dialog) {
+    // Set-up of dialog text
+    dialog.headtext.innerText = "Are you sure?";
+    dialog.bodytext.innerText = "Do you really want to delete this brand? This action cannot be undone.";
+    dialog.subtext.style.display = "none";
+    dialog.confirmButton.style.display = "block";
+    dialog.confirmButton.innerText = "Yes, delete";
+    dialog.cancelButton.style.display = "block";
+    dialog.cancelButton.innerText = "Cancel";
+
+    // Display of the pop-up dialog
+    dialog.window.showModal();
 }
 
 // ===================== BRAND INFO VALIDATION =====================
