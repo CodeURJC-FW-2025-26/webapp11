@@ -6,12 +6,35 @@ let hasMore = true;
 // ===================== INITIALIZING =====================
 document.addEventListener("DOMContentLoaded", () => {
 
+    // [NUEVO] 1. Resaltar el botón del país activo
+    highlightActiveCountry();
+
     // 1. Configure Infinite Scroll
     window.addEventListener('scroll', handleScroll);
-
-    // 2. Configure Delete Modal
-    setupDeleteModal();
 });
+
+// ===================== FILTER BUTTONS LOGIC (NEW) =====================
+
+function highlightActiveCountry() {
+    // 1. Get current country from URL
+    const params = new URLSearchParams(window.location.search);
+    const currentCountry = params.get('country') || "";
+
+    // 2. Select all buttons with data-country attribute
+    const buttons = document.querySelectorAll('.filter-buttons a[data-country]');
+
+    // 3. Iterate and highlight
+    buttons.forEach(btn => {
+        const countryAttr = btn.getAttribute('data-country');
+
+        // Check if this button's country matches the current country
+        const isActive = countryAttr.toLowerCase() === currentCountry.toLowerCase();
+
+        // Toggle classes based on active state
+        btn.classList.toggle('btn-dark', isActive);        // if active -> solid
+        btn.classList.toggle('btn-outline-dark', !isActive); // if not active -> outline
+    });
+}
 
 // ===================== INFINITE SCROLL =====================
 
@@ -119,51 +142,81 @@ function renderNewBrands(brands) {
 }
 
 // ===================== MODAL CODE =====================
-// Wait for DOM to load before setting up modal
+// Wait for DOM to load before setting up buttons to load modals
 document.addEventListener("DOMContentLoaded", () => {
-    setupDeleteModal();
+    let dialog = loadDialogWindow();
+
+    let deleteBrandButton = document.getElementById("brandDeletionButton");
+    if (deleteBrandButton) {
+        deleteBrandButton.addEventListener("click", () => {
+            let brandid = deleteBrandButton.getAttribute("data-brandid");
+            confirmBrandDeletion(dialog, brandid);
+        });
+    }
+
+    // ------------------------------------------------------
+    // MORE BUTTONS THAT NEED TO USE THE DIALOG MODEL GO HERE
+    // ------------------------------------------------------
 });
 
-function setupDeleteModal() {
-    // 1. Search for the dialog element in the page
-    let brandDeletionWindow = document.querySelector("dialog");
+function confirmBrandDeletion(dialog, brandid) {
+    // Set-up of dialog text
+    dialog.headtext.innerText = "Are you sure?";
+    dialog.bodytext.innerText = "Do you really want to delete this brand? This action cannot be undone.";
+    dialog.subtext.style.display = "none";
+    dialog.confirmButton.style.display = "block";
+    dialog.confirmButton.innerText = "Yes, delete";
+    dialog.cancelButton.style.display = "block";
+    dialog.cancelButton.innerText = "Cancel";
 
-    // If the dialog doesn't exist, exit
-    if (!brandDeletionWindow) return;
+    // Display of the pop-up dialog
+    dialog.window.showModal();
 
-    // 2. Get buttons inside the dialog
-    let confirmButton = document.getElementById("confirmDeletionButton");
-    let cancelButton = document.getElementById("cancelDeletionButton");
-
-    // querySelector to find the delete button on the main page
-    // (assumes there's only one delete button per page)
-    let deleteBrandButton = document.querySelector(".btn-outline-danger");
-
-    // 3. Setup delete button to open modal on click
-    if (deleteBrandButton) {
-        deleteBrandButton.addEventListener("click", (e) => {
-            e.preventDefault(); // Prevent default link behavior
-            brandDeletionWindow.showModal();
-        });
-    }
-
-    // 4. Setup cancel button to close modal
+    // Button handling inside the pop-up (cancelButton closes the window, but Esc key or clicking outside is also allowed)
     if (cancelButton) {
         cancelButton.addEventListener("click", () => {
-            brandDeletionWindow.close();
+            dialog.window.close();
         });
     }
-
-    // 5. Setup confirm button to handle deletion 
     if (confirmButton) {
-        confirmButton.addEventListener("click", () => {
-            console.log("Confirmado: Borrando marca...");
+        // Deletion of brand
+        confirmButton.addEventListener("click", async () => {
+            let response = await fetch(`/brand/${brandid}/delete`);
 
-            // Aquí pondrás tu fetch() más adelante
+            // When successful, user is sent back to main page
+            if (response.status === 200) {
+                window.location.href = "/";
+            }
+            // When failed, a pop-up is shown with the error code
+            else {
+                dialog.window.close();
+                dialog.headtext.innerText = "Something went wrong!";
+                dialog.bodytext.innerText = "Please, try again.";
+                dialog.subtext.style.display = "block";
+                dialog.subtext.innerText = `ERROR CODE: ${response.status} - ${response.statusText}`;
+                dialog.confirmButton.style.display = "none";
+                dialog.cancelButton.innerText = "Close";
+                dialog.window.showModal();
+            }
         });
     }
 }
 
+function loadDialogWindow() {
+    // Search of elements of the respective dialog (If the dialog pop-up itself does not exist, exit)
+    let dialogWindow = document.getElementById("dialogModal");
+    if (!dialogWindow) return;
+    let result = {
+        window: dialogWindow,
+        confirmButton: document.getElementById("confirmButton"),
+        cancelButton: document.getElementById("cancelButton"),
+        headtext: document.getElementById("dialogHeader"),
+        bodytext: document.getElementById("dialogBody"),
+        subtext: document.getElementById("dialogIndicator")
+    }
+
+    return result;
+}
 // ===================== BRAND INFO VALIDATION =====================
 let debounceTimer;
 
