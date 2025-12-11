@@ -145,22 +145,18 @@ function renderNewBrands(brands) {
 // Wait for DOM to load before setting up buttons to load modals
 document.addEventListener("DOMContentLoaded", () => {
     let dialog = loadDialogWindow();
+    let brandid = obtainBrandID();
 
-    let deleteBrandButton = document.getElementById("brandDeletionButton");
-    if (deleteBrandButton) {
-        deleteBrandButton.addEventListener("click", () => {
-            let brandid = obtainBrandID();
-            confirmBrandDeletion(dialog, brandid);
-        });
-    }
-
-    // Checker for whenever something is clicked. In this case, it recognizes the delete model buttons to act accordingly.
+    // Checker for whenever something is clicked. Used to detect which buttons are pressed.
     document.addEventListener("click", (event) => {
-        let isDeleteModelButton = event.target.classList.contains("deleteModelButton");
-        if (isDeleteModelButton) {
+        // Button pressed is any of the model deletion buttons
+        if (event.target.classList.contains("deleteModelButton")) {
             let modelName = event.target.getAttribute("data-modelname");
-            let brandid = obtainBrandID();
             deleteModel(modelName, brandid);
+        }
+        // Button pressed is the brand deletion button
+        else if (event.target.id === "brandDeletionButton") {
+            confirmBrandDeletion(dialog, brandid);
         }
     })
 
