@@ -15,7 +15,7 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="/style.css">
 
-  <link rel="icon" type='image/jpeg' href="/Favicon Luxecars.jpeg"/>
+  <link rel="icon" type='image/jpeg' href="/Favicon Luxecars.jpeg" />
 </head>
 
 <body class="luxecars">
@@ -28,32 +28,27 @@
     </div>
   </header>
 
- <!-- NAVBAR implemented with Mustache Partials -->
-    {{> nav_bar }}
+  <!-- NAVBAR implemented with Mustache Partials -->
+  {{> nav_bar }}
 
   <!-- FORM SECTION -->
   <section class="brands">
     <div class="container d-flex justify-content-center">
-      
+
       <!-- FORM FIXED: Now posts correctly -->
-      <form 
-        class="car-form p-4 shadow rounded bg-white"
-        style="max-width: 600px; width: 100%;"
-        method="POST"
-        action="/brand/new"
-        enctype="multipart/form-data"
-      >
-        
+      <form class="car-form p-4 shadow rounded bg-white" style="max-width: 600px; width: 100%;" method="POST"
+        action="/brand/new" enctype="multipart/form-data">
+
         <div class="mb-3">
           <label for="brand" class="form-label">Name</label>
-          <input type="text" class="form-control" id="brand" name="brandName"
-                 placeholder="e.g. Ferrari" required>
+          <input oninput="checkBrandNameAvailability()" type="text" class="form-control" id="brand" name="brandName"
+            placeholder="e.g. Ferrari" required>
+          <span id="brandMessage" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
           <label for="country" class="form-label">Country of Origin</label>
-          <input type="text" class="form-control" id="country" name="country"
-                 placeholder="e.g. Italy" required>
+          <input type="text" class="form-control" id="country" name="country" placeholder="e.g. Italy" required>
         </div>
 
         <div class="mb-3">
@@ -77,7 +72,11 @@
   </section>
 
   <!-- FOOTER -->
-    {{> footer }}
+  {{> footer }}
+
+  <!--client-->
+  <script src="/client.js"></script>
 
 </body>
+
 </html>
