@@ -27,7 +27,7 @@
 
 
     <!-- Brand's info -->
-    <div class="brands">
+    <div class="brands" id="brandField" data-brandid="{{brand._id}}">
         <div class="container text-center">
             <div class="mb-0" style="max-width: 800px; margin: 0 auto;">
                 <div class="d-flex align-items-center justify-content-center gap-3 mb-3">
@@ -53,7 +53,7 @@
     <!-- Brand's models -->
     <div class="container mt-4">
         {{#brand.models}}
-        <div class="brand-card">
+        <div class="brand-card" id="{{name}}">
             <div class="mt-3">
                 <img src="/brand/{{brand._id}}/model/{{name}}/image" alt="{{name}}">
                 <br>
@@ -71,8 +71,7 @@
                 </p>
                 <div class="button-group mb-4">
                     <a class="btn btn-sm btn-outline-primary" href="/brand/{{brand._id}}/model/{{name}}/edit">Edit</a>
-                    <a class="btn btn-sm btn-outline-danger"
-                        href="/brand/{{brand._id}}/model/{{name}}/delete">Delete</a>
+                    <a class="btn btn-sm btn-outline-danger deleteModelButton" data-modelname="{{name}}">Delete</a>
                 </div>
             </div>
         </div>

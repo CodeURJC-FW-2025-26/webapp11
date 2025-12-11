@@ -149,15 +149,38 @@ document.addEventListener("DOMContentLoaded", () => {
     let deleteBrandButton = document.getElementById("brandDeletionButton");
     if (deleteBrandButton) {
         deleteBrandButton.addEventListener("click", () => {
-            let brandid = deleteBrandButton.getAttribute("data-brandid");
+            let brandid = obtainBrandID();
             confirmBrandDeletion(dialog, brandid);
         });
     }
+
+    // Checker for whenever something is clicked. In this case, it recognizes the delete model buttons to act accordingly.
+    document.addEventListener("click", (event) => {
+        let isDeleteModelButton = event.target.classList.contains("deleteModelButton");
+        if (isDeleteModelButton) {
+            let modelName = event.target.getAttribute("data-modelname");
+            let brandid = obtainBrandID();
+            deleteModel(modelName, brandid);
+        }
+    })
 
     // ------------------------------------------------------
     // MORE BUTTONS THAT NEED TO USE THE DIALOG MODEL GO HERE
     // ------------------------------------------------------
 });
+
+// AJAX function to delete a model from the page. Also removes the HTML model card that contains it in real time
+async function deleteModel(modelName, brandId) {
+    let response = await fetch(`/brand/${brandId}/model/${modelName}/delete`);
+    if (response.status === 200) {
+        document.getElementById(modelName).remove();
+    }
+}
+
+// Function to obtain the ID from the brand.
+function obtainBrandID() {
+    return document.getElementById("brandField").getAttribute("data-brandid");
+}
 
 function confirmBrandDeletion(dialog, brandid) {
     // Set-up of dialog text
@@ -217,6 +240,7 @@ function loadDialogWindow() {
 
     return result;
 }
+
 // ===================== BRAND INFO VALIDATION =====================
 let debounceTimer;
 
