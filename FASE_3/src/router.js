@@ -127,13 +127,18 @@ router.get('/brand/:id/model/check-name', async (req, res) => {
     const modelName = req.query.modelName;
     const brandId = req.params.id;
 
-    if (!modelName) return res.json({ available: false });
+    if (!modelName) return res.json({ available: false, valid: true});
 
     const existingModel = await catalog.findModelByName(brandId, modelName);
 
     const isAvailable = !(existingModel && existingModel.models && existingModel.models.length > 0);
+    //Valid model name
 
-    res.json({ available: isAvailable });
+    let isValid = true;
+    if (!/^[A-Z0-9ÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]{0,29}$/.test(modelName)) {
+        isValid = false;
+    }
+    res.json({ available: isAvailable, valid: isValid});
 });
 
 // ===================== SPECIFIC BRAND PAGE =====================

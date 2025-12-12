@@ -298,7 +298,6 @@ async function checkBrandNameAvailability() {
 async function checkModelNameAvailability() {
     const modelInput = document.getElementById("model");
     const modelMessage = document.getElementById("modelMessage");
-    if (!modelInput || !modelMessage) return;
     const modelName = modelInput.value.trim();
 
     // If it is empty, clear message
@@ -323,15 +322,24 @@ async function checkModelNameAvailability() {
                 modelMessage.textContent = "Model name available";
                 modelMessage.classList.remove("text-danger");
                 modelMessage.classList.add("text-success"); // text color green
-            } else {
+                if (!data.valid) {
+                    modelMessage.textContent = "Model name must start with an uppercase letter or a number, and have a maximum of 30 characters";
+                    modelMessage.classList.remove("text-success");
+                    modelMessage.classList.add("text-danger");  // text color red
+                }
+            } 
+            if (!data.available) {
                 modelMessage.textContent = "Model name already exists";
                 modelMessage.classList.remove("text-success");
                 modelMessage.classList.add("text-danger");  // text color red
             }
+            
+            
         } catch (err) {
             console.error(err);
             modelMessage.textContent = "Error checking name";
             modelMessage.style.color = "red";
         }
     }, 500); //500ms debounce
+    
 }
