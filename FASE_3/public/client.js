@@ -252,7 +252,8 @@ function brandConfirmationWindow(dialog) {
 }
 
 // ===================== BRAND INFO VALIDATION =====================
-let debounceTimer;
+let debounceTimerBrand;
+let debounceTimerModel;
 
 async function checkBrandNameAvailability() {
     const brandInput = document.getElementById("brand");
@@ -265,11 +266,11 @@ async function checkBrandNameAvailability() {
         return;
     }
 
-    //Clear last requests
-    clearTimeout(debounceTimer);
+    // Clear last requests for brand input
+    clearTimeout(debounceTimerBrand);
 
     // Wait 500ms after user stops typing
-    debounceTimer = setTimeout(async () => {
+    debounceTimerBrand = setTimeout(async () => {
         try {
             const response = await fetch(`/brand/check-name?brandName=${encodeURIComponent(brandName)}`);
             const data = await response.json();
@@ -287,6 +288,50 @@ async function checkBrandNameAvailability() {
             console.error(err);
             brandMessage.textContent = "Error checking name";
             brandMessage.style.color = "red";
+        }
+    }, 500); //500ms debounce
+}
+
+// ===================== NEW MODEL INFO VALIDATION =====================
+
+
+async function checkModelNameAvailability() {
+    const modelInput = document.getElementById("model");
+    const modelMessage = document.getElementById("modelMessage");
+    if (!modelInput || !modelMessage) return;
+    const modelName = modelInput.value.trim();
+
+    // If it is empty, clear message
+    if (!modelName) {
+        modelMessage.textContent = "";
+        return;
+    }
+
+    // Clear last requests for model input
+    clearTimeout(debounceTimerModel);
+
+    // Wait 500ms after user stops typing
+    debounceTimerModel = setTimeout(async () => {
+        try {
+            const brandId = obtainBrandID();
+            if (!brandId) return;
+
+            const response = await fetch(`/brand/${brandId}/model/check-name?modelName=${encodeURIComponent(modelName)}`);
+            const data = await response.json();
+
+            if (data.available) {
+                modelMessage.textContent = "Model name available";
+                modelMessage.classList.remove("text-danger");
+                modelMessage.classList.add("text-success"); // text color green
+            } else {
+                modelMessage.textContent = "Model name already exists";
+                modelMessage.classList.remove("text-success");
+                modelMessage.classList.add("text-danger");  // text color red
+            }
+        } catch (err) {
+            console.error(err);
+            modelMessage.textContent = "Error checking name";
+            modelMessage.style.color = "red";
         }
     }, 500); //500ms debounce
 }

@@ -122,6 +122,20 @@ router.get('/brand/check-name', async (req, res) => {
     res.json({ available: !existingBrand });
 });
 
+// Check model name availability within a brand (AJAX)
+router.get('/brand/:id/model/check-name', async (req, res) => {
+    const modelName = req.query.modelName;
+    const brandId = req.params.id;
+
+    if (!modelName) return res.json({ available: false });
+
+    const existingModel = await catalog.findModelByName(brandId, modelName);
+
+    const isAvailable = !(existingModel && existingModel.models && existingModel.models.length > 0);
+
+    res.json({ available: isAvailable });
+});
+
 // ===================== SPECIFIC BRAND PAGE =====================
 router.get('/brand/:id', async (req, res) => {
     const brand = await catalog.getBrand(req.params.id);
