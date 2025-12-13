@@ -252,45 +252,164 @@ function brandConfirmationWindow(dialog) {
 }
 
 // ===================== BRAND INFO VALIDATION =====================
-let debounceTimerBrand;
 let debounceTimerModel;
+// ===================== VALIDATION DEBOUNCE TIMERS =====================
+let debounceTimers = {
+    brand: null,
+    country: null,
+    description: null
+};
 
-async function checkBrandNameAvailability() {
-    const brandInput = document.getElementById("brand");
-    const brandMessage = document.getElementById("brandMessage");
-    const brandName = brandInput.value.trim();
+// ===================== HELPER FUNCTION =====================
+function showValidationMessage(input, messageElement, text, isValid) {
+    if (isValid) {
+        input.classList.remove("is-invalid");
+        input.classList.add("is-valid");
+        messageElement.textContent = text;
+        messageElement.style.color = "green";
+    } else {
+        input.classList.remove("is-valid");
+        input.classList.add("is-invalid");
+        messageElement.textContent = text;
+        messageElement.style.color = "red";
+    }
+}
 
-    // If it is empty, clear message
-    if (!brandName) {
-        brandMessage.textContent = "";
+// ===================== BRAND NAME =====================
+let debounceTimerBrand;
+async function checkBrandName() {
+    const input = document.getElementById("brand");
+    const message = document.getElementById("brandMessage");
+    const value = input.value.trim();
+
+    if (!value) {
+        input.classList.remove("is-valid", "is-invalid");
+        message.textContent = "";
         return;
     }
 
-    // Clear last requests for brand input
-    clearTimeout(debounceTimerBrand);
+    // Local validation: empieza con mayúscula, max 30
+    if (!/^[A-ZÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]{0,29}$/.test(value)) {
+        showValidationMessage(input, message, "Brand must start with uppercase and max 30 chars", false);
+        return;
+    }
 
-    // Wait 500ms after user stops typing
+    // AJAX check con debounce
+    clearTimeout(debounceTimerBrand);
     debounceTimerBrand = setTimeout(async () => {
         try {
-            const response = await fetch(`/brand/check-name?brandName=${encodeURIComponent(brandName)}`);
-            const data = await response.json();
-
+            const res = await fetch(`/brand/check-name?brandName=${encodeURIComponent(value)}`);
+            const data = await res.json();
             if (data.available) {
-                brandMessage.textContent = "Brand name available";
-                brandMessage.classList.remove("text-danger");
-                brandMessage.classList.add("text-success"); // text color green
+                showValidationMessage(input, message, "Brand name available", true);
             } else {
-                brandMessage.textContent = "Brand name already exists";
-                brandMessage.classList.remove("text-success");
-                brandMessage.classList.add("text-danger");  // text color red
+                showValidationMessage(input, message, "Brand name already exists", false);
             }
         } catch (err) {
-            console.error(err);
-            brandMessage.textContent = "Error checking name";
-            brandMessage.style.color = "red";
+            showValidationMessage(input, message, "Error checking brand", false);
         }
-    }, 500); //500ms debounce
+    }, 500);
 }
+
+// ===================== COUNTRY =====================
+let debounceTimerCountry;
+async function checkCountry() {
+    const input = document.getElementById("country");
+    const message = document.getElementById("countryMessage");
+    const value = input.value.trim();
+
+    if (!value) {
+        input.classList.remove("is-valid", "is-invalid");
+        message.textContent = "";
+        return;
+    }
+
+    // Local validation: starts with uppercase, max 60
+    if (!/^[A-ZÁÉÍÓÚÑ][a-zA-Z\sáéíóúñÁÉÍÓÚÑ]{1,60}$/.test(value)) {
+        showValidationMessage(input, message, "Country must start with uppercase and max 60 chars", false);
+        return;
+    }
+
+    clearTimeout(debounceTimerCountry);
+    debounceTimerCountry = setTimeout(async () => {
+        try {
+            const res = await fetch(`/brand/check-country?country=${encodeURIComponent(value)}`);
+            const data = await res.json();
+            if (data.valid) {
+                showValidationMessage(input, message, data.message || "Country format is valid", true);
+            } else {
+                showValidationMessage(input, message, data.message || "Country invalid", false);
+            }
+        } catch (err) {
+            showValidationMessage(input, message, "Error checking country", false);
+        }
+    }, 500);
+}
+
+// ===================== DESCRIPTION =====================
+function checkDescription() {
+    const input = document.getElementById("description");
+    const message = document.getElementById("descriptionMessage");
+    const value = input.value.trim();
+
+    if (!value) {
+        input.classList.remove("is-valid", "is-invalid");
+        message.textContent = "";
+        return;
+    }
+
+    if (value.length >= 10 && value.length <= 300) {
+        showValidationMessage(input, message, "Description is valid", true);
+    } else {
+        showValidationMessage(input, message, "Description must be 10-300 characters", false);
+    }
+}
+
+// ===================== EVENT LISTENERS =====================
+document.getElementById("brand").addEventListener("input", checkBrandName);
+document.getElementById("country").addEventListener("input", checkCountry);
+document.getElementById("description").addEventListener("input", checkDescription);
+
+
+
+
+// AJAX form submit
+const form = document.querySelector(".car-form");
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const brandInput = document.getElementById("brand");
+    const countryInput = document.getElementById("country");
+    const descriptionInput = document.getElementById("description");
+    const brandMessage = document.getElementById("brandMessage");
+    const countryMessage = document.getElementById("countryMessage");
+    let valid = true;
+
+    // Final check before sending
+    if (!brandInput.value.trim() || brandInput.classList.contains("is-invalid")) valid = false;
+    if (!countryInput.value.trim() || countryInput.classList.contains("is-invalid")) valid = false;
+    if (!descriptionInput.value.trim() || descriptionInput.value.length < 10 || descriptionInput.value.length > 300) valid = false;
+
+    if (!valid) return;
+
+    const formData = new FormData(form);
+
+    try {
+        const response = await fetch(form.action, { method: "POST", body: formData });
+        if (!response.ok) {
+            const dialog = loadDialogWindow();
+            showErrorWindow(dialog, response);
+        } else {
+            // Replace body with new HTML from server
+            const resultHTML = await response.text();
+            document.body.innerHTML = resultHTML;
+        }
+    } catch (err) {
+        console.error(err);
+        const dialog = loadDialogWindow();
+        showErrorWindow(dialog, { status: 500, statusText: "Network Error" });
+    }
+});
 
 // ===================== NEW MODEL INFO VALIDATION =====================
 
@@ -327,19 +446,19 @@ async function checkModelNameAvailability() {
                     modelMessage.classList.remove("text-success");
                     modelMessage.classList.add("text-danger");  // text color red
                 }
-            } 
+            }
             if (!data.available) {
                 modelMessage.textContent = "Model name already exists";
                 modelMessage.classList.remove("text-success");
                 modelMessage.classList.add("text-danger");  // text color red
             }
-            
-            
+
+
         } catch (err) {
             console.error(err);
             modelMessage.textContent = "Error checking name";
             modelMessage.style.color = "red";
         }
     }, 500); //500ms debounce
-    
+
 }

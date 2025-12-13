@@ -35,33 +35,38 @@
   <section class="brands">
     <div class="container d-flex justify-content-center">
 
-      <!-- FORM FIXED: Now posts correctly -->
       <form class="car-form p-4 shadow rounded bg-white" style="max-width: 600px; width: 100%;" method="POST"
         action="/brand/new" enctype="multipart/form-data">
 
+        <!-- Brand Name -->
         <div class="mb-3">
           <label for="brand" class="form-label">Name</label>
-          <input oninput="checkBrandNameAvailability()" type="text" class="form-control" id="brand" name="brandName"
-            placeholder="e.g. Ferrari" required>
-          <span id="brandMessage" class="text-danger"></span>
+          <input type="text" class="form-control" id="brand" name="brandName" placeholder="e.g. Ferrari" required>
+          <span id="brandMessage"></span>
         </div>
 
+        <!-- Country -->
         <div class="mb-3">
           <label for="country" class="form-label">Country of Origin</label>
           <input type="text" class="form-control" id="country" name="country" placeholder="e.g. Italy" required>
+          <span id="countryMessage"></span>
         </div>
 
+        <!-- Brand Image -->
         <div class="mb-3">
           <label for="image" class="form-label">Brand Image</label>
           <input class="form-control" type="file" id="image" name="logo" accept="image/*" required>
         </div>
 
+        <!-- Description -->
         <div class="mb-3">
           <label for="description" class="form-label">Description</label>
           <textarea class="form-control" id="description" name="description" rows="4"
-            placeholder="Brief description about the brand..."></textarea>
+            placeholder="Brief description about the brand..." required></textarea>
+          <span id="descriptionMessage"></span>
         </div>
 
+        <!-- Buttons -->
         <div class="button-group d-flex justify-content-between">
           <button type="submit" class="btn btn-outline-dark">Save</button>
           <a href="/" class="btn btn-outline-secondary">Cancel</a>
@@ -74,7 +79,7 @@
   <!-- FOOTER -->
   {{> footer }}
 
-  <!--client-->
+  <!-- CLIENT JS -->
   <script src="/client.js"></script>
 
 </body>
