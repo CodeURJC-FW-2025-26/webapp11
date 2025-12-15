@@ -1,4 +1,12 @@
-// ===================== State vars =====================
+// ===================== UTILITIES =====================
+
+/**
+ * Helper function to simulate 'timers/promises' behavior in the browser.
+ * Allows usage of: await setTimeout(800);
+ */
+const setTimeout = (ms) => new Promise(resolve => window.setTimeout(resolve, ms));
+
+// ===================== STATE VARIABLES =====================
 let page = 1;
 let loading = false;
 let hasMore = true;
@@ -6,7 +14,7 @@ let hasMore = true;
 // ===================== INITIALIZING =====================
 document.addEventListener("DOMContentLoaded", () => {
 
-    // [NUEVO] 1. Resaltar el botón del país activo
+    // 1. Highlight active country button
     highlightActiveCountry();
 
     // 1. Configure Infinite Scroll
@@ -44,27 +52,25 @@ function handleScroll() {
 
     const bottomSpinner = document.getElementById('infinite-scroll-spinner');
 
-    // Detectamos si estamos al final de la página
+    // Detect end of page
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
-
-        if (hasMore) {
-            // ESCENARIO A: Aún quedan coches en la base de datos
+        // ONLY try to load if there is more content.
+        // If hasMore is false (we reached the finish line), we do nothing.
+        if (hasMore) { // If there are more pages to load 
             loadNextPage();
-        } else {
-            // ESCENARIO B: Ya no quedan coches (hemos visto la bandera)
-            // Si el usuario insiste en bajar, mostramos el spinner girando infinitamente
-            if (bottomSpinner) bottomSpinner.classList.remove('d-none');
         }
     }
 }
 
-function loadNextPage() {
+// Load next page of data
+async function loadNextPage() {
     loading = true;
 
     const bottomSpinner = document.getElementById('infinite-scroll-spinner');
     const finishMsg = document.getElementById('finish-line-msg');
+    const container = document.getElementById('brands-container');
 
-    // UI: Mostrar spinner, ocultar meta (por si acaso)
+    // UI: Show spinner, hide finish line (just in case)
     if (bottomSpinner) bottomSpinner.classList.remove('d-none');
     if (finishMsg) finishMsg.classList.add('d-none');
 
@@ -74,61 +80,50 @@ function loadNextPage() {
 
     page++;
 
-    // Promesa A: Petición
-    const dataFetch = fetch(`/?page=${page}&search=${search}&country=${country}&format=json`)
-        .then(response => {
-            if (!response.ok) throw new Error("Error loading data");
-            return response.json();
-        });
+// 1. Start the wait timer (800ms) in the background
+    const delaySpinner = setTimeout(800);
 
-    // Promesa B: Retardo (0.8s)
-    const minDelay = new Promise(resolve => setTimeout(resolve, 800));
+    // 2. Start the data request. 
+    // Using 'await' here means execution stops if there is a network error (console error).
+    const response = await fetch(`/?page=${page}&search=${search}&country=${country}&format=json`);
 
-    Promise.all([dataFetch, minDelay])
-        .then(([data, _]) => {
+    // 3. Convert to JSON
+    const data = await response.json();
 
-            if (data.brands && data.brands.length > 0) {
-                renderNewBrands(data.brands);
-            }
+    // 4. Wait for the timer to finish (if the network was very fast)
+    await delaySpinner;
 
-            // Actualizamos si quedan más
-            hasMore = data.hasMore; // Si es undefined o false, se marca como false
+    // --- RENDER ---
+    if (data.brands && data.brands.length > 0) {
+        renderNewBrands(data.brands);
+    }
 
-            if (!hasMore) {
-                // FIN DEL CONTENIDO
-                // 1. Mostramos la bandera
-                if (finishMsg) finishMsg.classList.remove('d-none');
+    // Update state
+    hasMore = data.hasMore;
 
-                // 2. IMPORTANTE: Ocultamos el spinner temporalmente.
-                // Si el usuario deja de hacer scroll, verá solo la bandera.
-                // Si SIGUE haciendo scroll, 'handleScroll' se activará de nuevo y mostrará el spinner abajo.
-                if (bottomSpinner) bottomSpinner.classList.add('d-none');
-            }
-        })
-        .catch(err => {
-            console.error("Error:", err);
-            page--;
-            // Si hay error, ocultamos spinner
-            if (bottomSpinner) bottomSpinner.classList.add('d-none');
-        })
-        .finally(() => {
-            // Solo liberamos el flag de loading para permitir nuevos eventos
-            loading = false;
+    // --- END MANAGEMENT ---
+    if (!hasMore) {
+        // Show the finish line flag
+        if (finishMsg) finishMsg.classList.remove('d-none');
+        
+        // Hide the spinner temporarily
+        if (bottomSpinner) bottomSpinner.classList.add('d-none');
+    }
 
-            // NOTA: En el 'finally' normal ocultaríamos el spinner, 
-            // pero aquí lo gestionamos dentro del 'then' para soportar el caso "sin datos".
-            // Solo lo ocultamos si NO hemos llegado al final o si hubo error.
-            if (hasMore && bottomSpinner) {
-                bottomSpinner.classList.add('d-none');
-            }
-        });
+    // --- CLEANUP (What 'finally' used to do) ---
+    // This executes only if everything above went well
+    loading = false;
+
+    // If there is still more data, hide the spinner for the next time
+    if (hasMore && bottomSpinner) {
+        bottomSpinner.classList.add('d-none');
+    }
 }
 
 function renderNewBrands(brands) {
     const container = document.getElementById('brands-container');
 
     brands.forEach(brand => {
-        // Generate HTML. Important: ` ` (backticks)
         const cardHTML = `
             <div class="col-md-4 col-sm-6 mb-4 fade-in-card">
                 <a href="/brand/${brand._id}" class="brand-card">
@@ -140,7 +135,6 @@ function renderNewBrands(brands) {
         container.insertAdjacentHTML('beforeend', cardHTML);
     });
 }
-
 // ===================== MODAL CODE =====================
 // Wait for DOM to load before setting up buttons to load modals
 document.addEventListener("DOMContentLoaded", () => {
