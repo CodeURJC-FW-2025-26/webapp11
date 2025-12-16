@@ -527,24 +527,23 @@ Lastly, we shall run either the command 'npm start', or 'npm run watch' (A varia
 5. [data.json](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/data/data.json)
 
    
-## Adrián Varea Fernández POR HACER
+## Adrián Varea Fernández 
 
 ### Textual description of the tasks performed in the phase:
-- Creation of the error page.
-- Detection of the ways the data in the forms could be wrong.
-- Added the validations in create brand, edit brand, create model and edit model.
-- Added the links to redirect to any kind of error possible.
-- Helped with some problems with the links to the pages.
-- Extended catalog with needed function.
+- Create model implemented with AJAX
+- Validations of add model with AJAX
+- Previsualize image in add model form
+- Modified router.js to get data for the name checks in AJAX
+- Fixed some problems with error messages
 
 ### List of the 5 most significant commits:
-1. [Main structure of validations](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/145237731b278d431108605950d691dc3986c7ad)
-2. [Provisional error page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/2fb61ae8e1491b18fb1d2b2ca1d6a08f3ed3588b)
-3. [Completion of validations and error checking](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/6b6cf450502e9aac681fec1a3c6067b31d45f752)
-4. [Fixed some links and messages](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/cd483c5c586b66de2c128f90c3baca4cd910c617)
-5. [Detection of possible errors in the form data](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/4b09ce91e602f339e23b71e8f62a1b1377a83bf9)
+1. [Implemented client-side form validation with real-time feedback and safe submission handling](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/899f4d4f3be2883ecf3eeb6e5eb50fbe9aa6de85)
+2. [Changes to router.js and modelName checks](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/278e650cadf56bbfbb47e8999bb6c9da655c5e6e)
+3. [Correction of model Name check and some router changes](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/fe65649819d626a126c973383f16ebbdd3b97d90)
+4. [Refactoring,changing styles and structuring future code](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/3a0d62a6606676592982e984879e058c3fa78f49)
+5. [Preview of images in the form](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/62fc7536fe4c2ba044d65bfbb1d6f948947159c7)
 
 ### List of the files I have contributed the most to:
-1. [router.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/router.js)
-2. [error.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/error.html)
-3. [catalog.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/catalog.js)
+1. [client.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_3/public/client.js)
+2. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_3/views/info.html)
+3. [router.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_3/src/router.js)
