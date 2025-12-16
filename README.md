@@ -454,26 +454,25 @@ Lastly, we shall run either the command 'npm start', or 'npm run watch' (A varia
 ## Ángel Murciano Baena POR HACER
 
 ### Textual description of the tasks performed in the phase:
-- Structuring of router management for the web app.
-- Implementation of queries regarding models in the database.
-- Implementation of info page as a dynamic template.
-- Implementation of buttons to add, edit and delete a model.
-- Adaptation of JS files to suit them into the web app.
+- Edit model implemented with AJAX
+- Create model implemented with AJAX
+- Delete brand implemented with AJAX
+- Delete model implemented with AJAX
+- Edit model page adapted to be part of info page
+- Dynamic actualization of elements in the page
 
 ### List of the 5 most significant commits:
-1. [Addition of info page adapted to a template](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/c73a6cf0e63170240b10d6dec6c186a2f7a72371)
-2. [Edit model functionality added](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/e933a1b221a848b6688d63395bdb0adc15edb3be)
-3. [Delete model functionality added](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/0ffef292b702a2c92bf24243ac1de9143ce11415)
-4. [Adding model functionality added](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/ef506fa55a3fee3580d1660566f4e734fa9aef93)
-5. [Model images now show properly on the info page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/8becce02793c1f539d1a2489d46ca94700957851)
+1. [Addition of confirm window for deletion of brand](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/c18098cf1b4078f41bdf7a7cce93cc5c046caa3b)
+2. [Addition of brand deletion using AJAX, remaking of dialog handling as an object](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/21329bb8c5478ea10ef659e6535bce17b2f8ea54)
+3. [Delete model functionality done with AJAX](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/a9754ea4990490ff000296868e178c9d9bf90b21)
+4. [Model addition functionality adapted to AJAX](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/cc89e4657346101c571c3a3fb577e7651cbb4134)
+5. [Edit model added](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/ea2be8c46f65cd40cf36e43fd11e9980bfcd81f4)
 
 ### List of the files I have contributed the most to:
-1. [router.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/router.js)
-2. [catalog.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/catalog.js)
-3. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/info.html)
-4. [saved_model.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/saved_model.html)
-5. [edit_model.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/edit_model.html)
-
+1. [client.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_3/public/client.js)
+2. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_3/views/info.html)
+3. [router.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_3/src/router.js)
+   
 ## Ramón Nieto Villegas
 
 ### Textual description of the tasks performed in the phase:
