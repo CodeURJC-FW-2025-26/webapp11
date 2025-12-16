@@ -436,17 +436,17 @@ imageInput.addEventListener("change", () => {
         }
         reader.readAsDataURL(file);
     } else {
-        // Si no hay archivo seleccionado
+        // If no file, hide preview and remove button
         imagePreview.src = "";
         imagePreview.style.display = "none";
         removeImageBtn.style.display = "none";
     }
 });
 
-// Botón para eliminar la imagen seleccionada
+// Remove image button functionality
 removeImageBtn.addEventListener("click", () => {
-    imageInput.value = ""; // Limpia el input
-    imagePreview.src = ""; // Limpia la previsualización
+    imageInput.value = ""; // Clear file input
+    imagePreview.src = ""; // Clear preview
     imagePreview.style.display = "none";
     removeImageBtn.style.display = "none";
 });
