@@ -47,7 +47,7 @@ function highlightActiveCountry() {
 // ===================== INFINITE SCROLL =====================
 
 function handleScroll() {
-    // Si estamos cargando datos reales, no hacemos nada
+    //if already loading, do nothing
     if (loading) return;
 
     const bottomSpinner = document.getElementById('infinite-scroll-spinner');
