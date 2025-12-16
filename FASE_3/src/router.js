@@ -138,7 +138,7 @@ router.get('/brand/:id/model/check-name', async (req, res) => {
     if (!/^[A-Z0-9ÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]{0,29}$/.test(modelName)) {
         isValid = false;
     }
-    res.json({ available: isAvailable, valid: isValid });
+    res.json({ available: isAvailable, correct: isValid });
 });
 
 // Check country format (AJAX)
