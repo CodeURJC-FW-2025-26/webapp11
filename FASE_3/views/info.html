@@ -51,7 +51,7 @@
 
 
     <!-- Brand's models -->
-    <div class="container mt-4">
+    <div class="container mt-4" id="brandModelSection">
         {{#brand.models}}
         <div class="brand-card" id="{{name}}" data-modelname="{{name}}">
             <div class="mt-3">
@@ -70,7 +70,7 @@
                     <strong>Interesting Facts:</strong> {{interesting_facts}}
                 </p>
                 <div class="button-group mb-4">
-                    <a class="btn btn-sm btn-outline-primary" href="/brand/{{brand._id}}/model/{{name}}/edit">Edit</a>
+                    <a class="btn btn-sm btn-outline-primary editModelButton">Edit</a>
                     <a class="btn btn-sm btn-outline-danger deleteModelButton" data-modelname="{{name}}">Delete</a>
                 </div>
             </div>
@@ -83,7 +83,7 @@
     </div>
 
     <!-- FORM SECTION -->
-    <section class="brands mt-2">
+    <section class="brands mt-2" id="createModelForm">
         <h2>Add New Model</h2>
         <div class="container d-flex justify-content-center">
             <form class="car-form p-4 shadow rounded bg-white" style="max-width: 600px; width: 100%;" method="POST"
@@ -134,6 +134,67 @@
 
                 <button type="submit" class="btn btn-dark w-100">Create</button>
             </form>
+    </section>
+
+    <!-- Main Edit section-->
+    <section class="brands d-none" id="editModelForm">
+        <div class="container d-flex justify-content-center">
+            <form class="car-form p-4 shadow rounded bg-white" 
+            action="/brand/{{id}}/model/{{model.name}}/edit" 
+            method="POST" enctype="multipart/form-data" style="max-width: 600px; width: 100%;">
+                
+                <div class="mb-3">
+                    <label for="modelName">Model Name</label>
+                    <input type="text" name="modelName" id="modelNameInputField" class="form-control" value="" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="HP">Horse Power (HP)</label>
+                    <input type="text" name="HP" id="HPInputField" class="form-control" value="" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="year">Year</label>
+                    <input name="year" class="form-control" id="yearInputField" type="number" value="" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="daily_price">Daily price (Dollars per day)</label>
+                    <input type="text" name="daily_price" id="dailyPriceInputField" class="form-control" value="" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="image">Image</label>
+                    <input type="file" name="image" id="imageInputField" class="form-control">
+                    <small>Current model image: {{model.image}}</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="imgPreview">Image Preview</label>
+                    <small id="imgPreviewField"></small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="technical_specifications">Technical Specifications</label>
+                    <textarea name="technical_specifications" class="form-control" id="techSpecsInputField" rows="4" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="rental_conditions">Rental Conditions</label>
+                    <textarea name="rental_conditions" class="form-control" id="rentCondInputField" rows="4" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="interesting_facts">Interesting Facts</label>
+                    <textarea name="interesting_facts" class="form-control" id="inteFactsInputField" rows="4" required></textarea>
+                </div>
+
+                <div class="button-group d-flex justify-content-between">
+                    <button type="submit" class="btn btn-outline-dark">Save Changes</button>
+                    <a class="btn btn-outline-secondary cancelEditModel">Cancel</a>
+                </div>
+            </form>
+        </div>
     </section>
 
     <!-- Footer implemented with Mustache Partials -->
