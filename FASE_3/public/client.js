@@ -72,7 +72,7 @@ async function loadNextPage() {
     const country = params.get('country') || '';
 
     page++;
-    
+
     // Since router.js already has "await setTimeout", this line will delay 800ms-
 
     // 1. Start the data request. 
@@ -82,7 +82,7 @@ async function loadNextPage() {
     // 2. Convert to JSON
     const data = await response.json();
 
- 
+
 
     // --- RENDER ---
     if (data.brands && data.brands.length > 0) {
@@ -300,7 +300,7 @@ async function checkBrandName() {
     }
 
     // Local syntax validation
-    const syntaxValid = /^[A-ZÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]{0,29}$/.test(value);
+    const syntaxValid = /^[A-ZÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ-]{0,29}$/.test(value);
     if (!syntaxValid) {
         showValidationMessage(input, message, "Brand must start with uppercase and be max 30 characters", false);
         return;
@@ -411,45 +411,24 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("description")?.addEventListener("input", checkDescription);
 });
 
-// ===================== AJAX FORM SUBMIT =====================
-const form = document.querySelector(".car-form");
+// ===================== FORM SUBMIT SPINNER =====================
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector(".car-form");
+    const spinner = document.getElementById("form-spinner");
+    const saveButton = form.querySelector("button[type='submit']");
 
-form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    if (!form || !spinner) return;
 
-    const brand = document.getElementById("brand");
-    const country = document.getElementById("country");
-    const description = document.getElementById("description");
+    form.addEventListener("submit", (e) => {
+        spinner.classList.remove("d-none");
+        saveButton.disabled = true;
 
-    if (
-        brand.classList.contains("is-invalid") ||
-        country.classList.contains("is-invalid") ||
-        description.classList.contains("is-invalid")
-    ) {
-        return;
-    }
+        setTimeout(() => {
+            form.submit();
+        }, 500);
 
-    const formData = new FormData(form);
-
-    try {
-        const response = await fetch(form.action, {
-            method: "POST",
-            body: formData
-        });
-
-        if (!response.ok) {
-            const dialog = loadDialogWindow();
-            showErrorWindow(dialog, response);
-            return;
-        }
-
-        const html = await response.text();
-        document.body.innerHTML = html;
-
-    } catch (err) {
-        const dialog = loadDialogWindow();
-        showErrorWindow(dialog, { status: 500, statusText: "Network error" });
-    }
+        e.preventDefault();
+    });
 });
 // ===================== NEW MODEL INFO VALIDATION =====================
 
@@ -476,25 +455,25 @@ async function checkModelName() {
     // Availability check via AJAX
     try {
         const brandId = obtainBrandID();
-            if (!brandId) return;
+        if (!brandId) return;
         const response = await fetch(`/brand/${brandId}/model/check-name?modelName=${encodeURIComponent(value)}`);
         const data = await response.json();
 
-            if (data.available && data.correct) {
-                showValidationMessage(input, message, "Model name is available", true);
-            } 
-            if (data.available && !data.correct) {
-                showValidationMessage(input, message, "Model name must start with an uppercase letter or a number, and have a maximum of 30 characters", false);
-            }
-            if (!data.available) {
-                showValidationMessage(input, message, "Model name already exists", false);
-            }
-            
-            
-        } catch (err) {
-            console.error(err);
-            showValidationMessage(input, message, "Error checking model name", false);
+        if (data.available && data.correct) {
+            showValidationMessage(input, message, "Model name is available", true);
         }
+        if (data.available && !data.correct) {
+            showValidationMessage(input, message, "Model name must start with an uppercase letter or a number, and have a maximum of 30 characters", false);
+        }
+        if (!data.available) {
+            showValidationMessage(input, message, "Model name already exists", false);
+        }
+
+
+    } catch (err) {
+        console.error(err);
+        showValidationMessage(input, message, "Error checking model name", false);
+    }
 }
 
 // ===================== YEAR =====================
@@ -514,9 +493,9 @@ function checkYear() {
     if (value < 1850 || value > Date.getFullYear()) {
         showValidationMessage(input, message, "Year must be between 1850 and current year", false);
         return;
-    }else{
+    } else {
         showValidationMessage(input, message, "Year is valid", true);
-    }    
+    }
 }
 /*
 // ===================== DESCRIPTION =====================
@@ -542,7 +521,7 @@ function checkDescription() {
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("model")?.addEventListener("input", checkModelName);
     document.getElementById("year")?.addEventListener("input", checkYear);
-    
+
 });
 /*
 // ===================== AJAX FORM SUBMIT =====================

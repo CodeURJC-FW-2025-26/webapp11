@@ -125,21 +125,23 @@ body.luxecars {
 .search-add-container {
   display: flex;
   justify-content: center;
-  align-items: center;     
-  gap: 15px;               
+  align-items: center;
+  gap: 15px;
   margin: 20px 20px;
-  flex-wrap: nowrap;       
+  flex-wrap: nowrap;
 }
 
 .search-add-container form {
-  flex-grow: 0.80;            /* Takes available space */
-  min-width: 0px;        /* Minimum width for responsiveness */
+  flex-grow: 0.80;
+  /* Takes available space */
+  min-width: 0px;
+  /* Minimum width for responsiveness */
   display: flex;
   gap: 10px;
 }
 
 .search-add-container form input {
-  flex-grow: 0,2;
+  flex-grow: 0, 2;
 }
 
 .search-add-container form button {
@@ -156,7 +158,8 @@ body.luxecars {
   justify-content: center;
   gap: 10px;
   margin-bottom: 25px;
-  flex-wrap: nowrap;        /* Prevents buttons from breaking on small screens */
+  flex-wrap: nowrap;
+  /* Prevents buttons from breaking on small screens */
 }
 
 /* ==== BRANDS SECTION ==== */
@@ -256,11 +259,11 @@ footer {
     gap: 5px;
   }
 
-   .main-title-info h2 {
+  .main-title-info h2 {
     font-size: 2.2rem;
   }
-  
-   form {
+
+  form {
     padding: 20px;
   }
 }
@@ -358,7 +361,8 @@ footer {
 }
 
 /* ==== BUTTON STYLES ==== */
-.btn-outline-dark, .btn-dark {
+.btn-outline-dark,
+.btn-dark {
   border-radius: 30px;
   padding: 0.5rem 1.4rem;
   font-weight: 500;
@@ -368,7 +372,7 @@ footer {
   transition: all 0.3s ease;
 }
 
-.btn-dark{
+.btn-dark {
   color: #fff;
 }
 
@@ -453,18 +457,22 @@ form .btn-outline-secondary:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #fafafa; /* Same background color as body */
+  background-color: #fafafa;
+  /* Same background color as body */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999; /* On top of all content */
-  transition: opacity 0.5s ease; /* Vanishing transition */
+  z-index: 9999;
+  /* On top of all content */
+  transition: opacity 0.5s ease;
+  /* Vanishing transition */
 }
 
 /* Hidden state for loader (used when loading is done) */
 .loader-hidden {
   opacity: 0;
-  pointer-events: none; /* Prevent interaction when hidden */
+  pointer-events: none;
+  /* Prevent interaction when hidden */
 }
 
 /* Utility class to hide elements */
@@ -474,7 +482,7 @@ form .btn-outline-secondary:hover {
 
 /* --- 2. Car Spinner Styles --- */
 .car-spinner-final {
-  width: 70px; 
+  width: 70px;
   height: 70px;
   position: relative;
   display: flex;
@@ -489,63 +497,92 @@ form .btn-outline-secondary:hover {
   width: 100%;
   height: 100%;
   /* Thin edge, solid and gray */
-  border: 3px solid #e0e0e0; 
+  border: 3px solid #e0e0e0;
   /* Rotating thing is (antracite) */
-  border-top-color: #333;    
+  border-top-color: #333;
   border-radius: 50%;
   box-sizing: border-box;
   /* Faster to be more sophisticated */
   animation: spin-track-final 1s linear infinite;
-  z-index: 0; 
+  z-index: 0;
 }
 
 /* Car emoji (grayscale) */
 .top-car {
-  font-size: 42px; 
+  font-size: 42px;
   position: relative;
   z-index: 10;
   /* Grayscale magic trick. Grayscale filter at 100% + smooth shadow */
-  filter: grayscale(100%) opacity(0.9) drop-shadow(0px 2px 1px rgba(0,0,0,0.2));
+  filter: grayscale(100%) opacity(0.9) drop-shadow(0px 2px 1px rgba(0, 0, 0, 0.2));
 }
 
 @keyframes spin-track-final {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* --- 3. Infinite Scroll Spinner Container --- */
 #infinite-scroll-spinner {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 /* --- 4. Fade-in Animation for New Cards --- */
 .fade-in-card {
-    animation: fadeIn 0.6s ease-out;
+  animation: fadeIn 0.6s ease-out;
 }
 
 @keyframes fadeIn {
-    from { 
-        opacity: 0; 
-        transform: translateY(30px); /* Slight upward movement */
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    /* Slight upward movement */
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ===================== FINISH LINE ===================== */
 
 .finish-content {
-    animation: fadeIn 0.5s ease-out;
+  animation: fadeIn 0.5s ease-out;
 }
 
 .finish-line-text {
-    font-family: 'Poppins', sans-serif;
-    color: #333;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
+
+
+/*===================== FORM SUBMIT SPINNER =====================*/
+/* Spinner overlay */
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  /* Fondo semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Spinner contenido */
+.spinner-content {
+  text-align: center;
 }
