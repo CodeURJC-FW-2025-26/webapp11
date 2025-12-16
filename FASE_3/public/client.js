@@ -259,11 +259,10 @@ function loadRemoveButton() {
     const previewField = document.getElementById("imgPreviewField");
 
     // Mostrar
-    if(!removeBtn.classList.contains("d.none")) {
+    if(removeBtn.classList.contains("d-none")) {
         removeBtn.classList.toggle("d-none");
     }
     
-
     // Ocultar al pulsar
     removeBtn.addEventListener("click", () => {
         // 1. Limpiar preview
@@ -271,7 +270,7 @@ function loadRemoveButton() {
 
         // 2. Limpiar input
         fileInput.value = "";
-        removeBtn.classList.toggle("d-none");
+        removeBtn.classList.add("d-none");
     });
 }
 
