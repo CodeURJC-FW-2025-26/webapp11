@@ -141,53 +141,7 @@ router.get('/brand/:id/model/check-name', async (req, res) => {
     res.json({ available: isAvailable, valid: isValid });
 });
 
-// Check country format (AJAX)
-router.get("/brand/check-country", (req, res) => {
-    const { country } = req.query;
 
-    if (!country) {
-        return res.json({ valid: false, message: "" });
-    }
-
-    const startsWithUppercase = /^[A-ZÁÉÍÓÚÑ]/.test(country);
-    const isValid = /^[A-ZÁÉÍÓÚÑ][a-zA-Z\sáéíóúñÁÉÍÓÚÑ]{1,59}$/.test(country);
-
-    if (!startsWithUppercase) {
-        return res.json({
-            valid: false,
-            message: "Country must start with an uppercase letter"
-        });
-    }
-
-    if (!isValid) {
-        return res.json({
-            valid: false,
-            message: "Country must contain only letters and be 2-60 characters long"
-        });
-    }
-
-    return res.json({
-        valid: true,
-        message: "Country format is valid"
-    });
-});
-
-// Check description length (AJAX)
-router.get("/brand/check-description", (req, res) => {
-    const { description } = req.query;
-
-    if (!description) {
-        return res.json({ valid: false, message: "" });
-    }
-
-    const len = description.trim().length;
-
-    if (len >= 10 && len <= 300) {
-        return res.json({ valid: true, message: "Description length is valid" });
-    }
-
-    res.json({ valid: false, message: "Description must be between 10 and 300 characters" });
-});
 
 // ===================== SPECIFIC BRAND PAGE =====================
 router.get('/brand/:id', async (req, res) => {
