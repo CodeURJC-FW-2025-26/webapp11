@@ -422,7 +422,149 @@ form.addEventListener("submit", async (e) => {
 });
 // ===================== NEW MODEL INFO VALIDATION =====================
 
+// ===================== MODEL NAME =====================
 
+// Real-time validation of model name with AJAX check
+async function checkModelName() {
+    const input = document.getElementById("model");
+    const message = document.getElementById("modelMessage");
+    const value = input.value.trim();
+
+    if (!value) {
+        input.classList.remove("is-valid", "is-invalid");
+        message.textContent = "";
+        return;
+    }
+
+    // Local syntax validation
+    const syntaxValid = /^[A-ZÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]{0,29}$/.test(value);
+    if (!syntaxValid) {
+        showValidationMessage(input, message, "Brand must start with uppercase letter and be max 30 characters", false);
+        return;
+    }
+    // Availability check via AJAX
+    try {
+        const brandId = obtainBrandID();
+            if (!brandId) return;
+        const response = await fetch(`/brand/${brandId}/model/check-name?modelName=${encodeURIComponent(value)}`);
+        const data = await response.json();
+
+            if (data.available && data.correct) {
+                showValidationMessage(input, message, "Model name is available", true);
+            } 
+            if (data.available && !data.correct) {
+                showValidationMessage(input, message, "Model name must start with an uppercase letter or a number, and have a maximum of 30 characters", false);
+            }
+            if (!data.available) {
+                showValidationMessage(input, message, "Model name already exists", false);
+            }
+            
+            
+        } catch (err) {
+            console.error(err);
+            showValidationMessage(input, message, "Error checking model name", false);
+        }
+}
+/*
+// ===================== COUNTRY =====================
+function checkCountry() {
+    const input = document.getElementById("country");
+    const message = document.getElementById("countryMessage");
+    const value = input.value.trim();
+
+    if (!value) {
+        input.classList.remove("is-valid", "is-invalid");
+        message.textContent = "";
+        return;
+    }
+
+    // Only letters and spaces
+    if (!/^[A-Za-zÁÉÍÓÚÑáéíóúñ\s]+$/.test(value)) {
+        showValidationMessage(input, message, "Country must contain only letters", false);
+        return;
+    }
+
+    // First letter uppercase
+    if (value[0] !== value[0].toUpperCase()) {
+        showValidationMessage(input, message, "Country must start with an uppercase letter", false);
+        return;
+    }
+
+    // Length check
+    if (value.length < 2 || value.length > 60) {
+        showValidationMessage(input, message, "Country must be between 2 and 60 characters", false);
+        return;
+    }
+
+    // If all checks pass
+    showValidationMessage(input, message, "Country format is valid", true);
+}
+
+// ===================== DESCRIPTION =====================
+function checkDescription() {
+    const input = document.getElementById("description");
+    const message = document.getElementById("descriptionMessage");
+    const value = input.value.trim();
+
+    if (!value) {
+        input.classList.remove("is-valid", "is-invalid");
+        message.textContent = "";
+        return;
+    }
+
+    if (value.length >= 10 && value.length <= 300) {
+        showValidationMessage(input, message, "Description is valid", true);
+    } else {
+        showValidationMessage(input, message, "Description must be 10-300 characters", false);
+    }
+}
+*/
+// ===================== EVENT LISTENERS =====================
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("model")?.addEventListener("input", checkModelName);
+    
+});
+/*
+// ===================== AJAX FORM SUBMIT =====================
+const form = document.querySelector(".car-form");
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const brand = document.getElementById("brand");
+    const country = document.getElementById("country");
+    const description = document.getElementById("description");
+
+    if (
+        brand.classList.contains("is-invalid") ||
+        country.classList.contains("is-invalid") ||
+        description.classList.contains("is-invalid")
+    ) {
+        return;
+    }
+
+    const formData = new FormData(form);
+
+    try {
+        const response = await fetch(form.action, {
+            method: "POST",
+            body: formData
+        });
+
+        if (!response.ok) {
+            const dialog = loadDialogWindow();
+            showErrorWindow(dialog, response);
+            return;
+        }
+
+        const html = await response.text();
+        document.body.innerHTML = html;
+
+    } catch (err) {
+        const dialog = loadDialogWindow();
+        showErrorWindow(dialog, { status: 500, statusText: "Network error" });
+    }
+});
 async function checkModelNameAvailability() {
     const modelInput = document.getElementById("model");
     const modelMessage = document.getElementById("modelMessage");
@@ -471,3 +613,4 @@ async function checkModelNameAvailability() {
     }, 500); //500ms debounce
 
 }
+*/
