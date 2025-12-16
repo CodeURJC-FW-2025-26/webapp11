@@ -1,17 +1,9 @@
-// ===================== UTILITIES =====================
-
-/**
- * Helper function to simulate 'timers/promises' behavior in the browser.
- * Allows usage of: await setTimeout(800);
- */
-const setTimeout = (ms) => new Promise(resolve => window.setTimeout(resolve, ms));
-
 // ===================== STATE VARIABLES =====================
 let page = 1;
 let loading = false;
 let hasMore = true;
 
-// ===================== INITIALIZING =====================
+// ===================== INITIALIZATION =====================
 document.addEventListener("DOMContentLoaded", () => {
 
     // 1. Highlight active country button
@@ -80,18 +72,16 @@ async function loadNextPage() {
 
     page++;
 
-    // 1. Start the wait timer (800ms) in the background
-    const delaySpinner = setTimeout(800);
 
-    // 2. Start the data request. 
+    //  Since router.js already has 'await setTimeout', this line will delay 800ms.
+
+
+    // 1. Start the data request. 
     // Using 'await' here means execution stops if there is a network error (console error).
     const response = await fetch(`/?page=${page}&search=${search}&country=${country}&format=json`);
 
-    // 3. Convert to JSON
+    // 2. Convert to JSON
     const data = await response.json();
-
-    // 4. Wait for the timer to finish (if the network was very fast)
-    await delaySpinner;
 
     // --- RENDER ---
     if (data.brands && data.brands.length > 0) {

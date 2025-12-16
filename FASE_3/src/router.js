@@ -3,6 +3,9 @@ import multer from 'multer';
 import fs from 'node:fs/promises';
 import * as catalog from './catalog.js';
 
+// Import the native Node.js timer
+import { setTimeout } from 'node:timers/promises';
+
 const router = express.Router();
 export default router;
 
@@ -38,8 +41,13 @@ router.get('/', async (req, res) => {
 
     const brandsSlice = allBrands.slice(start, end);
 
-    // [NUEVO] AJAX: If client reqs JSON, response JSON
+    // [NEW] AJAX: If client reqs JSON, response JSON but waiting first
     if (req.query.format === 'json') {
+        
+        // Here we use the imported setTimeout from 'node:timers/promises'
+        // Wait for 800ms before sending the response
+        await setTimeout(800);
+
         return res.json({
             brands: brandsSlice,
             hasMore: page < totalPages
