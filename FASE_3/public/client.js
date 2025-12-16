@@ -151,6 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (targetButton.id === "brandDeletionButton") {
             confirmBrandDeletion(dialog, brandid);
         }
+        // Button pressed is a model edition button
         else if (targetButton.classList.contains("editModelButton")) {
             let modelName = obtainModelName(targetButton);
 
@@ -160,10 +161,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (modelName) {
                 loadFormInfo(model, brandid);
-
                 hideShowInfoPage();
             }
         }
+        // Button pressed is a model edition cancel button
         else if (targetButton.classList.contains("cancelEditModel")) {
             hideShowInfoPage();
         }
@@ -171,6 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+// Loading form info into the form.
 async function loadFormInfo(model, brandid) {
     document.getElementById("modelNameInputField").value = model.name;
     document.getElementById("HPInputField").value = model.HP;
@@ -183,6 +185,7 @@ async function loadFormInfo(model, brandid) {
 
 }
 
+// Function for handling the drag&drop area.
 function loadDropZoneHandler() {
     const dropZone = document.getElementById("dropZone");
     const fileInput = document.getElementById("imageInputField");
@@ -238,11 +241,16 @@ function loadDropZoneHandler() {
     }
 }
 
+// Function to hide all of the info page and show the model edition form, or viceversa.
 function hideShowInfoPage() {
-    document.getElementById("brandField").classList.toggle("d-none");
-    document.getElementById("brandModelSection").classList.toggle("d-none");
-    document.getElementById("createModelForm").classList.toggle("d-none");
-    document.getElementById("editModelForm").classList.toggle("d-none");
+    [
+        "brandField",
+        "brandModelSection",
+        "createModelForm",
+        "editModelForm"
+    ].forEach(id => {
+        document.getElementById(id)?.classList.toggle("d-none");
+    });
 }
 
 // AJAX function to delete a model from the page. Also removes the HTML model card that contains it in real time
