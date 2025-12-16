@@ -80,7 +80,7 @@ async function loadNextPage() {
 
     page++;
 
-// 1. Start the wait timer (800ms) in the background
+    // 1. Start the wait timer (800ms) in the background
     const delaySpinner = setTimeout(800);
 
     // 2. Start the data request. 
@@ -105,7 +105,7 @@ async function loadNextPage() {
     if (!hasMore) {
         // Show the finish line flag
         if (finishMsg) finishMsg.classList.remove('d-none');
-        
+
         // Hide the spinner temporarily
         if (bottomSpinner) bottomSpinner.classList.add('d-none');
     }
@@ -246,13 +246,6 @@ function brandConfirmationWindow(dialog) {
 }
 
 // ===================== BRAND INFO VALIDATION =====================
-let debounceTimerModel;
-// ===================== VALIDATION DEBOUNCE TIMERS =====================
-let debounceTimers = {
-    brand: null,
-    country: null,
-    description: null
-};
 
 // ===================== HELPER FUNCTION =====================
 function showValidationMessage(input, messageElement, text, isValid) {
@@ -270,7 +263,8 @@ function showValidationMessage(input, messageElement, text, isValid) {
 }
 
 // ===================== BRAND NAME =====================
-let debounceTimerBrand;
+
+// Real-time validation of brand name with AJAX check
 async function checkBrandName() {
     const input = document.getElementById("brand");
     const message = document.getElementById("brandMessage");
@@ -282,32 +276,30 @@ async function checkBrandName() {
         return;
     }
 
-    // Local validation: empieza con mayúscula, max 30
-    if (!/^[A-ZÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]{0,29}$/.test(value)) {
-        showValidationMessage(input, message, "Brand must start with uppercase and max 30 chars", false);
+    // Local syntax validation
+    const syntaxValid = /^[A-ZÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]{0,29}$/.test(value);
+    if (!syntaxValid) {
+        showValidationMessage(input, message, "Brand must start with uppercase and be max 30 characters", false);
         return;
     }
-
-    // AJAX check con debounce
-    clearTimeout(debounceTimerBrand);
-    debounceTimerBrand = setTimeout(async () => {
-        try {
-            const res = await fetch(`/brand/check-name?brandName=${encodeURIComponent(value)}`);
-            const data = await res.json();
-            if (data.available) {
-                showValidationMessage(input, message, "Brand name available", true);
-            } else {
-                showValidationMessage(input, message, "Brand name already exists", false);
-            }
-        } catch (err) {
-            showValidationMessage(input, message, "Error checking brand", false);
+    // Availability check via AJAX
+    try {
+        const response = await fetch(`/brand/check-name?brandName=${encodeURIComponent(value)}`);
+        const data = await response.json();
+        if (data.available) {
+            showValidationMessage(input, message, "Brand name is available", true);
+        } else {
+            showValidationMessage(input, message, "Brand name already exists", false);
         }
-    }, 500);
-}
+    } catch (err) {
+        console.error(err);
+        showValidationMessage(input, message, "Error checking brand name", false);
+    }
 
+
+}
 // ===================== COUNTRY =====================
-let debounceTimerCountry;
-async function checkCountry() {
+function checkCountry() {
     const input = document.getElementById("country");
     const message = document.getElementById("countryMessage");
     const value = input.value.trim();
@@ -318,26 +310,26 @@ async function checkCountry() {
         return;
     }
 
-    // Local validation: starts with uppercase, max 60
-    if (!/^[A-ZÁÉÍÓÚÑ][a-zA-Z\sáéíóúñÁÉÍÓÚÑ]{1,60}$/.test(value)) {
-        showValidationMessage(input, message, "Country must start with uppercase and max 60 chars", false);
+    // Only letters and spaces
+    if (!/^[A-Za-zÁÉÍÓÚÑáéíóúñ\s]+$/.test(value)) {
+        showValidationMessage(input, message, "Country must contain only letters", false);
         return;
     }
 
-    clearTimeout(debounceTimerCountry);
-    debounceTimerCountry = setTimeout(async () => {
-        try {
-            const res = await fetch(`/brand/check-country?country=${encodeURIComponent(value)}`);
-            const data = await res.json();
-            if (data.valid) {
-                showValidationMessage(input, message, data.message || "Country format is valid", true);
-            } else {
-                showValidationMessage(input, message, data.message || "Country invalid", false);
-            }
-        } catch (err) {
-            showValidationMessage(input, message, "Error checking country", false);
-        }
-    }, 500);
+    // First letter uppercase
+    if (value[0] !== value[0].toUpperCase()) {
+        showValidationMessage(input, message, "Country must start with an uppercase letter", false);
+        return;
+    }
+
+    // Length check
+    if (value.length < 2 || value.length > 60) {
+        showValidationMessage(input, message, "Country must be between 2 and 60 characters", false);
+        return;
+    }
+
+    // If all checks pass
+    showValidationMessage(input, message, "Country format is valid", true);
 }
 
 // ===================== DESCRIPTION =====================
@@ -360,51 +352,52 @@ function checkDescription() {
 }
 
 // ===================== EVENT LISTENERS =====================
-document.getElementById("brand").addEventListener("input", checkBrandName);
-document.getElementById("country").addEventListener("input", checkCountry);
-document.getElementById("description").addEventListener("input", checkDescription);
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("brand")?.addEventListener("input", checkBrandName);
+    document.getElementById("country")?.addEventListener("input", checkCountry);
+    document.getElementById("description")?.addEventListener("input", checkDescription);
+});
 
-
-
-
-// AJAX form submit
+// ===================== AJAX FORM SUBMIT =====================
 const form = document.querySelector(".car-form");
+
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const brandInput = document.getElementById("brand");
-    const countryInput = document.getElementById("country");
-    const descriptionInput = document.getElementById("description");
-    const brandMessage = document.getElementById("brandMessage");
-    const countryMessage = document.getElementById("countryMessage");
-    let valid = true;
+    const brand = document.getElementById("brand");
+    const country = document.getElementById("country");
+    const description = document.getElementById("description");
 
-    // Final check before sending
-    if (!brandInput.value.trim() || brandInput.classList.contains("is-invalid")) valid = false;
-    if (!countryInput.value.trim() || countryInput.classList.contains("is-invalid")) valid = false;
-    if (!descriptionInput.value.trim() || descriptionInput.value.length < 10 || descriptionInput.value.length > 300) valid = false;
-
-    if (!valid) return;
+    if (
+        brand.classList.contains("is-invalid") ||
+        country.classList.contains("is-invalid") ||
+        description.classList.contains("is-invalid")
+    ) {
+        return;
+    }
 
     const formData = new FormData(form);
 
     try {
-        const response = await fetch(form.action, { method: "POST", body: formData });
+        const response = await fetch(form.action, {
+            method: "POST",
+            body: formData
+        });
+
         if (!response.ok) {
             const dialog = loadDialogWindow();
             showErrorWindow(dialog, response);
-        } else {
-            // Replace body with new HTML from server
-            const resultHTML = await response.text();
-            document.body.innerHTML = resultHTML;
+            return;
         }
+
+        const html = await response.text();
+        document.body.innerHTML = html;
+
     } catch (err) {
-        console.error(err);
         const dialog = loadDialogWindow();
-        showErrorWindow(dialog, { status: 500, statusText: "Network Error" });
+        showErrorWindow(dialog, { status: 500, statusText: "Network error" });
     }
 });
-
 // ===================== NEW MODEL INFO VALIDATION =====================
 
 
