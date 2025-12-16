@@ -127,20 +127,23 @@
 
                 <div class="mb-3">
                     <label for="technical_specifications" class="form-label">Technical Specifications</label>
-                    <textarea class="form-control" name="technical_specifications" rows="3"
+                    <textarea class="form-control" id="technical_specifications" name="technical_specifications" rows="3"
                         placeholder="Specifications of the car..." required></textarea>
+                    <span id="technicalMessage"></span>
                 </div>
 
                 <div class="mb-3">
                     <label for="rental_conditions" class="form-label">Rental conditions</label>
-                    <textarea class="form-control" name="rental_conditions" rows="3"
+                    <textarea class="form-control" id="rental_conditions" name="rental_conditions" rows="3"
                         placeholder="Conditions to rent the car..." required></textarea>
+                    <span id="rentalMessage"></span>
                 </div>
 
                 <div class="mb-3">
                     <label for="interesting_facts" class="form-label">Interesting Facts</label>
-                    <textarea class="form-control" name="interesting_facts" rows="3"
+                    <textarea class="form-control" id="interesting_facts" name="interesting_facts" rows="3"
                         placeholder="Some data about the car..." required></textarea>
+                    <span id="factsMessage"></span>
                 </div>
 
                 <button type="submit" class="btn btn-dark w-100">Create</button>
