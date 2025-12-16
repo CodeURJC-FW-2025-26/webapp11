@@ -320,17 +320,17 @@ function loadRemoveButton() {
     const fileInput = document.getElementById("imageInputField");
     const previewField = document.getElementById("imgPreviewField");
 
-    // Mostrar
+    // Show
     if(removeBtn.classList.contains("d-none")) {
         removeBtn.classList.toggle("d-none");
     }
     
-    // Ocultar al pulsar
+    // Hide on click
     removeBtn.addEventListener("click", () => {
-        // 1. Limpiar preview
+        // 1. Clean preview
         previewField.innerHTML = "";
 
-        // 2. Limpiar input
+        // 2. Clean input
         fileInput.value = "";
         removeBtn.classList.add("d-none");
     });
