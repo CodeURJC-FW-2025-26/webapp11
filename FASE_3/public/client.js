@@ -173,13 +173,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector(".car-form");
 
     form.addEventListener("submit", async (e) => {
-        e.preventDefault(); // Evitar el submit normal
+        e.preventDefault();
 
-        // Crear FormData desde el form
         const formData = new FormData(form);
-
-        let name = formData.get("modelName");
-        console.log(name)
 
         try {
             const response = await fetch(`/brand/${brandid}/model/create`, {
@@ -189,31 +185,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!response.ok) {
                 const errorText = await response.text();
-                throw new Error(errorText || "Error al subir los datos");
+                throw new Error(errorText || "Error uploading data");
             }
 
-            const result = await response.json(); // o text(), según tu backend
-
+            const result = await response.json();
             createCarCard(result);
-            // Opcional: limpiar formulario y mostrar mensaje
             form.reset();
+
         } catch (error) {
             console.error("Error:", error);
-            alert("Hubo un error al enviar el formulario: " + error.message);
+            alert("There was an error sending out the form info: " + error.message);
         }
     });
 
 });
 
 function createCarCard(car) {
-    // Crear contenedor
+    // Create card for model 
     const card = document.createElement("div");
     card.className = "brand-card";
     card.id = car.name;
     card.dataset.modelname = car.name;
     let brandid = obtainBrandID();
 
-    // Llenar contenido
+    // Fill content in the card
     card.innerHTML = `
         <div class="mt-3">
             <img src="/brand/${brandid}/model/${car.name}/image" alt="${car.name}">
@@ -237,7 +232,7 @@ function createCarCard(car) {
         </div>
     `;
 
-    // Insertar al final de #brandModelSection
+    // Inserting after all of the other model cards
     const container = document.getElementById("brandModelSection");
     container.appendChild(card);
 }
