@@ -1,3 +1,4 @@
+
 // ===================== STATE VARIABLES =====================
 let page = 1;
 let loading = false;
@@ -71,10 +72,8 @@ async function loadNextPage() {
     const country = params.get('country') || '';
 
     page++;
-
-
-    //  Since router.js already has 'await setTimeout', this line will delay 800ms.
-
+    
+    // Since router.js already has "await setTimeout", this line will delay 800ms-
 
     // 1. Start the data request. 
     // Using 'await' here means execution stops if there is a network error (console error).
@@ -82,6 +81,8 @@ async function loadNextPage() {
 
     // 2. Convert to JSON
     const data = await response.json();
+
+ 
 
     // --- RENDER ---
     if (data.brands && data.brands.length > 0) {
@@ -465,11 +466,11 @@ async function checkModelName() {
             showValidationMessage(input, message, "Error checking model name", false);
         }
 }
-/*
-// ===================== COUNTRY =====================
-function checkCountry() {
-    const input = document.getElementById("country");
-    const message = document.getElementById("countryMessage");
+
+// ===================== YEAR =====================
+function checkYear() {
+    const input = document.getElementById("year");
+    const message = document.getElementById("yearMessage");
     const value = input.value.trim();
 
     if (!value) {
@@ -478,28 +479,16 @@ function checkCountry() {
         return;
     }
 
-    // Only letters and spaces
-    if (!/^[A-Za-zÁÉÍÓÚÑáéíóúñ\s]+$/.test(value)) {
-        showValidationMessage(input, message, "Country must contain only letters", false);
+    // Valid year check
+    const Date = new Date();
+    if (value < 1850 || value > Date.getFullYear()) {
+        showValidationMessage(input, message, "Year must be between 1850 and current year", false);
         return;
-    }
-
-    // First letter uppercase
-    if (value[0] !== value[0].toUpperCase()) {
-        showValidationMessage(input, message, "Country must start with an uppercase letter", false);
-        return;
-    }
-
-    // Length check
-    if (value.length < 2 || value.length > 60) {
-        showValidationMessage(input, message, "Country must be between 2 and 60 characters", false);
-        return;
-    }
-
-    // If all checks pass
-    showValidationMessage(input, message, "Country format is valid", true);
+    }else{
+        showValidationMessage(input, message, "Year is valid", true);
+    }    
 }
-
+/*
 // ===================== DESCRIPTION =====================
 function checkDescription() {
     const input = document.getElementById("description");
@@ -522,6 +511,7 @@ function checkDescription() {
 // ===================== EVENT LISTENERS =====================
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("model")?.addEventListener("input", checkModelName);
+    document.getElementById("year")?.addEventListener("input", checkYear);
     
 });
 /*
