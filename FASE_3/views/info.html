@@ -42,7 +42,8 @@
                 <p style="font-size: 1rem; color: #444;">{{brand.description}}</p>
                 <div class="button-group mb-4">
                     <a href="/brand/{{brand._id}}/edit" class="btn btn-sm btn-outline-primary">Edit</a>
-                    <a class="btn btn-sm btn-outline-danger" id="brandDeletionButton" data-brandid="{{brand._id}}">Delete</a>
+                    <a class="btn btn-sm btn-outline-danger" id="brandDeletionButton"
+                        data-brandid="{{brand._id}}">Delete</a>
                     <a href="/" class="btn btn-sm btn-outline-secondary">Back</a>
                 </div>
             </div>
@@ -90,13 +91,15 @@
                 action="/brand/{{brand._id}}/model/create" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="modelName" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="model"name="modelName" placeholder="e.g. Ferrari" required>
+                    <input type="text" class="form-control" id="model" name="modelName" placeholder="e.g. Ferrari"
+                        required>
                     <span id="modelMessage"></span>
                 </div>
 
                 <div class="mb-3">
                     <label for="year" class="form-label">Year of Release</label>
-                    <input type="number" class="form-control" name="year" placeholder="e.g. 2010" required>
+                    <input type="number" class="form-control" id="year" name="year" placeholder="e.g. 2010" required>
+                    <span id="yearMessage"></span>
                 </div>
 
                 <div class="mb-3">
@@ -139,10 +142,9 @@
     <!-- Main Edit section-->
     <section class="brands d-none" id="editModelForm">
         <div class="container d-flex justify-content-center">
-            <form class="car-form p-4 shadow rounded bg-white" 
-            action="/brand/{{id}}/model/{{model.name}}/edit" 
-            method="POST" enctype="multipart/form-data" style="max-width: 600px; width: 100%;">
-                
+            <form class="car-form p-4 shadow rounded bg-white" action="/brand/{{id}}/model/{{model.name}}/edit"
+                method="POST" enctype="multipart/form-data" style="max-width: 600px; width: 100%;">
+
                 <div class="mb-3">
                     <label for="modelName">Model Name</label>
                     <input type="text" name="modelName" id="modelNameInputField" class="form-control" value="" required>
@@ -160,33 +162,41 @@
 
                 <div class="mb-3">
                     <label for="daily_price">Daily price (Dollars per day)</label>
-                    <input type="text" name="daily_price" id="dailyPriceInputField" class="form-control" value="" required>
-                </div>
-                
-                <div class="mb-3">
-                    <label for="image">Image</label>
-                    <input type="file" name="image" id="imageInputField" class="form-control">
-                    <small>Current model image: {{model.image}}</small>
+                    <input type="text" name="daily_price" id="dailyPriceInputField" class="form-control" value=""
+                        required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="imgPreview">Image Preview</label>
+                    <label>Image</label>
+
+                    <div id="dropZone" class="drop-zone">
+                        <span>Arrastra una imagen aquí o haz clic</span>
+                        <input type="file" name="image" id="imageInputField" accept="image/*" hidden>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label>Image Preview</label><br>
                     <small id="imgPreviewField"></small>
                 </div>
 
+
                 <div class="mb-3">
                     <label for="technical_specifications">Technical Specifications</label>
-                    <textarea name="technical_specifications" class="form-control" id="techSpecsInputField" rows="4" required></textarea>
+                    <textarea name="technical_specifications" class="form-control" id="techSpecsInputField" rows="4"
+                        required></textarea>
                 </div>
 
                 <div class="mb-3">
                     <label for="rental_conditions">Rental Conditions</label>
-                    <textarea name="rental_conditions" class="form-control" id="rentCondInputField" rows="4" required></textarea>
+                    <textarea name="rental_conditions" class="form-control" id="rentCondInputField" rows="4"
+                        required></textarea>
                 </div>
 
                 <div class="mb-3">
                     <label for="interesting_facts">Interesting Facts</label>
-                    <textarea name="interesting_facts" class="form-control" id="inteFactsInputField" rows="4" required></textarea>
+                    <textarea name="interesting_facts" class="form-control" id="inteFactsInputField" rows="4"
+                        required></textarea>
                 </div>
 
                 <div class="button-group d-flex justify-content-between">

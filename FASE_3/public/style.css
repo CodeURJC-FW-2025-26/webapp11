@@ -586,3 +586,24 @@ form .btn-outline-secondary:hover {
 .spinner-content {
   text-align: center;
 }
+
+/* == Styling for drop image zone in forms */
+
+.drop-zone {
+  border: 2px dashed #bbb;
+  border-radius: 8px;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.drop-zone.dragover {
+  border-color: #0d6efd;
+  background: #f0f8ff;
+}
+
+#imgPreviewField img {
+  max-width: 100%;
+  border-radius: 6px;
+}
