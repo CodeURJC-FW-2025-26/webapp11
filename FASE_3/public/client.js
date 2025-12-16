@@ -169,9 +169,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
 
-    // ------------------------------------------------------
-    // MORE BUTTONS THAT NEED TO USE THE DIALOG MODEL GO HERE
-    // ------------------------------------------------------
 });
 
 async function loadFormInfo(model, brandid) {
@@ -191,10 +188,10 @@ function loadDropZoneHandler() {
     const fileInput = document.getElementById("imageInputField");
     const previewField = document.getElementById("imgPreviewField");
 
-    // Abrir selector al hacer click
+    // Opening file explorer when clicking the drop zone
     dropZone.addEventListener("click", () => fileInput.click());
 
-    // Drag visual
+    // Visuals for dragging over and away from the drop zone
     dropZone.addEventListener("dragover", (e) => {
         e.preventDefault();
         dropZone.classList.add("dragover");
@@ -204,19 +201,20 @@ function loadDropZoneHandler() {
         dropZone.classList.remove("dragover");
     });
 
-    // Soltar archivo
+    // Handler for dropping a file
     dropZone.addEventListener("drop", (e) => {
         e.preventDefault();
         dropZone.classList.remove("dragover");
 
         const file = e.dataTransfer.files[0];
+        // File successfully transferred
         if (file) {
             fileInput.files = e.dataTransfer.files;
             showPreview(file);
         }
     });
 
-    // Selección manual
+    // Manual selection of the file (File explorer)
     fileInput.addEventListener("change", () => {
         if (fileInput.files.length) {
             showPreview(fileInput.files[0]);
@@ -226,7 +224,7 @@ function loadDropZoneHandler() {
     // Preview
     function showPreview(file) {
         if (!file.type.startsWith("image/")) {
-            alert("Solo imágenes");
+            alert("Only images allowed");
             return;
         }
 
