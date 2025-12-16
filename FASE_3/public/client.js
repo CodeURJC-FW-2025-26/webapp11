@@ -143,9 +143,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Checker for whenever something is clicked. Used to detect which buttons are pressed.
     document.addEventListener("click", async (event) => {
+        let targetButton = event.target;
+        console.log(targetButton);
         // Button pressed is any of the model deletion buttons
-        if (event.target.classList.contains("deleteModelButton")) {
-            let modelName = obtainModelName(event.target);
+        if (targetButton.classList.contains("deleteModelButton")) {
+            let modelName = obtainModelName(targetButton);
             let response = await deleteModel(modelName, brandid);
             if (response.status === 200) {
                 document.getElementById(modelName).remove();
@@ -155,8 +157,30 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
         // Button pressed is the brand deletion button
-        else if (event.target.id === "brandDeletionButton") {
+        else if (targetButton.id === "brandDeletionButton") {
             confirmBrandDeletion(dialog, brandid);
+        }
+        else if (targetButton.classList.contains("editModelButton")) {
+            let modelName = obtainModelName(targetButton);
+
+            let result = await fetch(`/brand/${brandid}/model/${modelName}`);
+            let modelInfo = await result.json();
+            let model = modelInfo.models[0];
+
+            if (modelName) {
+                document.getElementById("modelNameInputField").value = model.name;
+                document.getElementById("HPInputField").value = model.HP;
+                document.getElementById("yearInputField").value = model.year;
+                document.getElementById("dailyPriceInputField").value = model.daily_price;
+                document.getElementById("techSpecsInputField").innerText = model.technical_specifications;
+                document.getElementById("rentCondInputField").innerText = model.rental_conditions;
+                document.getElementById("inteFactsInputField").innerText = model.interesting_facts;
+                document.getElementById("imgPreviewField").innerHTML = `<img src="/brand/${brandid}/model/${modelName}/image" style="max-width:100%; max-height:200px;"/>`
+                hideShowInfoPage();
+            }
+        }
+        else if (targetButton.classList.contains("cancelEditModel")) {
+            hideShowInfoPage();
         }
     })
 
@@ -164,6 +188,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // MORE BUTTONS THAT NEED TO USE THE DIALOG MODEL GO HERE
     // ------------------------------------------------------
 });
+
+function hideShowInfoPage() {
+    document.getElementById("brandField").classList.toggle("d-none");
+    document.getElementById("brandModelSection").classList.toggle("d-none");
+    document.getElementById("createModelForm").classList.toggle("d-none");
+    document.getElementById("editModelForm").classList.toggle("d-none");
+}
 
 // AJAX function to delete a model from the page. Also removes the HTML model card that contains it in real time
 async function deleteModel(modelName, brandId) {
@@ -176,8 +207,9 @@ function obtainBrandID() {
     return document.getElementById("brandField").getAttribute("data-brandid");
 }
 
+// Function to obtain the name of the model from the button we press.
 function obtainModelName(target) {
-    return target.getAttribute("data-modelname");
+    return target.closest('.brand-card').getAttribute("data-modelname");
 }
 
 function confirmBrandDeletion(dialog, brandid) {

@@ -242,6 +242,11 @@ router.get('/brand/:id/model/:name/edit', async (req, res) => {
     res.render('edit_model', { id: brandId, model: model });
 });
 
+router.get('/brand/:id/model/:name', async (req, res) => {
+    const modelObject = await catalog.findModelByName(req.params.id, req.params.name);
+    return res.json(modelObject);
+})
+
 // ===================== DATABASE MODEL EDIT REQUEST =====================
 router.post('/brand/:id/model/:name/edit', upload.single('image'), async (req, res) => {
     const brandId = req.params.id;
