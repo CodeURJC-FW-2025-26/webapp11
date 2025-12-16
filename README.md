@@ -362,11 +362,11 @@ Lastly, we shall run either the command 'npm start', or 'npm run watch' (A varia
 
 ---
 
-# (Phase 3): Node.js server implementation for the web application:
+# (Phase 3): Improve user experience with JavaScript:
 ## 🚀
 # Explanation step by step of how to successfully download, build and execute the application.
 
-To put the web app into fully functioning, downloading the source code is needed. For this, there is the release linked to this phase 2, containing all of the important assets for whoever wants to deploy the app.
+To put the web app into fully functioning, downloading the source code is needed. For this, there is the release linked to this phase 3, containing all of the important assets for whoever wants to deploy the app.
 
 # Dependencies (client-wise)
 
@@ -376,7 +376,7 @@ The machine running the web app shall have:
 
 # Instructions to execute the server
 
-First, the source code directory needs to be opened in a terminal (CMD, not Powershell, as you cannot execute node or npm commands in there). Then, we have to access the "FASE2" folder in the terminal using the 'cd' command.
+First, the source code directory needs to be opened in a terminal (CMD, not Powershell, as you cannot execute node or npm commands in there). Then, we have to access the "FASE3" folder in the terminal using the 'cd' command.
 
 Next, to make sure we download all of the dependencies in the code folder, we must run the command 'npm install'. This will install all of the needed dependencies and tools for the web app to work, such as Mustache or Multer.
 
@@ -384,9 +384,9 @@ Lastly, we shall run either the command 'npm start', or 'npm run watch' (A varia
 
 ---
 
-- **Interactive catalog**: A clear and visually appealing gallery of luxury cars.
+- **Interactive catalog**: A clear and visually appealing gallery of luxury cars with AJAX for pagination to improve the UX.
 - **Filtering options**: Search for a specific vehicle/letter in title or filter brands by country.
-- **Detail pages**: Individual pages for each brand models with specifications, images, and interesting facts.
+- **Detail pages**: Individual pages for each brand models with specifications, images, and interesting facts with forms uding AJAX to improve UX.
 
 ---
 ##
@@ -401,6 +401,8 @@ Lastly, we shall run either the command 'npm start', or 'npm run watch' (A varia
 - **router.js**: This file is an Express Router that defines all the API endpoints (routes) for the application, handling both GET (displaying pages, fetching data) and POST (submitting forms, creating/updating data) requests.
   
 - **catalog.js**: This file acts as the Data Access Layer (DAL) for the application, establishing a connection to a MongoDB database and providing a set of asynchronous functions to perform CRUD (Create, Read, Update, Delete) operations on the brands collection.
+
+- - **client.js**: This file manages the client-side interactivity of the application, implementing the infinite scroll functionality by detecting user scroll events and fetching data asynchronously via AJAX. It is responsible for dynamically updating the DOM with new content, managing UI states like loading spinners and "finish line" messages, and handling modal dialogs for operations such as deletions.
   
 - **load_data.js**: This file is responsible for initializing the application's environment, which includes clearing and loading demo brand and model data into the MongoDB database and resetting the file system's uploads folder with demo images.
   
