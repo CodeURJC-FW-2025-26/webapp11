@@ -1,4 +1,3 @@
-
 // ===================== STATE VARIABLES =====================
 let page = 1;
 let loading = false;
@@ -469,24 +468,28 @@ async function checkModelName() {
 
 // ===================== YEAR =====================
 function checkYear() {
-    const input = document.getElementById("year");
-    const message = document.getElementById("yearMessage");
-    const value = input.value.trim();
+  const input = document.getElementById("year");
+  const message = document.getElementById("yearMessage");
+  const value = input.value.trim();
 
-    if (!value) {
-        input.classList.remove("is-valid", "is-invalid");
-        message.textContent = "";
-        return;
-    }
+  if (!value) {
+    input.classList.remove("is-valid", "is-invalid");
+    message.textContent = "";
+    return;
+  }
 
-    // Valid year check
-    const Date = new Date();
-    if (value < 1850 || value > Date.getFullYear()) {
-        showValidationMessage(input, message, "Year must be between 1850 and current year", false);
-        return;
-    }else{
-        showValidationMessage(input, message, "Year is valid", true);
-    }    
+  const year = parseInt(value, 10);
+  if (Number.isNaN(year)) {
+    showValidationMessage(input, message, "Year must be a number", false);
+    return;
+  }
+
+  const now = new Date().getFullYear();
+  if (year < 1850 || year > now) {
+    showValidationMessage(input, message, "Year must be between 1850 and current year", false);
+  } else {
+    showValidationMessage(input, message, "Year is valid", true);
+  }
 }
 /*
 // ===================== DESCRIPTION =====================
