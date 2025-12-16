@@ -392,13 +392,13 @@ Lastly, we shall run either the command 'npm start', or 'npm run watch' (A varia
 ##
 🚀
 # Files description
-- **data.json**: This file contains a structured catalog of luxury car brands and their high-end models. For each brand, it includes basic information such as name, country, description, logo, and a list of models. Each model provides technical specifications, images, rental conditions, horsepower, year, price per day, and interesting facts. The dataset covers multiple manufacturers including Ferrari, Lamborghini, McLaren, Porsche, Aston Martin, BMW, Audi, Mercedes-Benz, and Rolls-Royce.
+- **data.json**: This file contains a structured catalog of luxury car brands and their high-end models. For each brand, it includes basic information such as name, country, description, logo, and a list of models. Each model provides technical specifications, images, rental conditions, horsepower, year, price per day, and interesting facts. The dataset covers multiple manufacturers including Ferrari, Lamborghini, McLaren, Porsche, Aston Martin, BMW, Audi, Mercedes-Benz, Rolls-Royce, Bentley, Bugatti, Maserati, Koenigsegg, Pagani, Land Rover, Jaguar, Alfa Romeo and Rimac.
   
 - **style.css**: This file is responsible for the overall visual design and structure of the web pages it is linked to.
   
 - **app.js**: This file is responsible for initializing and configuring the Express web server, setting up mustache-express as the template engine, serving static files from the ./public directory, using body-parser for handling form submissions, and routing all requests through ./router.js, finally starting the server on port 3000.
  
-- **router.js**: This file is an Express Router that defines all the API endpoints (routes) for the application, handling both GET (displaying pages, fetching data) and POST (submitting forms, creating/updating data) requests.
+- **router.js**: This file is an Express Router that defines all the API endpoints (routes) for the application, handling both GET (displaying pages, fetching data) and POST (submitting forms, creating/updating data) requests, spinner, finish line and new buttons.
   
 - **catalog.js**: This file acts as the Data Access Layer (DAL) for the application, establishing a connection to a MongoDB database and providing a set of asynchronous functions to perform CRUD (Create, Read, Update, Delete) operations on the brands collection.
 
@@ -406,7 +406,7 @@ Lastly, we shall run either the command 'npm start', or 'npm run watch' (A varia
   
 - **load_data.js**: This file is responsible for initializing the application's environment, which includes clearing and loading demo brand and model data into the MongoDB database and resetting the file system's uploads folder with demo images.
   
-- **index.html**: This file is responsible for rendering the specific Brand Details Page, displaying the brand's core information (name, country, description, and logo) and its list of associated car models with their individual details and action buttons, while also including the form for creating a new car model under this brand.
+- **index.html**: This file is responsible for rendering the specific Brand Details Page, displaying the brand's core information (name, country, description, and logo) and its list of associated car models with their individual details and action buttons, while also including the form for creating a new car model under this brand, with AJAX pagination with spinner and finish line message when there is no more data to show.
   
 - **info.html**: This file is responsible for rendering the specific brand's detail page, which displays the brand information (logo, name, country, description, and links to edit/delete the brand), lists all associated car models with their specs and action buttons, and includes the form for adding a new car model to that brand.
   
