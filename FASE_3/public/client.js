@@ -519,9 +519,9 @@ function checkCountry() {
 }
 // ===================== IMAGE PREVIEW AND REMOVAL =====================
 document.addEventListener("DOMContentLoaded", () => {
-    const imageInput = document.getElementById("image");
-    const imagePreview = document.getElementById("imagePreview");
-    const removeImageBtn = document.getElementById("removeImage");
+    const imageInput = document.getElementById("imageBrand");
+    const imagePreview = document.getElementById("imageBrandPreview");
+    const removeImageBtn = document.getElementById("removeImageBrand");
 
     if (imageInput && imagePreview && removeImageBtn) {
         imageInput.addEventListener("change", () => {
@@ -733,7 +733,40 @@ function checkDailyPrice() {
 
     showValidationMessage(input, message, "Price is valid", true);
 }
+// ===================== IMAGE PREVIEW AND REMOVAL =====================
+document.addEventListener("DOMContentLoaded", () => {
+    const imageInput = document.getElementById("imageModel");
+    const imagePreview = document.getElementById("imageModelPreview");
+    const removeImageBtn = document.getElementById("removeImageModel");
 
+    if (imageInput && imagePreview && removeImageBtn) {
+        imageInput.addEventListener("change", () => {
+            const file = imageInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = "block";
+                    removeImageBtn.style.display = "inline-block";
+                }
+                reader.readAsDataURL(file);
+            } else {
+                // If no file, hide preview and remove button
+                imagePreview.src = "";
+                imagePreview.style.display = "none";
+                removeImageBtn.style.display = "none";
+            }
+        });
+
+        // Remove image button functionality
+        removeImageBtn.addEventListener("click", () => {
+            imageInput.value = ""; // Clear file input
+            imagePreview.src = ""; // Clear preview
+            imagePreview.style.display = "none";
+            removeImageBtn.style.display = "none";
+        });
+    }
+});
 // ===================== TECHNICAL SPECIFICATIONS =====================
 function checkTechnicalSpecs() {
     const input = document.getElementById("technical_specifications");
