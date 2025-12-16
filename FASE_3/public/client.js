@@ -135,7 +135,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Checker for whenever something is clicked. Used to detect which buttons are pressed.
     document.addEventListener("click", async (event) => {
         let targetButton = event.target;
-        console.log(targetButton);
         // Button pressed is any of the model deletion buttons
         if (targetButton.classList.contains("deleteModelButton")) {
             let modelName = obtainModelName(targetButton);
