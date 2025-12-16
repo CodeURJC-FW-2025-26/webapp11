@@ -359,3 +359,191 @@ Lastly, we shall run either the command 'npm start', or 'npm run watch' (A varia
 1. [router.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/router.js)
 2. [error.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/error.html)
 3. [catalog.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/catalog.js)
+
+---
+
+# (Phase 3): Node.js server implementation for the web application:
+## 🚀
+# Explanation step by step of how to successfully download, build and execute the application.
+
+To put the web app into fully functioning, downloading the source code is needed. For this, there is the release linked to this phase 2, containing all of the important assets for whoever wants to deploy the app.
+
+# Dependencies (client-wise)
+
+The machine running the web app shall have:
+- Node.js installed (Preferably the latest LTS version (that is, v24.11.1 of Node.js)
+- MongoDB installed (The web app will be fully operative with the v8.2.1 Community version, with 6.2.0 being the oldest operable version, but if one wants to check the database and manage it, MongoDB Compass is a great help for it)
+
+# Instructions to execute the server
+
+First, the source code directory needs to be opened in a terminal (CMD, not Powershell, as you cannot execute node or npm commands in there). Then, we have to access the "FASE2" folder in the terminal using the 'cd' command.
+
+Next, to make sure we download all of the dependencies in the code folder, we must run the command 'npm install'. This will install all of the needed dependencies and tools for the web app to work, such as Mustache or Multer.
+
+Lastly, we shall run either the command 'npm start', or 'npm run watch' (A variation that uses Nodemon, which helps developing the web app) to have the server operational. If everything worked, the console shall display the demo data has been loaded, and the address of the web app.
+
+---
+
+- **Interactive catalog**: A clear and visually appealing gallery of luxury cars.
+- **Filtering options**: Search for a specific vehicle/letter in title or filter brands by country.
+- **Detail pages**: Individual pages for each brand models with specifications, images, and interesting facts.
+
+---
+##
+🚀
+# Files description
+- **data.json**: This file contains a structured catalog of luxury car brands and their high-end models. For each brand, it includes basic information such as name, country, description, logo, and a list of models. Each model provides technical specifications, images, rental conditions, horsepower, year, price per day, and interesting facts. The dataset covers multiple manufacturers including Ferrari, Lamborghini, McLaren, Porsche, Aston Martin, BMW, Audi, Mercedes-Benz, and Rolls-Royce.
+  
+- **style.css**: This file is responsible for the overall visual design and structure of the web pages it is linked to.
+  
+- **app.js**: This file is responsible for initializing and configuring the Express web server, setting up mustache-express as the template engine, serving static files from the ./public directory, using body-parser for handling form submissions, and routing all requests through ./router.js, finally starting the server on port 3000.
+ 
+- **router.js**: This file is an Express Router that defines all the API endpoints (routes) for the application, handling both GET (displaying pages, fetching data) and POST (submitting forms, creating/updating data) requests.
+  
+- **catalog.js**: This file acts as the Data Access Layer (DAL) for the application, establishing a connection to a MongoDB database and providing a set of asynchronous functions to perform CRUD (Create, Read, Update, Delete) operations on the brands collection.
+  
+- **load_data.js**: This file is responsible for initializing the application's environment, which includes clearing and loading demo brand and model data into the MongoDB database and resetting the file system's uploads folder with demo images.
+  
+- **index.html**: This file is responsible for rendering the specific Brand Details Page, displaying the brand's core information (name, country, description, and logo) and its list of associated car models with their individual details and action buttons, while also including the form for creating a new car model under this brand.
+  
+- **info.html**: This file is responsible for rendering the specific brand's detail page, which displays the brand information (logo, name, country, description, and links to edit/delete the brand), lists all associated car models with their specs and action buttons, and includes the form for adding a new car model to that brand.
+  
+- **deleted_element.html**: This HTML template is an informational page designed to confirm the successful deletion of an element, such as a brand or car model. It dynamically displays the name of the deleted item ({{element}}) and includes a button to navigate back to the relevant page.
+  
+- **edit_brand.html**: This HTML template renders the "Edit Brand" page, which displays a form pre-filled with the current data (name, country, description) of a specific brand. It allows the user to update the brand's details or optionally upload a new logo, submitting the changes to the server.
+  
+- **edit_model.html**: This HTML template renders the "Edit Model" page, displaying a form pre-filled with the current specifications of a specific car model (name, HP, year, price, technical facts, etc.). It allows the user to update all model details, including the option to upload a new image, and submits the modified data for the respective brand.
+  
+- **error.html**: This HTML template is the generic error page for the application. It is designed to display an error message ({{message}}) dynamically and provides a button that links the user back to the page where the error occurred ({{page}}), using the provided return link ({{link}}).
+  
+- **footer.html**: This HTML file is a Mustache partial that defines the footer section of the web application. Its only purpose is to display the copyright notice, specifically the text "© 2025 LuxeCars. All rights reserved."
+  
+- **header_index.html**: This HTML file is a Mustache partial that defines the main header for the application's index page. Its content is simple: it displays the main title "LuxeCars" and the tagline "Experience the Art of Driving Luxury".
+  
+- **nav_bar.html**: This HTML file is a Mustache partial that defines the application's navigation bar. It is designed to group navigation buttons, and currently contains a single link labeled "Home" which directs the user to the main brand catalog page.
+  
+- **new_brand.html**: This HTML template renders the "Add New Brand" page, providing a form that allows the user to register a new luxury brand in the application's catalog. The form is configured to collect the brand's name, country of origin, a description, and a logo image, submitting this data via a POST request to the /brand/new endpoint.
+  
+- **saved_brand.html**: This HTML template is a confirmation page that renders after a new brand has been successfully created and saved to the database. It displays the details of the newly created brand (name, country, and description) to the user and provides links to either view the brand's individual page or return to the main list of all brands.
+  
+- **saved_model.html**: This HTML template is a confirmation page that renders after a new car model has been successfully created or edited. It displays the detailed specifications of the saved model (name, HP, price, technical facts, etc.) and provides a button to return to the brand's main information page ({{link}}).
+  
+- **updated_element.html**: This HTML template is a simple confirmation page designed to notify the user that an element, such as a brand or model ({{element}}), has been successfully updated. It includes a button that redirects the user back to the detailed page for the modified element.
+  
+- **package.json**: This file is the Node.js package manifest for the project, defining its name, version, and type. It lists the required dependencies for the application to run (like express, mongodb, and mustache-express), and specifies development tools like nodemon and the start and watch scripts used to run the application.
+  
+- **package-lock.json**: This file is an auto-generated manifest that records the exact version tree of all project dependencies and their sub-dependencies. It guarantees consistent installations across different environments by locking down the entire dependency graph, ensuring that every developer or machine uses the same code versions.
+
+- **node-modules**: The node_modules folder is a massive directory that stores all the third-party dependencies (libraries and packages like express and mongodb) required for the Node.js project, as specified in package.json. It is automatically generated by the package manager (npm or yarn) and is typically excluded from version control due to its large size and ephemeral nature.
+
+
+---
+##
+📸
+# Youtube video demo showing the web application functionalities behaviour (Phase 3)
+
+### YT link HACER !!!!
+( NO HECHO TODAVIA)
+
+---
+##
+💪
+# Team members' participation (Phase 3)
+## Ángel Murciano Baena POR HACER
+
+### Textual description of the tasks performed in the phase:
+- Structuring of router management for the web app.
+- Implementation of queries regarding models in the database.
+- Implementation of info page as a dynamic template.
+- Implementation of buttons to add, edit and delete a model.
+- Adaptation of JS files to suit them into the web app.
+
+### List of the 5 most significant commits:
+1. [Addition of info page adapted to a template](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/c73a6cf0e63170240b10d6dec6c186a2f7a72371)
+2. [Edit model functionality added](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/e933a1b221a848b6688d63395bdb0adc15edb3be)
+3. [Delete model functionality added](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/0ffef292b702a2c92bf24243ac1de9143ce11415)
+4. [Adding model functionality added](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/ef506fa55a3fee3580d1660566f4e734fa9aef93)
+5. [Model images now show properly on the info page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/8becce02793c1f539d1a2489d46ca94700957851)
+
+### List of the files I have contributed the most to:
+1. [router.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/router.js)
+2. [catalog.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/catalog.js)
+3. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/info.html)
+4. [saved_model.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/saved_model.html)
+5. [edit_model.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/edit_model.html)
+
+## Ramón Nieto Villegas
+
+### Textual description of the tasks performed in the phase:
+- Migrate all Phase 2 files and create base structure for Phase 3.
+- Added 9 new car makes and their models, along with necessary information (info, photos, etc.) to the data.json.
+- Infinite Scroll: Developed and integrated an AJAX-based infinite scroll system to replace manual pagination, significantly enhancing user experience.
+- Modified the GET / endpoint in router.js to handle the format=json query parameter, allowing it to serve JSON data for asynchronous requests.
+- Rewrote the core scroll logic using the async/await syntax instead of Promises, improving code readability and stability.
+- Designed and implemented a custom, minimalist loading spinner and fade-in animations for new content.
+- Added logic to display a "Finish Line" message upon data exhaustion.
+- Fixed the logic for the country filtering button to ensure it stays marked when active.
+- Corrected a bug in the delete modal logic and standarized the style and structure for future modals and buttons.
+  
+### List of the 5 most significant commits:
+1. [Introduced the core feature. This massive commit implemented the entire asynchronous infinite scroll system for the first time, replacing manual pagination. It set up the initial client logic, the server changes to support AJAX, and the basic UI elements (spinner, finish line).](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/a499e2706abc7a1b9406ef46ce6fd3d5f4efc84b)
+2. [Refactored for code quality and stability. This commit completely rewrote the core logic, migrating from promise chaining to the cleaner and more modern $\mathbf{async/await}$ syntax. This change simplified the code, made it more robust, and fixed the issue where the spinner persisted after the data was exhausted.](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/b31f76f80665d1718e33f508df035afc872d0ffb)
+3. [Fixed setTimeout delayer deleting promises and adding import and the await setTimeout in the router.js (backend).](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/165980ed3b336148507e994abfc4373c025c5583)
+4. [Added new data to reach the 18 entities objective. This commit was crucial for providing the content that the new infinite scroll feature would actually display. Without the expanded dataset, the functionality would be limited.](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/bacc5251594e966dd7b0e4fba4cf8265960d2102)
+5. [Established UI consistency and stability. While a fix, this commit's importance lies in standardizing the look, feel, and code structure for all future modals and buttons, improving overall code maintainability and user interface consistency across the application.](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/38a8e2a5f545386e7e027a8499e484915c33dde2)
+
+### List of the files I have contributed the most to:
+1. [index.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_3/views/index.html)
+2. [router.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_3/src/router.js)
+3. [client.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_3/public/client.js)
+4. [style.css](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_3/public/style.css)
+5. [data.json](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_3/data/data.json)
+
+## Jorge Mariscal Rubiales POR HACER
+
+## Textual description of the tasks performed in the phase:
+- Add brand's info to data.json.
+- Create add new brand form.
+- Fixed the image paths of the main entity.
+- Create the new brand confirmation page.
+- Make the confirmation page and add new brand form buttons to redirect to the correct page.
+- Updated the navbar of the New Brand page.
+
+
+## List of the 5 most significant commits:
+1. [Add new brand page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/3628446f66a95f8daec97538c4cc79c95cf6a600)
+2. [Added information for half of the car brands](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/b9eae24e7569b607244e916caa22b9693890ee13)
+3. [Add route for Add New Brand form](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/3628446f66a95f8daec97538c4cc79c95cf6a600)
+4. [Add functionality for Save button and confirmation screen for created brand](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/cf59e035e0b8f5e88b2d3d310510348d6fda4a40)
+5. [Add button that redirects to the created brand on Brand Successfully Created page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/748999ead9dc87d6c28e848d750cca462c8e0dff)
+
+
+## List of the files I have contributed the most to:
+1. [new_brand.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/new_brand.html)
+2. [saved_brand.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/saved_brand.html)
+3. [router.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/router.js)
+4. [info.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/info.html)
+5. [data.json](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/data/data.json)
+
+   
+## Adrián Varea Fernández POR HACER
+
+### Textual description of the tasks performed in the phase:
+- Creation of the error page.
+- Detection of the ways the data in the forms could be wrong.
+- Added the validations in create brand, edit brand, create model and edit model.
+- Added the links to redirect to any kind of error possible.
+- Helped with some problems with the links to the pages.
+- Extended catalog with needed function.
+
+### List of the 5 most significant commits:
+1. [Main structure of validations](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/145237731b278d431108605950d691dc3986c7ad)
+2. [Provisional error page](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/2fb61ae8e1491b18fb1d2b2ca1d6a08f3ed3588b)
+3. [Completion of validations and error checking](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/6b6cf450502e9aac681fec1a3c6067b31d45f752)
+4. [Fixed some links and messages](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/cd483c5c586b66de2c128f90c3baca4cd910c617)
+5. [Detection of possible errors in the form data](https://github.com/CodeURJC-FW-2025-26/webapp11/commit/4b09ce91e602f339e23b71e8f62a1b1377a83bf9)
+
+### List of the files I have contributed the most to:
+1. [router.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/router.js)
+2. [error.html](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/views/error.html)
+3. [catalog.js](https://github.com/CodeURJC-FW-2025-26/webapp11/blob/main/FASE_2/src/catalog.js)
