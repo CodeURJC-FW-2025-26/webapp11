@@ -130,6 +130,7 @@ function renderNewBrands(brands) {
 document.addEventListener("DOMContentLoaded", () => {
     let dialog = loadDialogWindow();
     let brandid = obtainBrandID();
+    let modelName = null;
     loadDropZoneHandler();
 
     // Checker for whenever something is clicked. Used to detect which buttons are pressed.
@@ -152,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         // Button pressed is a model edition button
         else if (targetButton.classList.contains("editModelButton")) {
-            let modelName = obtainModelName(targetButton);
+            modelName = obtainModelName(targetButton);
 
             let result = await fetch(`/brand/${brandid}/model/${modelName}`);
             let modelInfo = await result.json();
@@ -169,12 +170,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
 
-    const form = document.querySelector(".car-form");
+    const createForm = document.getElementById("createForm");
 
-    form.addEventListener("submit", async (e) => {
+    createForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const formData = new FormData(form);
+        const formData = new FormData(createForm);
 
         try {
             const response = await fetch(`/brand/${brandid}/model/create`, {
@@ -189,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const result = await response.json();
             createCarCard(result);
-            form.reset();
+            createForm.reset();
 
         } catch (error) {
             console.error("Error:", error);
@@ -197,7 +198,69 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    const editForm = document.getElementById("editForm");
+
+    editForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(editForm);
+
+    try {
+
+        const response = await fetch(`/brand/${brandid}/model/${modelName}/edit`, {
+            method: "POST",
+            body: formData
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(errorText || "Error updating data");
+        }
+
+        const result = await response.json();
+        console.log(result);
+        updateCarCard(result, modelName);
+        hideShowInfoPage();
+
+    } catch (error) {
+        console.error("Error:", error);
+        alert("There was an error updating the model: " + error.message);
+    }
+    });
+
 });
+
+function updateCarCard(car, modelName) {
+    // Obtain previous model card
+    const card = document.getElementById(modelName);
+    card.id = car.name;
+    card.dataset.modelname = car.name;
+    let brandid = obtainBrandID();
+
+    // Fill content in the card
+    card.innerHTML = `
+        <div class="mt-3">
+            <img src="/brand/${brandid}/model/${car.name}/image" alt="${car.name}">
+            <br>
+            <span class="car-name">${car.name}</span>
+            <span class="car-details">${car.year} • ${car.HP} HP</span>
+            <span class="car-price">${car.daily_price}$/day</span>
+            <p class="mt-2" style="font-size:0.9rem; color:#555;">
+                <strong>Technical Specifications:</strong> ${car.technical_specifications}
+            </p>
+            <p style="font-size:0.9rem; color:#555;">
+                <strong>Rental Conditions:</strong> ${car.rental_conditions}
+            </p>
+            <p style="font-size:0.9rem; color:#555;">
+                <strong>Interesting Facts:</strong> ${car.interesting_facts}
+            </p>
+            <div class="button-group mb-4">
+                <a class="btn btn-sm btn-outline-primary editModelButton">Edit</a>
+                <a class="btn btn-sm btn-outline-danger deleteModelButton" data-modelname="${car.name}">Delete</a>
+            </div>
+        </div>
+    `;
+}
 
 function createCarCard(car) {
     // Create card for model 

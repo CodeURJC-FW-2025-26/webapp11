@@ -336,7 +336,7 @@ router.post('/brand/:id/model/:name/edit', upload.single('image'), async (req, r
 
     await catalog.updateModel(brandId, oldModelName, updatedModelObject);
 
-    res.render('updated_element', { element: 'Model', link: `/brand/${brandId}` });
+    return res.json(updatedModelObject);
 });
 
 // ===================== MODEL DELETION REQUEST =====================
