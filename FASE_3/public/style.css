@@ -358,7 +358,7 @@ footer {
 }
 
 /* ==== BUTTON STYLES ==== */
-.btn-outline-dark {
+.btn-outline-dark, .btn-dark {
   border-radius: 30px;
   padding: 0.5rem 1.4rem;
   font-weight: 500;
@@ -366,6 +366,10 @@ footer {
   border: 1px solid #111;
   color: #111;
   transition: all 0.3s ease;
+}
+
+.btn-dark{
+  color: #fff;
 }
 
 .btn-outline-dark:hover {
