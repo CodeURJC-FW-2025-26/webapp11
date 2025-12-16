@@ -71,7 +71,7 @@ async function loadNextPage() {
     const country = params.get('country') || '';
 
     page++;
-    
+
     // Since router.js already has "await setTimeout", this line will delay 800ms-
 
     // 1. Start the data request. 
@@ -81,7 +81,7 @@ async function loadNextPage() {
     // 2. Convert to JSON
     const data = await response.json();
 
- 
+
 
     // --- RENDER ---
     if (data.brands && data.brands.length > 0) {
@@ -130,6 +130,7 @@ function renderNewBrands(brands) {
 document.addEventListener("DOMContentLoaded", () => {
     let dialog = loadDialogWindow();
     let brandid = obtainBrandID();
+    loadDropZoneHandler();
 
     // Checker for whenever something is clicked. Used to detect which buttons are pressed.
     document.addEventListener("click", async (event) => {
@@ -158,14 +159,8 @@ document.addEventListener("DOMContentLoaded", () => {
             let model = modelInfo.models[0];
 
             if (modelName) {
-                document.getElementById("modelNameInputField").value = model.name;
-                document.getElementById("HPInputField").value = model.HP;
-                document.getElementById("yearInputField").value = model.year;
-                document.getElementById("dailyPriceInputField").value = model.daily_price;
-                document.getElementById("techSpecsInputField").innerText = model.technical_specifications;
-                document.getElementById("rentCondInputField").innerText = model.rental_conditions;
-                document.getElementById("inteFactsInputField").innerText = model.interesting_facts;
-                document.getElementById("imgPreviewField").innerHTML = `<img src="/brand/${brandid}/model/${modelName}/image" style="max-width:100%; max-height:200px;"/>`
+                loadFormInfo(model, brandid);
+
                 hideShowInfoPage();
             }
         }
@@ -178,6 +173,72 @@ document.addEventListener("DOMContentLoaded", () => {
     // MORE BUTTONS THAT NEED TO USE THE DIALOG MODEL GO HERE
     // ------------------------------------------------------
 });
+
+async function loadFormInfo(model, brandid) {
+    document.getElementById("modelNameInputField").value = model.name;
+    document.getElementById("HPInputField").value = model.HP;
+    document.getElementById("yearInputField").value = model.year;
+    document.getElementById("dailyPriceInputField").value = model.daily_price;
+    document.getElementById("techSpecsInputField").innerText = model.technical_specifications;
+    document.getElementById("rentCondInputField").innerText = model.rental_conditions;
+    document.getElementById("inteFactsInputField").innerText = model.interesting_facts;
+    document.getElementById("imgPreviewField").innerHTML = `<img src="/brand/${brandid}/model/${model.name}/image"/>`
+
+}
+
+function loadDropZoneHandler() {
+    const dropZone = document.getElementById("dropZone");
+    const fileInput = document.getElementById("imageInputField");
+    const previewField = document.getElementById("imgPreviewField");
+
+    // Abrir selector al hacer click
+    dropZone.addEventListener("click", () => fileInput.click());
+
+    // Drag visual
+    dropZone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dropZone.classList.add("dragover");
+    });
+
+    dropZone.addEventListener("dragleave", () => {
+        dropZone.classList.remove("dragover");
+    });
+
+    // Soltar archivo
+    dropZone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dropZone.classList.remove("dragover");
+
+        const file = e.dataTransfer.files[0];
+        if (file) {
+            fileInput.files = e.dataTransfer.files;
+            showPreview(file);
+        }
+    });
+
+    // Selección manual
+    fileInput.addEventListener("change", () => {
+        if (fileInput.files.length) {
+            showPreview(fileInput.files[0]);
+        }
+    });
+
+    // Preview
+    function showPreview(file) {
+        if (!file.type.startsWith("image/")) {
+            alert("Solo imágenes");
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            previewField.innerHTML = `
+            <img src="${reader.result}">
+        `;
+        };
+        reader.readAsDataURL(file);
+    }
+}
 
 function hideShowInfoPage() {
     document.getElementById("brandField").classList.toggle("d-none");
@@ -475,51 +536,51 @@ async function checkModelName() {
     // Availability check via AJAX
     try {
         const brandId = obtainBrandID();
-            if (!brandId) return;
+        if (!brandId) return;
         const response = await fetch(`/brand/${brandId}/model/check-name?modelName=${encodeURIComponent(value)}`);
         const data = await response.json();
 
-            if (data.available && data.correct) {
-                showValidationMessage(input, message, "Model name is available", true);
-            } 
-            if (data.available && !data.correct) {
-                showValidationMessage(input, message, "Model name must start with an uppercase letter or a number, and have a maximum of 30 characters", false);
-            }
-            if (!data.available) {
-                showValidationMessage(input, message, "Model name already exists", false);
-            }
-            
-            
-        } catch (err) {
-            console.error(err);
-            showValidationMessage(input, message, "Error checking model name", false);
+        if (data.available && data.correct) {
+            showValidationMessage(input, message, "Model name is available", true);
         }
+        if (data.available && !data.correct) {
+            showValidationMessage(input, message, "Model name must start with an uppercase letter or a number, and have a maximum of 30 characters", false);
+        }
+        if (!data.available) {
+            showValidationMessage(input, message, "Model name already exists", false);
+        }
+
+
+    } catch (err) {
+        console.error(err);
+        showValidationMessage(input, message, "Error checking model name", false);
+    }
 }
 
 // ===================== YEAR =====================
 function checkYear() {
-  const input = document.getElementById("year");
-  const message = document.getElementById("yearMessage");
-  const value = input.value.trim();
+    const input = document.getElementById("year");
+    const message = document.getElementById("yearMessage");
+    const value = input.value.trim();
 
-  if (!value) {
-    input.classList.remove("is-valid", "is-invalid");
-    message.textContent = "";
-    return;
-  }
+    if (!value) {
+        input.classList.remove("is-valid", "is-invalid");
+        message.textContent = "";
+        return;
+    }
 
-  const year = parseInt(value, 10);
-  if (Number.isNaN(year)) {
-    showValidationMessage(input, message, "Year must be a number", false);
-    return;
-  }
+    const year = parseInt(value, 10);
+    if (Number.isNaN(year)) {
+        showValidationMessage(input, message, "Year must be a number", false);
+        return;
+    }
 
-  const now = new Date().getFullYear();
-  if (year < 1850 || year > now) {
-    showValidationMessage(input, message, "Year must be between 1850 and current year", false);
-  } else {
-    showValidationMessage(input, message, "Year is valid", true);
-  }
+    const now = new Date().getFullYear();
+    if (year < 1850 || year > now) {
+        showValidationMessage(input, message, "Year must be between 1850 and current year", false);
+    } else {
+        showValidationMessage(input, message, "Year is valid", true);
+    }
 }
 /*
 // ===================== DESCRIPTION =====================
@@ -545,7 +606,7 @@ function checkDescription() {
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("model")?.addEventListener("input", checkModelName);
     document.getElementById("year")?.addEventListener("input", checkYear);
-    
+
 });
 /*
 // ===================== AJAX FORM SUBMIT =====================
