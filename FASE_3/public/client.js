@@ -201,31 +201,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const editForm = document.getElementById("editForm");
 
     editForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+        e.preventDefault();
 
-    const formData = new FormData(editForm);
+        const formData = new FormData(editForm);
 
-    try {
+        try {
 
-        const response = await fetch(`/brand/${brandid}/model/${modelName}/edit`, {
-            method: "POST",
-            body: formData
-        });
+            const response = await fetch(`/brand/${brandid}/model/${modelName}/edit`, {
+                method: "POST",
+                body: formData
+            });
 
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(errorText || "Error updating data");
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(errorText || "Error updating data");
+            }
+
+            const result = await response.json();
+            console.log(result);
+            updateCarCard(result, modelName);
+            hideShowInfoPage();
+
+        } catch (error) {
+            console.error("Error:", error);
+            alert("There was an error updating the model: " + error.message);
         }
-
-        const result = await response.json();
-        console.log(result);
-        updateCarCard(result, modelName);
-        hideShowInfoPage();
-
-    } catch (error) {
-        console.error("Error:", error);
-        alert("There was an error updating the model: " + error.message);
-    }
     });
 
 });
@@ -320,6 +320,7 @@ function loadRemoveButton() {
     const fileInput = document.getElementById("imageInputField");
     const previewField = document.getElementById("imgPreviewField");
 
+<<<<<<< Updated upstream
     // Show
     if(removeBtn.classList.contains("d-none")) {
         removeBtn.classList.toggle("d-none");
@@ -331,6 +332,19 @@ function loadRemoveButton() {
         previewField.innerHTML = "";
 
         // 2. Clean input
+=======
+    // Show button
+    if (removeBtn.classList.contains("d-none")) {
+        removeBtn.classList.toggle("d-none");
+    }
+
+    // Set up event listener
+    removeBtn.addEventListener("click", () => {
+        // 1. Clear preview
+        previewField.innerHTML = "";
+
+        // 2. Clear file input
+>>>>>>> Stashed changes
         fileInput.value = "";
         removeBtn.classList.add("d-none");
     });
@@ -486,7 +500,37 @@ function brandConfirmationWindow(dialog) {
     // Display of the pop-up dialog
     dialog.window.showModal();
 }
+// ===================== FORM SPINNER SETUP =====================
+function setupFormSpinner(formSelector, spinnerId, redirectUrl = null, spinnerDuration = 1000) {
+    const form = document.querySelector(formSelector);
+    const spinner = document.getElementById(spinnerId);
+    if (!form || !spinner) return;
 
+    const saveButton = form.querySelector("button[type='submit']");
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        spinner.classList.remove("d-none");
+        saveButton.disabled = true;
+
+        setTimeout(() => {
+            if (redirectUrl) {
+                window.location.href = redirectUrl;
+            } else {
+                form.submit();
+            }
+        }, spinnerDuration);
+    });
+}
+
+// ===================== DOM CONTENT LOADED =====================
+document.addEventListener("DOMContentLoaded", () => {
+
+    // ---------------- Brand Form ----------------
+    setupFormSpinner("#brandForm", "form-spinner");
+
+    // ---------------- Model Form ----------------
+    setupFormSpinner("#createForm", "model-spinner");
+});
 // ===================== BRAND INFO VALIDATION =====================
 
 // ===================== HELPER FUNCTION =====================
@@ -634,27 +678,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("description")?.addEventListener("input", checkDescription);
 });
 
-// ===================== FORM SUBMIT SPINNER =====================
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.querySelector(".car-form");
-    if (!form) return;
-    
-    const spinner = document.getElementById("form-spinner");
-    const saveButton = form.querySelector("button[type='submit']");
 
-    if (!spinner || !saveButton) return;
-
-    form.addEventListener("submit", (e) => {
-        spinner.classList.remove("d-none");
-        saveButton.disabled = true;
-
-        setTimeout(() => {
-            form.submit();
-        }, 500);
-
-        e.preventDefault();
-    });
-});
 // ===================== NEW MODEL INFO VALIDATION =====================
 
 // ===================== MODEL NAME =====================
@@ -894,12 +918,12 @@ document.addEventListener("DOMContentLoaded", () => {
 // ===================== FORM VALIDATION ON SUBMIT =====================
 document.addEventListener("DOMContentLoaded", () => {
     const forms = document.querySelectorAll(".car-form");
-    
+
     forms.forEach(form => {
         form.addEventListener("submit", (e) => {
             // Get all input and textarea fields in the form
             const invalidFields = form.querySelectorAll(".is-invalid");
-            
+
             // If there are invalid fields, prevent submission
             if (invalidFields.length > 0) {
                 e.preventDefault();

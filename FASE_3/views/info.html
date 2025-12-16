@@ -87,7 +87,8 @@
     <section class="brands mt-2" id="createModelForm">
         <h2>Add New Model</h2>
         <div class="container d-flex justify-content-center">
-            <form id="createForm" class="car-form p-4 shadow rounded bg-white" style="max-width: 600px; width: 100%;" enctype="multipart/form-data">
+            <form id="createForm" class="car-form p-4 shadow rounded bg-white" style="max-width: 600px; width: 100%;"
+                enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="modelName" class="form-label">Name</label>
                     <input type="text" class="form-control" id="model" name="modelName" placeholder="e.g. Ferrari"
@@ -109,7 +110,8 @@
 
                 <div class="mb-3">
                     <label for="daily_price" class="form-label">Daily Price</label>
-                    <input type="number" class="form-control" id="daily_price" name="daily_price" placeholder="e.g. 5000" required>
+                    <input type="number" class="form-control" id="daily_price" name="daily_price"
+                        placeholder="e.g. 5000" required>
                     <span id="daily_priceMessage"></span>
                 </div>
 
@@ -119,16 +121,16 @@
                     <!-- Image Preview and Remove Button -->
                     <div class="mt-2 d-flex align-items-center">
                         <img id="imageModelPreview" src="" alt="Preview"
-                        style="max-width: 150px; display:none; border: 1px solid #ccc; border-radius: 4px;">
+                            style="max-width: 150px; display:none; border: 1px solid #ccc; border-radius: 4px;">
                         <button type="button" id="removeImageModel" class="btn btn-sm btn-outline-dark ms-2"
-                        style="display:none;">Remove</button>
+                            style="display:none;">Remove</button>
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <label for="technical_specifications" class="form-label">Technical Specifications</label>
-                    <textarea class="form-control" id="technical_specifications" name="technical_specifications" rows="3"
-                        placeholder="Specifications of the car..." required></textarea>
+                    <textarea class="form-control" id="technical_specifications" name="technical_specifications"
+                        rows="3" placeholder="Specifications of the car..." required></textarea>
                     <span id="technicalMessage"></span>
                 </div>
 
@@ -148,12 +150,21 @@
 
                 <button type="submit" class="btn btn-dark w-100">Create</button>
             </form>
+            <div id="model-spinner" class="d-none spinner-overlay">
+                <div class="spinner-content">
+                    <div class="car-spinner-final">
+                        <div class="top-car">🏎️</div>
+                    </div>
+                    <small>Creating model...</small>
+                </div>
+            </div>
     </section>
 
     <!-- Main Edit section-->
     <section class="brands d-none" id="editModelForm">
         <div class="container d-flex justify-content-center">
-            <form id="editForm" class="car-form p-4 shadow rounded bg-white" enctype="multipart/form-data" style="max-width: 600px; width: 100%;">
+            <form id="editForm" class="car-form p-4 shadow rounded bg-white" enctype="multipart/form-data"
+                style="max-width: 600px; width: 100%;">
 
                 <div class="mb-3">
                     <label for="modelName">Model Name</label>
@@ -220,7 +231,7 @@
         </div>
     </section>
 
-    
+
     <!-- Footer implemented with Mustache Partials -->
     {{> footer }}
 
