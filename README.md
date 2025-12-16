@@ -451,7 +451,7 @@ Lastly, we shall run either the command 'npm start', or 'npm run watch' (A varia
 ##
 💪
 # Team members' participation (Phase 3)
-## Ángel Murciano Baena POR HACER
+## Ángel Murciano Baena
 
 ### Textual description of the tasks performed in the phase:
 - Edit model implemented with AJAX
