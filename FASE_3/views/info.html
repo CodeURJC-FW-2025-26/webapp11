@@ -103,17 +103,26 @@
 
                 <div class="mb-3">
                     <label for="HP" class="form-label">Horsepower</label>
-                    <input type="number" class="form-control" name="HP" placeholder="e.g. 700" required>
+                    <input type="number" class="form-control" id="HP" name="HP" placeholder="e.g. 700" required>
+                    <span id="HPMessage"></span>
                 </div>
 
                 <div class="mb-3">
                     <label for="daily_price" class="form-label">Daily Price</label>
-                    <input type="number" class="form-control" name="daily_price" placeholder="e.g. 5000" required>
+                    <input type="number" class="form-control" id="daily_price" name="daily_price" placeholder="e.g. 5000" required>
+                    <span id="daily_priceMessage"></span>
                 </div>
 
                 <div class="mb-3">
                     <label for="image" class="form-label">Model Image</label>
                     <input class="form-control" type="file" name="image" accept="image/*" required>
+                    <!-- Image Preview and Remove Button -->
+                    <div class="mt-2 d-flex align-items-center">
+                        <img id="imagePreview" src="" alt="Preview"
+                        style="max-width: 150px; display:none; border: 1px solid #ccc; border-radius: 4px;">
+                        <button type="button" id="removeImage" class="btn btn-sm btn-outline-dark ms-2"
+                        style="display:none;">Remove</button>
+                    </div>
                 </div>
 
                 <div class="mb-3">

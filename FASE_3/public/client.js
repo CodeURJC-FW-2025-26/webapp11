@@ -513,34 +513,38 @@ function checkCountry() {
     showValidationMessage(input, message, "Country format is valid", true);
 }
 // ===================== IMAGE PREVIEW AND REMOVAL =====================
-const imageInput = document.getElementById("image");
-const imagePreview = document.getElementById("imagePreview");
-const removeImageBtn = document.getElementById("removeImage");
+document.addEventListener("DOMContentLoaded", () => {
+    const imageInput = document.getElementById("image");
+    const imagePreview = document.getElementById("imagePreview");
+    const removeImageBtn = document.getElementById("removeImage");
 
-imageInput.addEventListener("change", () => {
-    const file = imageInput.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            imagePreview.src = e.target.result;
-            imagePreview.style.display = "block";
-            removeImageBtn.style.display = "inline-block";
-        }
-        reader.readAsDataURL(file);
-    } else {
-        // If no file, hide preview and remove button
-        imagePreview.src = "";
-        imagePreview.style.display = "none";
-        removeImageBtn.style.display = "none";
+    if (imageInput && imagePreview && removeImageBtn) {
+        imageInput.addEventListener("change", () => {
+            const file = imageInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = "block";
+                    removeImageBtn.style.display = "inline-block";
+                }
+                reader.readAsDataURL(file);
+            } else {
+                // If no file, hide preview and remove button
+                imagePreview.src = "";
+                imagePreview.style.display = "none";
+                removeImageBtn.style.display = "none";
+            }
+        });
+
+        // Remove image button functionality
+        removeImageBtn.addEventListener("click", () => {
+            imageInput.value = ""; // Clear file input
+            imagePreview.src = ""; // Clear preview
+            imagePreview.style.display = "none";
+            removeImageBtn.style.display = "none";
+        });
     }
-});
-
-// Remove image button functionality
-removeImageBtn.addEventListener("click", () => {
-    imageInput.value = ""; // Clear file input
-    imagePreview.src = ""; // Clear preview
-    imagePreview.style.display = "none";
-    removeImageBtn.style.display = "none";
 });
 
 // ===================== DESCRIPTION =====================
@@ -572,10 +576,12 @@ document.addEventListener("DOMContentLoaded", () => {
 // ===================== FORM SUBMIT SPINNER =====================
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector(".car-form");
+    if (!form) return;
+    
     const spinner = document.getElementById("form-spinner");
     const saveButton = form.querySelector("button[type='submit']");
 
-    if (!form || !spinner) return;
+    if (!spinner || !saveButton) return;
 
     form.addEventListener("submit", (e) => {
         spinner.classList.remove("d-none");
@@ -648,7 +654,7 @@ function checkYear() {
 
     const year = parseInt(value, 10);
     if (Number.isNaN(year)) {
-        showValidationMessage(input, message, "Year must be a number", false);
+        showValidationMessage(input, message, "Year must be a positivenumber", false);
         return;
     }
 
@@ -660,11 +666,73 @@ function checkYear() {
         showValidationMessage(input, message, "Year is valid", true);
     }
 }
-/*
-// ===================== DESCRIPTION =====================
-function checkDescription() {
-    const input = document.getElementById("description");
-    const message = document.getElementById("descriptionMessage");
+
+// ===================== HORSEPOWER =====================
+function checkHP() {
+    const input = document.getElementById("HP");
+    const message = document.getElementById("HPMessage");
+    const value = input.value.trim();
+
+    if (!value) {
+        input.classList.remove("is-valid", "is-invalid");
+        message.textContent = "";
+        return;
+    }
+
+    const hp = parseInt(value, 10);
+    if (Number.isNaN(hp) || !/^[0-9]+$/.test(value)) {
+        showValidationMessage(input, message, "HP must be a  positive number", false);
+        return;
+    }
+
+    if (hp > 10000) {
+        showValidationMessage(input, message, "HP must not exceed 10000", false);
+        return;
+    }
+
+    if (hp <= 0) {
+        showValidationMessage(input, message, "HP must be greater than 0", false);
+        return;
+    }
+
+    showValidationMessage(input, message, "HP is valid", true);
+}
+
+// ===================== DAILY PRICE =====================
+function checkDailyPrice() {
+    const input = document.getElementById("daily_price");
+    const message = document.getElementById("daily_priceMessage");
+    const value = input.value.trim();
+
+    if (!value) {
+        input.classList.remove("is-valid", "is-invalid");
+        message.textContent = "";
+        return;
+    }
+
+    const price = parseInt(value, 10);
+    if (Number.isNaN(price) || !/^[0-9]+$/.test(value)) {
+        showValidationMessage(input, message, "Price must be a  positive number", false);
+        return;
+    }
+
+    if (price > 1000000) {
+        showValidationMessage(input, message, "Price must not exceed 1,000,000", false);
+        return;
+    }
+
+    if (price <= 0) {
+        showValidationMessage(input, message, "Price must be greater than 0", false);
+        return;
+    }
+
+    showValidationMessage(input, message, "Price is valid", true);
+}
+
+// ===================== TECHNICAL SPECIFICATIONS =====================
+function checkTechnicalSpecs() {
+    const input = document.getElementById("technical_specifications");
+    const message = document.getElementById("technicalMessage");
     const value = input.value.trim();
 
     if (!value) {
@@ -674,106 +742,76 @@ function checkDescription() {
     }
 
     if (value.length >= 10 && value.length <= 300) {
-        showValidationMessage(input, message, "Description is valid", true);
+        showValidationMessage(input, message, "Technical specifications are valid", true);
     } else {
-        showValidationMessage(input, message, "Description must be 10-300 characters", false);
+        showValidationMessage(input, message, "Must be between 10-300 characters", false);
     }
 }
-*/
+
+// ===================== RENTAL CONDITIONS =====================
+function checkRentalConditions() {
+    const input = document.getElementById("rental_conditions");
+    const message = document.getElementById("rentalMessage");
+    const value = input.value.trim();
+
+    if (!value) {
+        input.classList.remove("is-valid", "is-invalid");
+        message.textContent = "";
+        return;
+    }
+
+    if (value.length >= 10 && value.length <= 300) {
+        showValidationMessage(input, message, "Rental conditions are valid", true);
+    } else {
+        showValidationMessage(input, message, "Must be between 10-300 characters", false);
+    }
+}
+
+// ===================== INTERESTING FACTS =====================
+function checkInterestingFacts() {
+    const input = document.getElementById("interesting_facts");
+    const message = document.getElementById("factsMessage");
+    const value = input.value.trim();
+
+    if (!value) {
+        input.classList.remove("is-valid", "is-invalid");
+        message.textContent = "";
+        return;
+    }
+
+    if (value.length >= 10 && value.length <= 300) {
+        showValidationMessage(input, message, "Interesting facts are valid", true);
+    } else {
+        showValidationMessage(input, message, "Must be between 10-300 characters", false);
+    }
+}
+
 // ===================== EVENT LISTENERS =====================
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("model")?.addEventListener("input", checkModelName);
     document.getElementById("year")?.addEventListener("input", checkYear);
-
-
+    document.getElementById("HP")?.addEventListener("input", checkHP);
+    document.getElementById("daily_price")?.addEventListener("input", checkDailyPrice);
+    document.getElementById("technical_specifications")?.addEventListener("input", checkTechnicalSpecs);
+    document.getElementById("rental_conditions")?.addEventListener("input", checkRentalConditions);
+    document.getElementById("interesting_facts")?.addEventListener("input", checkInterestingFacts);
 });
-/*
-// ===================== AJAX FORM SUBMIT =====================
-const form = document.querySelector(".car-form");
 
-form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const brand = document.getElementById("brand");
-    const country = document.getElementById("country");
-    const description = document.getElementById("description");
-
-    if (
-        brand.classList.contains("is-invalid") ||
-        country.classList.contains("is-invalid") ||
-        description.classList.contains("is-invalid")
-    ) {
-        return;
-    }
-
-    const formData = new FormData(form);
-
-    try {
-        const response = await fetch(form.action, {
-            method: "POST",
-            body: formData
+// ===================== FORM VALIDATION ON SUBMIT =====================
+document.addEventListener("DOMContentLoaded", () => {
+    const forms = document.querySelectorAll(".car-form");
+    
+    forms.forEach(form => {
+        form.addEventListener("submit", (e) => {
+            // Get all input and textarea fields in the form
+            const invalidFields = form.querySelectorAll(".is-invalid");
+            
+            // If there are invalid fields, prevent submission
+            if (invalidFields.length > 0) {
+                e.preventDefault();
+                alert("Please fix all validation errors before submitting.");
+                return;
+            }
         });
-
-        if (!response.ok) {
-            const dialog = loadDialogWindow();
-            showErrorWindow(dialog, response);
-            return;
-        }
-
-        const html = await response.text();
-        document.body.innerHTML = html;
-
-    } catch (err) {
-        const dialog = loadDialogWindow();
-        showErrorWindow(dialog, { status: 500, statusText: "Network error" });
-    }
+    });
 });
-async function checkModelNameAvailability() {
-    const modelInput = document.getElementById("model");
-    const modelMessage = document.getElementById("modelMessage");
-    const modelName = modelInput.value.trim();
-
-    // If it is empty, clear message
-    if (!modelName) {
-        modelMessage.textContent = "";
-        return;
-    }
-
-    // Clear last requests for model input
-    clearTimeout(debounceTimerModel);
-
-    // Wait 500ms after user stops typing
-    debounceTimerModel = setTimeout(async () => {
-        try {
-            const brandId = obtainBrandID();
-            if (!brandId) return;
-
-            const response = await fetch(`/brand/${brandId}/model/check-name?modelName=${encodeURIComponent(modelName)}`);
-            const data = await response.json();
-
-            if (data.available) {
-                modelMessage.textContent = "Model name available";
-                modelMessage.classList.remove("text-danger");
-                modelMessage.classList.add("text-success"); // text color green
-                if (!data.valid) {
-                    modelMessage.textContent = "Model name must start with an uppercase letter or a number, and have a maximum of 30 characters";
-                    modelMessage.classList.remove("text-success");
-                    modelMessage.classList.add("text-danger");  // text color red
-                }
-            }
-            if (!data.available) {
-                modelMessage.textContent = "Model name already exists";
-                modelMessage.classList.remove("text-success");
-                modelMessage.classList.add("text-danger");  // text color red
-            }
-
-
-        } catch (err) {
-            console.error(err);
-            modelMessage.textContent = "Error checking name";
-            modelMessage.style.color = "red";
-        }
-    }, 500); //500ms debounce
-
-}
-*/
