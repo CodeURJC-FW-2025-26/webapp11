@@ -175,72 +175,106 @@ document.addEventListener("DOMContentLoaded", () => {
     createForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const formData = new FormData(createForm);
+        if (e.submitter.classList.contains("confirmEdit")) {
+            const formData = new FormData(createForm);
 
-        try {
-            const response = await fetch(`/brand/${brandid}/model/create`, {
-                method: "POST",
-                body: formData
-            });
+            if (!formData.get("image")) {
 
-            if (!response.ok) {
-                const errorText = await response.text();
-                throw new Error(errorText || "Error uploading data");
+                const imageUrl = `/brand/${brandid}/model/${modelName}/edit`;
+
+                const response = await fetch(imageUrl);
+                if (!response.ok) {
+                    throw new Error("Error fetching image");
+                }
+
+                const blob = await response.blob();
+
+                // Crear File desde la imagen descargada
+                const file = new File(
+                    [blob],
+                    "model-image.jpg", // nombre del archivo
+                    { type: blob.type }
+                );
+
+                // Añadir al FormData
+                formData.append("image", file);
             }
 
-            const result = await response.json();
-            createCarCard(result);
-            createForm.reset();
+            try {
 
-        } catch (error) {
-            console.error("Error:", error);
-            alert("There was an error sending out the form info: " + error.message);
-        }
-    });
+                const response = await fetch(`/brand/${brandid}/model/${modelName}/edit`, {
+                    method: "POST",
+                    body: formData
+                });
 
-    const editForm = document.getElementById("editForm");
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(errorText || "Error updating data");
+                }
 
-    editForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
+                const result = await response.json();
+                updateCarCard(result, modelName);
+                hideShowInfoPage();
+                wipeFormInfo();
 
-        const formData = new FormData(editForm);
-
-        try {
-
-            const response = await fetch(`/brand/${brandid}/model/${modelName}/edit`, {
-                method: "POST",
-                body: formData
-            });
-
-            if (!response.ok) {
-                const errorText = await response.text();
-                throw new Error(errorText || "Error updating data");
+            } catch (error) {
+                console.error("Error:", error);
+                alert("There was an error updating the model: " + error.message);
             }
-
-            const result = await response.json();
-            console.log(result);
-            updateCarCard(result, modelName);
-            hideShowInfoPage();
-
-        } catch (error) {
-            console.error("Error:", error);
-            alert("There was an error updating the model: " + error.message);
         }
+        else if (e.submitter.id === "createButton") {
+            const formData = new FormData(createForm);
+
+            try {
+                const response = await fetch(`/brand/${brandid}/model/create`, {
+                    method: "POST",
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(errorText || "Error uploading data");
+                }
+
+                const result = await response.json();
+                createCarCard(result);
+                wipeFormInfo();
+
+            } catch (error) {
+                console.error("Error:", error);
+                alert("There was an error sending out the form info: " + error.message);
+            }
+        }
+
     });
 
 });
 
-function updateCarCard(car, modelName) {
+function wipeFormInfo() {
+    const form = document.getElementById("createForm");
+    form.reset();
+    document.getElementById("technical_specifications").innerText = '';
+    document.getElementById("rental_conditions").innerText = '';
+    document.getElementById("interesting_facts").innerText = '';
+    document.getElementById("imgPreviewField").innerHTML = '';
+}
+
+async function updateCarCard(car, modelName) {
     // Obtain previous model card
     const card = document.getElementById(modelName);
     card.id = car.name;
     card.dataset.modelname = car.name;
     let brandid = obtainBrandID();
 
+    const response = await fetch(`/brand/${brandid}/model/${encodeURIComponent(car.name)}/image`);
+    const blob = await response.blob();
+
+    const blobUrl = URL.createObjectURL(blob);
+
     // Fill content in the card
     card.innerHTML = `
         <div class="mt-3">
-            <img src="/brand/${brandid}/model/${car.name}/image" alt="${car.name}">
+            <img src="${blobUrl}" alt="${car.name}">
             <br>
             <span class="car-name">${car.name}</span>
             <span class="car-details">${car.year} • ${car.HP} HP</span>
@@ -302,13 +336,13 @@ function createCarCard(car) {
 
 // Loading form info into the form.
 async function loadFormInfo(model, brandid) {
-    document.getElementById("modelNameInputField").value = model.name;
-    document.getElementById("HPInputField").value = model.HP;
-    document.getElementById("yearInputField").value = model.year;
-    document.getElementById("dailyPriceInputField").value = model.daily_price;
-    document.getElementById("techSpecsInputField").innerText = model.technical_specifications;
-    document.getElementById("rentCondInputField").innerText = model.rental_conditions;
-    document.getElementById("inteFactsInputField").innerText = model.interesting_facts;
+    document.getElementById("model").value = model.name;
+    document.getElementById("HP").value = model.HP;
+    document.getElementById("year").value = model.year;
+    document.getElementById("daily_price").value = model.daily_price;
+    document.getElementById("technical_specifications").innerText = model.technical_specifications;
+    document.getElementById("rental_conditions").innerText = model.rental_conditions;
+    document.getElementById("interesting_facts").innerText = model.interesting_facts;
     document.getElementById("imgPreviewField").innerHTML = `<img src="/brand/${brandid}/model/${model.name}/image"/>`
 
     loadRemoveButton();
@@ -399,12 +433,44 @@ function hideShowInfoPage() {
     [
         "brandField",
         "brandModelSection",
-        "createModelForm",
-        "editModelForm"
+        "editButtonGroup",
+        "createButton"
     ].forEach(id => {
         document.getElementById(id)?.classList.toggle("d-none");
     });
 }
+
+// ===================== FORM SPINNER SETUP =====================
+function setupFormSpinner(formSelector, spinnerId, redirectUrl = null, spinnerDuration = 1000) {
+    const form = document.querySelector(formSelector);
+    const spinner = document.getElementById(spinnerId);
+    if (!form || !spinner) return;
+
+    const saveButton = form.querySelector("button[type='submit']");
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        spinner.classList.remove("d-none");
+        saveButton.disabled = true;
+
+        setTimeout(() => {
+            if (redirectUrl) {
+                window.location.href = redirectUrl;
+            } else {
+                form.submit();
+            }
+        }, spinnerDuration);
+    });
+}
+
+// ===================== DOM CONTENT LOADED =====================
+document.addEventListener("DOMContentLoaded", () => {
+
+    // ---------------- Brand Form ----------------
+    setupFormSpinner("#brandForm", "form-spinner");
+
+    // ---------------- Model Form ----------------
+    setupFormSpinner("#createForm", "model-spinner");
+});
 
 // AJAX function to delete a model from the page. Also removes the HTML model card that contains it in real time
 async function deleteModel(modelName, brandId) {
@@ -486,37 +552,7 @@ function brandConfirmationWindow(dialog) {
     // Display of the pop-up dialog
     dialog.window.showModal();
 }
-// ===================== FORM SPINNER SETUP =====================
-function setupFormSpinner(formSelector, spinnerId, redirectUrl = null, spinnerDuration = 1000) {
-    const form = document.querySelector(formSelector);
-    const spinner = document.getElementById(spinnerId);
-    if (!form || !spinner) return;
 
-    const saveButton = form.querySelector("button[type='submit']");
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        spinner.classList.remove("d-none");
-        saveButton.disabled = true;
-
-        setTimeout(() => {
-            if (redirectUrl) {
-                window.location.href = redirectUrl;
-            } else {
-                form.submit();
-            }
-        }, spinnerDuration);
-    });
-}
-
-// ===================== DOM CONTENT LOADED =====================
-document.addEventListener("DOMContentLoaded", () => {
-
-    // ---------------- Brand Form ----------------
-    setupFormSpinner("#brandForm", "form-spinner");
-
-    // ---------------- Model Form ----------------
-    setupFormSpinner("#createForm", "model-spinner");
-});
 // ===================== BRAND INFO VALIDATION =====================
 
 // ===================== HELPER FUNCTION =====================
@@ -664,7 +700,27 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("description")?.addEventListener("input", checkDescription);
 });
 
+// ===================== FORM SUBMIT SPINNER =====================
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector(".car-form");
+    if (!form) return;
 
+    const spinner = document.getElementById("form-spinner");
+    const saveButton = form.querySelector("button[type='submit']");
+
+    if (!spinner || !saveButton) return;
+
+    form.addEventListener("submit", (e) => {
+        spinner.classList.remove("d-none");
+        saveButton.disabled = true;
+
+        setTimeout(() => {
+            form.submit();
+        }, 500);
+
+        e.preventDefault();
+    });
+});
 // ===================== NEW MODEL INFO VALIDATION =====================
 
 // ===================== MODEL NAME =====================
