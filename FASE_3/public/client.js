@@ -354,6 +354,36 @@ function checkCountry() {
     // If all checks pass
     showValidationMessage(input, message, "Country format is valid", true);
 }
+// ===================== IMAGE PREVIEW AND REMOVAL =====================
+const imageInput = document.getElementById("image");
+const imagePreview = document.getElementById("imagePreview");
+const removeImageBtn = document.getElementById("removeImage");
+
+imageInput.addEventListener("change", () => {
+    const file = imageInput.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = "block";
+            removeImageBtn.style.display = "inline-block";
+        }
+        reader.readAsDataURL(file);
+    } else {
+        // Si no hay archivo seleccionado
+        imagePreview.src = "";
+        imagePreview.style.display = "none";
+        removeImageBtn.style.display = "none";
+    }
+});
+
+// Botón para eliminar la imagen seleccionada
+removeImageBtn.addEventListener("click", () => {
+    imageInput.value = ""; // Limpia el input
+    imagePreview.src = ""; // Limpia la previsualización
+    imagePreview.style.display = "none";
+    removeImageBtn.style.display = "none";
+});
 
 // ===================== DESCRIPTION =====================
 function checkDescription() {
