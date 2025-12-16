@@ -436,6 +436,6 @@ router.post('/brand/:id/model/create', upload.single('image'), async (req, res) 
 
     await catalog.addModel(brandId, newModelObject);
 
-    res.render('saved_model', { element: newModelObject, link: `/brand/${brandId}` });
+    return res.json(newModelObject);
 });
 

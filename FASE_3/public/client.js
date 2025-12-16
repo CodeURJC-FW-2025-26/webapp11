@@ -170,7 +170,78 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
 
+    const form = document.querySelector(".car-form");
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault(); // Evitar el submit normal
+
+        // Crear FormData desde el form
+        const formData = new FormData(form);
+
+        let name = formData.get("modelName");
+        console.log(name)
+
+        try {
+            const response = await fetch(`/brand/${brandid}/model/create`, {
+                method: "POST",
+                body: formData
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(errorText || "Error al subir los datos");
+            }
+
+            const result = await response.json(); // o text(), según tu backend
+
+            createCarCard(result);
+            // Opcional: limpiar formulario y mostrar mensaje
+            form.reset();
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Hubo un error al enviar el formulario: " + error.message);
+        }
+    });
+
 });
+
+function createCarCard(car) {
+    // Crear contenedor
+    const card = document.createElement("div");
+    card.className = "brand-card";
+    card.id = car.name;
+    card.dataset.modelname = car.name;
+    let brandid = obtainBrandID();
+
+    // Llenar contenido
+    card.innerHTML = `
+        <div class="mt-3">
+            <img src="/brand/${brandid}/model/${car.name}/image" alt="${car.name}">
+            <br>
+            <span class="car-name">${car.name}</span>
+            <span class="car-details">${car.year} • ${car.HP} HP</span>
+            <span class="car-price">${car.daily_price}$/day</span>
+            <p class="mt-2" style="font-size:0.9rem; color:#555;">
+                <strong>Technical Specifications:</strong> ${car.technical_specifications}
+            </p>
+            <p style="font-size:0.9rem; color:#555;">
+                <strong>Rental Conditions:</strong> ${car.rental_conditions}
+            </p>
+            <p style="font-size:0.9rem; color:#555;">
+                <strong>Interesting Facts:</strong> ${car.interesting_facts}
+            </p>
+            <div class="button-group mb-4">
+                <a class="btn btn-sm btn-outline-primary editModelButton">Edit</a>
+                <a class="btn btn-sm btn-outline-danger deleteModelButton" data-modelname="${car.name}">Delete</a>
+            </div>
+        </div>
+    `;
+
+    // Insertar al final de #brandModelSection
+    const container = document.getElementById("brandModelSection");
+    container.appendChild(card);
+}
+
 
 // Loading form info into the form.
 async function loadFormInfo(model, brandid) {
@@ -183,6 +254,30 @@ async function loadFormInfo(model, brandid) {
     document.getElementById("inteFactsInputField").innerText = model.interesting_facts;
     document.getElementById("imgPreviewField").innerHTML = `<img src="/brand/${brandid}/model/${model.name}/image"/>`
 
+    loadRemoveButton();
+
+}
+
+function loadRemoveButton() {
+    const removeBtn = document.getElementById("removeImageButton");
+    const fileInput = document.getElementById("imageInputField");
+    const previewField = document.getElementById("imgPreviewField");
+
+    // Mostrar
+    if(!removeBtn.classList.contains("d.none")) {
+        removeBtn.classList.toggle("d-none");
+    }
+    
+
+    // Ocultar al pulsar
+    removeBtn.addEventListener("click", () => {
+        // 1. Limpiar preview
+        previewField.innerHTML = "";
+
+        // 2. Limpiar input
+        fileInput.value = "";
+        removeBtn.classList.toggle("d-none");
+    });
 }
 
 // Function for handling the drag&drop area.
@@ -237,6 +332,8 @@ function loadDropZoneHandler() {
             <img src="${reader.result}">
         `;
         };
+        loadRemoveButton();
+
         reader.readAsDataURL(file);
     }
 }

@@ -87,8 +87,7 @@
     <section class="brands mt-2" id="createModelForm">
         <h2>Add New Model</h2>
         <div class="container d-flex justify-content-center">
-            <form class="car-form p-4 shadow rounded bg-white" style="max-width: 600px; width: 100%;" method="POST"
-                action="/brand/{{brand._id}}/model/create" enctype="multipart/form-data">
+            <form class="car-form p-4 shadow rounded bg-white" style="max-width: 600px; width: 100%;" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="modelName" class="form-label">Name</label>
                     <input type="text" class="form-control" id="model" name="modelName" placeholder="e.g. Ferrari"
@@ -187,6 +186,9 @@
                 <div class="mb-3">
                     <label>Image Preview</label><br>
                     <small id="imgPreviewField"></small>
+                    <button type="button" id="removeImageButton" class="btn btn-sm btn-outline-dark ms-2 d-none">
+                        Remove
+                    </button>
                 </div>
 
 
