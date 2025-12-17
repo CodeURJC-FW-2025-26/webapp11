@@ -740,7 +740,7 @@ async function checkModelName() {
     // Local syntax validation
     const syntaxValid = /^[A-ZÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]{0,29}$/.test(value);
     if (!syntaxValid) {
-        showValidationMessage(input, message, "Brand must start with uppercase letter and be max 30 characters", false);
+        showValidationMessage(input, message, "Model must start with uppercase letter and be max 30 characters", false);
         return;
     }
     // Availability check via AJAX
@@ -974,4 +974,178 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+});
+
+// =============================================================
+// ===================== EDIT BRAND LOGIC ======================
+// =============================================================
+
+// ===================== EDIT BRAND NAME VALIDATION =====================
+async function checkEditBrandName() {
+    const input = document.getElementById("editBrandName");
+    const message = document.getElementById("editBrandNameMessage");
+    
+    // Safety check
+    if (!input) return;
+
+    const value = input.value.trim();
+    // Get original value from data attribute
+    const originalValue = input.getAttribute("data-original");
+
+    if (!value) {
+        input.classList.remove("is-valid", "is-invalid");
+        message.textContent = "";
+        return;
+    }
+
+    // 1. Local syntax validation
+    const syntaxValid = /^[A-ZÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ-]{0,29}$/.test(value);
+    if (!syntaxValid) {
+        showValidationMessage(input, message, "Brand must start with uppercase and be max 30 characters", false);
+        return;
+    }
+
+    // 2. Availability check via AJAX
+    // If the value is the same as the original, we don't make an AJAX request and consider it valid
+    if (value === originalValue) {
+        showValidationMessage(input, message, "Current brand name is valid", true);
+        return;
+    }
+
+    try {
+        const response = await fetch(`/brand/check-name?brandName=${encodeURIComponent(value)}`);
+        const data = await response.json();
+        
+        if (data.available) {
+            showValidationMessage(input, message, "Brand name is available", true);
+        } else {
+            showValidationMessage(input, message, "Brand name already exists", false);
+        }
+
+    } catch (err) {
+        console.error(err);
+        showValidationMessage(input, message, "Error checking brand name", false);
+    }
+}
+
+// ===================== EDIT COUNTRY VALIDATION =====================
+function checkEditCountry() {
+    const input = document.getElementById("editCountry");
+    const message = document.getElementById("editCountryMessage");
+    const value = input.value.trim();
+
+    if (!value) {
+        input.classList.remove("is-valid", "is-invalid");
+        message.textContent = "";
+        return;
+    }
+
+    if (!/^[A-Za-zÁÉÍÓÚÑáéíóúñ\s]+$/.test(value)) {
+        showValidationMessage(input, message, "Country must contain only letters", false);
+        return;
+    }
+
+    if (value[0] !== value[0].toUpperCase()) {
+        showValidationMessage(input, message, "Country must start with an uppercase letter", false);
+        return;
+    }
+
+    if (value.length < 2 || value.length > 60) {
+        showValidationMessage(input, message, "Country must be between 2 and 60 characters", false);
+        return;
+    }
+
+    showValidationMessage(input, message, "Country format is valid", true);
+}
+
+// ===================== EDIT DESCRIPTION VALIDATION =====================
+function checkEditDescription() {
+    const input = document.getElementById("editDescription");
+    const message = document.getElementById("editDescriptionMessage");
+    const value = input.value.trim();
+
+    if (!value) {
+        input.classList.remove("is-valid", "is-invalid");
+        message.textContent = "";
+        return;
+    }
+
+    if (value.length >= 10 && value.length <= 300) {
+        showValidationMessage(input, message, "Description is valid", true);
+    } else {
+        showValidationMessage(input, message, "Description must be 10-300 characters", false);
+    }
+}
+
+// ===================== EDIT IMAGE PREVIEW AND REMOVAL =====================
+document.addEventListener("DOMContentLoaded", () => {
+    const imageInput = document.getElementById("editImage");
+    const imagePreview = document.getElementById("editImagePreview");
+    const removeImageBtn = document.getElementById("removeEditImage");
+
+    if (imageInput && imagePreview && removeImageBtn) {
+        imageInput.addEventListener("change", () => {
+            const file = imageInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = "block";
+                    removeImageBtn.style.display = "inline-block";
+                }
+                reader.readAsDataURL(file);
+            } else {
+                // If no file, hide preview and remove button
+                imagePreview.src = "";
+                imagePreview.style.display = "none";
+                removeImageBtn.style.display = "none";
+            }
+        });
+
+        // Remove image button functionality
+        removeImageBtn.addEventListener("click", () => {
+            imageInput.value = ""; // Clear file input
+            imagePreview.src = ""; // Clear preview
+            imagePreview.style.display = "none";
+            removeImageBtn.style.display = "none";
+        });
+    }
+});
+
+// ===================== EDIT PAGE EVENT LISTENERS =====================
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("editBrandName")?.addEventListener("input", checkEditBrandName);
+    document.getElementById("editCountry")?.addEventListener("input", checkEditCountry);
+    document.getElementById("editDescription")?.addEventListener("input", checkEditDescription);
+
+    // Form spinner setup for edit brand form
+    setupFormSpinner("#editBrandForm", "edit-form-spinner");
+});
+
+// ===================== EDIT FORM VALIDATION ON SUBMIT =====================
+document.addEventListener("DOMContentLoaded", () => {
+    const editForm = document.getElementById("editBrandForm");
+
+    if (editForm) {
+        editForm.addEventListener("submit", (e) => {
+            // Get all input and textarea fields with errors
+            const invalidFields = editForm.querySelectorAll(".is-invalid");
+
+            // If there are invalid fields, prevent submission
+            if (invalidFields.length > 0) {
+                e.preventDefault();
+                
+                //  Hide spinner if visible
+                const spinner = document.getElementById("edit-form-spinner");
+                if (spinner) spinner.classList.add("d-none");
+                
+                // Re-enable submit button
+                const btn = editForm.querySelector("button[type='submit']");
+                if (btn) btn.disabled = false;
+
+                alert("Please fix all validation errors before submitting.");
+                return;
+            }
+        });
+    }
 });

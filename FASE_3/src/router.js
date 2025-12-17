@@ -219,8 +219,10 @@ router.post('/brand/:id/edit', upload.single('image'), async (req, res) => {
     };
 
     await catalog.updateBrand(id, updatedBrand);
-
-    res.render('updated_element', { element: 'Brand', link: '/' });
+    
+    // Instead of res.render, use res.redirect.
+    // This recharge completely the info page with the new data.
+    res.redirect(`/brand/${id}`);
 });
 
 // ===================== SERVE BRAND LOGO =====================
