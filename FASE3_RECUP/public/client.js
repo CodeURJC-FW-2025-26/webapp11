@@ -176,28 +176,39 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
 
         if (e.submitter.classList.contains("confirmEdit")) {
+            // Obtain form data
             const formData = new FormData(createForm);
 
-            if (!formData.get("image")) {
+            // No image sent by the user
+            if (!formData.get("image").size) {
 
-                const imageUrl = `/brand/${brandid}/model/${modelName}/edit`;
+                // In the code, having the remove image button show up means there is an image already,
+                // even if the user has not uploaded anything.
+                const removeImageButton = document.getElementById("removeImageButton");
+                const previousImageExists = !removeImageButton?.classList.contains("d-none");
 
-                const response = await fetch(imageUrl);
-                if (!response.ok) {
-                    throw new Error("Error fetching image");
+                // In case there is no previous image, upload the default image. If any image exists, this code won't
+                // execute, keeping the last image.
+                if (!previousImageExists) {
+
+                    const response = await fetch('/default_car.jpg');
+                    
+                    if (!response.ok) {
+                        throw new Error("Error fetching image");
+                    }
+
+                    // Create image and upload it masked as a File uploaded by the user.
+                    const blob = await response.blob();
+                    const file = new File(
+                        [blob],
+                        "model-image.jpg",
+                        { type: blob.type }
+                    );
+
+                    // Add the image to the form before sending it.
+                    formData.append("image", file);
                 }
 
-                const blob = await response.blob();
-
-                // Crear File desde la imagen descargada
-                const file = new File(
-                    [blob],
-                    "model-image.jpg", // nombre del archivo
-                    { type: blob.type }
-                );
-
-                // Añadir al FormData
-                formData.append("image", file);
             }
 
             try {
@@ -242,6 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             } catch (error) {
                 console.error("Error:", error);
+                // Remake as Bootstrap alert message
                 alert("There was an error sending out the form info: " + error.message);
             }
         }
