@@ -1,0 +1,686 @@
+[
+  {
+    "brandName": "Ferrari",
+    "country": "Italy",
+    "description": "Ferrari is a world-renowned Italian luxury sports car manufacturer, celebrated for its passion, innovation, and racing heritage. Founded in 1939 by Enzo Ferrari, the brand symbolizes performance, craftsmanship, and Italian excellence both on and off the track.",
+    "logo": "nuevo logo ferrari.jpg",
+    "models": [
+      {
+        "name": "Purosangue",
+        "HP": "725",
+        "year": "2022",
+        "daily_price": "1000",
+        "image": "ferrari-purosangue.jpg",
+        "technical_specifications": "6.5L V12 engine, 725 HP, 716 Nm torque, 0-100 km/h in 3.3s, top speed 310 km/h, 8-speed dual-clutch, AWD",
+        "rental_conditions": "Minimum age 27, valid international license, €12,000 deposit",
+        "interesting_facts": "The Purosangue is Ferraris first-ever four-door, four-seater production model, blending SUV practicality with Ferrari performance."
+      },
+      {
+        "name": "488 Pista",
+        "HP": "720",
+        "year": "2020",
+        "daily_price": "950",
+        "image": "488_pista.jpg",
+        "technical_specifications": "3.9L twin-turbo V8 engine, 720 HP, 770 Nm torque, 0-100 km/h in 2.85s, top speed 340 km/h, 7-speed dual-clutch, RWD",
+        "rental_conditions": "Minimum age 27, valid international license, €10,000 deposit",
+        "interesting_facts": "The 488 Pista is inspired by Ferraris racing experience in the 488 Challenge and GTE series, with the most powerful V8 in Ferrari history at its release."
+      },
+      {
+        "name": "LaFerrari",
+        "HP": "963",
+        "year": "2015",
+        "daily_price": "2000",
+        "image": "LaFerrari.webp",
+        "technical_specifications": "6.3L V12 hybrid engine with electric motor, combined 963 HP, 900 Nm torque, 0-100 km/h in 2.6s, top speed 350 km/h, 7-speed dual-clutch, RWD",
+        "rental_conditions": "Minimum age 30, valid international license, €20,000 deposit",
+        "interesting_facts": "LaFerrari was Ferraris first hybrid hypercar, combining a V12 engine with an F1-derived HY-KERS system for instant power delivery."
+      }
+    ]
+  },
+  {
+    "brandName": "Lamborghini",
+    "country": "Italy",
+    "description": "Automobili Lamborghini is an Italian manufacturer of exclusive supercars known for their bold design, extreme performance, and unmistakable V12 and V10 engines. Founded in 1963 by Ferruccio Lamborghini, the brand embodies innovation, power, and Italian craftsmanship.",
+    "logo": "lambo logo.png",
+    "models": [
+      {
+        "name": "Aventador SVJ",
+        "HP": "770",
+        "year": "2022",
+        "daily_price": "1000",
+        "image": "aventador svj.jpg",
+        "technical_specifications": "6.5L V12 engine, 770 HP, 720 Nm torque, 0-100 km/h in 2.8s, top speed 350 km/h, 7-speed ISR transmission, AWD",
+        "rental_conditions": "Minimum age 27, valid international license, €12,000 deposit",
+        "interesting_facts": "The Aventador SVJ holds the Nürburgring Nordschleife lap record for production cars, set in 2018."
+      },
+      {
+        "name": "Huracán STO",
+        "HP": "640",
+        "year": "2022",
+        "daily_price": "950",
+        "image": "huracán sto.jpg",
+        "technical_specifications": "5.2L V10 engine, 640 HP, 565 Nm torque, 0-100 km/h in 3.0s, top speed 310 km/h, 7-speed dual-clutch, RWD",
+        "rental_conditions": "Minimum age 27, valid international license, €10,000 deposit",
+        "interesting_facts": "The Huracán STO (Super Trofeo Omologata) is a road-legal version of Lamborghini’s Super Trofeo EVO race car."
+      },
+      {
+        "name": "Urus Performante",
+        "HP": "666",
+        "year": "2022",
+        "daily_price": "900",
+        "image": "urus-performante.jpg",
+        "technical_specifications": "4.0L twin-turbo V8 engine, 666 HP, 850 Nm torque, 0-100 km/h in 3.3s, top speed 306 km/h, 8-speed automatic, AWD",
+        "rental_conditions": "Minimum age 27, valid international license, €8,000 deposit",
+        "interesting_facts": "The Urus Performante is one of the fastest SUVs in the world and set a Pikes Peak hill climb record for production SUVs in 2022."
+      }
+    ]
+  },
+  {
+    "brandName": "Mclaren",
+    "country": "England",
+    "description": "McLaren Automotive is a British manufacturer of high-performance sports cars and hypercars, blending Formula 1 technology with cutting-edge engineering. Founded in 1963 by Bruce McLaren, the brand is synonymous with precision, speed, and innovation on both road and track.",
+    "logo": "mclaren logo.png",
+    "models": [
+      {
+        "name": "765 LT",
+        "HP": "755",
+        "year": "2022",
+        "daily_price": "950",
+        "image": "McLaren-765LT.jpg",
+        "technical_specifications": "4.0L twin-turbo V8 engine, 755 HP, 800 Nm torque, 0-100 km/h in 2.8s, top speed 330 km/h, 7-speed dual-clutch, RWD",
+        "rental_conditions": "Minimum age 27, valid international license, €10,000 deposit",
+        "interesting_facts": "The 765LT (Longtail) is a lighter, more track-focused version of the 720S, with over 80 kg weight reduction and extreme aerodynamics."
+      },
+      {
+        "name": "P1",
+        "HP": "903",
+        "year": "2015",
+        "daily_price": "1800",
+        "image": "p1.jpg",
+        "technical_specifications": "3.8L twin-turbo V8 engine + electric motor, combined 903 HP, 900 Nm torque, 0-100 km/h in 2.8s, top speed 350 km/h, 7-speed dual-clutch, RWD",
+        "rental_conditions": "Minimum age 30, valid international license, €20,000 deposit",
+        "interesting_facts": "The McLaren P1 was part of the 'Holy Trinity' of hypercars alongside the LaFerrari and Porsche 918 Spyder, featuring F1-style hybrid technology."
+      },
+      {
+        "name": "Senna",
+        "HP": "800",
+        "year": "2019",
+        "daily_price": "1500",
+        "image": "senna.jpg",
+        "technical_specifications": "4.0L twin-turbo V8 engine, 800 HP, 800 Nm torque, 0-100 km/h in 2.7s, top speed 335 km/h, 7-speed dual-clutch, RWD",
+        "rental_conditions": "Minimum age 30, valid international license, €18,000 deposit",
+        "interesting_facts": "Named after legendary F1 driver Ayrton Senna, this car was built for maximum performance and aerodynamic efficiency on track."
+      }
+    ]
+  },
+  {
+    "brandName": "Porsche",
+    "country": "Germany",
+    "description": "Porsche is a German luxury car manufacturer famous for its precision engineering, timeless design, and motorsport excellence. Founded in 1931 by Ferdinand Porsche, the brand is best known for iconic models like the 911, combining everyday usability with race-bred performance.",
+    "logo": "porsche logo.jpeg",
+    "models": [
+      {
+        "name": "992 GT3 RS",
+        "HP": "525",
+        "year": "2025",
+        "daily_price": "900",
+        "image": "gt3 rs.avif",
+        "technical_specifications": "4.0L naturally aspirated flat-six engine, 525 HP, 465 Nm torque, 0-100 km/h in 3.2s, top speed 296 km/h, 7-speed PDK, RWD",
+        "rental_conditions": "Minimum age 27, valid international license, €10,000 deposit",
+        "interesting_facts": "The 992 GT3 RS uses F1-style active aerodynamics, including a drag reduction system (DRS) — a first for a street-legal Porsche."
+      },
+      {
+        "name": "Carrera GT",
+        "HP": "612",
+        "year": "2004",
+        "daily_price": "1800",
+        "image": "carrera gt.jpg",
+        "technical_specifications": "5.7L V10 engine, 612 HP, 590 Nm torque, 0-100 km/h in 3.9s, top speed 330 km/h, 6-speed manual, RWD",
+        "rental_conditions": "Minimum age 30, valid international license, €20,000 deposit",
+        "interesting_facts": "The Carrera GT features a carbon fiber monocoque chassis and a race-derived V10 originally developed for Formula 1."
+      },
+      {
+        "name": "Cayenne Turbo GT",
+        "HP": "640",
+        "year": "2022",
+        "daily_price": "850",
+        "image": "cayenne turbo gt.jpg",
+        "technical_specifications": "4.0L twin-turbo V8 engine, 640 HP, 850 Nm torque, 0-100 km/h in 3.3s, top speed 300 km/h, 8-speed Tiptronic S, AWD",
+        "rental_conditions": "Minimum age 27, valid international license, €8,000 deposit",
+        "interesting_facts": "The Cayenne Turbo GT is Porsches most powerful SUV and once held the Nürburgring lap record for production SUVs."
+      }
+    ]
+  },
+  {
+    "brandName": "Aston-Martin",
+    "country": "England",
+    "description": "Aston Martin is a British luxury car manufacturer renowned for elegant design, handcrafted interiors, and high-performance grand tourers. Founded in 1913, the brand combines sophistication, power, and a rich heritage, famously associated with James Bond films.",
+    "logo": "logo aston.png",
+    "models": [
+      {
+        "name": "Vantage",
+        "HP": "665",
+        "year": "2024",
+        "daily_price": "900",
+        "image": "vantage.jpeg",
+        "technical_specifications": "4.0L twin-turbo V8 engine, 665 HP, 800 Nm torque, 0-100 km/h in 3.4s, top speed 325 km/h, 8-speed automatic, RWD",
+        "rental_conditions": "Minimum age 27, valid international license, €10,000 deposit",
+        "interesting_facts": "The 2024 Vantage features Aston Martins most powerful V8 ever in a Vantage model and a completely redesigned interior. The Vantage model was driven by 007 in No Time to Die."
+      },
+      {
+        "name": "Valkyrie",
+        "HP": "1160",
+        "year": "2022",
+        "daily_price": "3000",
+        "image": "valkyrie.avif",
+        "technical_specifications": "6.5L naturally aspirated V12 hybrid engine, 1160 HP, 900 Nm torque, 0-100 km/h in 2.5s, top speed 354 km/h, 7-speed sequential, RWD",
+        "rental_conditions": "Minimum age 30, valid international license, €25,000 deposit",
+        "interesting_facts": "The Valkyrie was co-developed with Red Bull Racing and designed by Adrian Newey, featuring F1-level aerodynamics and performance."
+      },
+      {
+        "name": "DBX707",
+        "HP": "707",
+        "year": "2022",
+        "daily_price": "850",
+        "image": "dbx707.webp",
+        "technical_specifications": "4.0L twin-turbo V8 engine, 707 HP, 900 Nm torque, 0-100 km/h in 3.3s, top speed 310 km/h, 9-speed automatic, AWD",
+        "rental_conditions": "Minimum age 27, valid international license, €8,000 deposit",
+        "interesting_facts": "The DBX707 is the worlds most powerful luxury SUV, blending Aston Martin craftsmanship with supercar-level performance."
+      }
+    ]
+  },
+  {
+    "brandName": "BMW",
+    "country": "Germany",
+    "description": "BMW (Bayerische Motoren Werke) is a German luxury car manufacturer known for its performance-oriented vehicles, innovative technology, and driver-focused design. Founded in 1916, BMW produces a range of cars and SUVs combining sportiness, comfort, and engineering excellence.",
+    "logo": "bmw logo.png",
+    "models": [
+      {
+        "name": "BMW M2 CS",
+        "HP": "530",
+        "year": "2025",
+        "daily_price": "650",
+        "image": "m2 cs.jpg",
+        "technical_specifications": "3.0L inline-6 twin-turbo engine, 530 HP, 0-100 km/h in 3.8s",
+        "rental_conditions": "Minimum age 25, valid international driving licence, security deposit €15,000",
+        "interesting_facts": "Tracks-focused edition of the M2 with 30kg weight reduction and upgraded carbon-fibre body panels"
+      },
+      {
+        "name": "BMW M3 Competition",
+        "HP": "510",
+        "year": "2024",
+        "daily_price": "550",
+        "image": "m3 competition.webp",
+        "technical_specifications": "3.0L inline-6 twin-turbo engine, 510 HP, 0-100 km/h in 3.9s",
+        "rental_conditions": "Minimum age 25, valid international driving licence, security deposit €15,000",
+        "interesting_facts": "Features a carbon-fibre roof, 650 Nm of torque and is available in both RWD and xDrive variants"
+      },
+      {
+        "name": "BMW M5 CS",
+        "HP": "635",
+        "year": "2021",
+        "daily_price": "1,200",
+        "image": "m5 cs.webp",
+        "technical_specifications": "4.4L twin-turbo V8 engine, 635 HP, 0-100 km/h in 3.0s",
+        "rental_conditions": "Minimum age 30, valid driving licence, security deposit €25,000",
+        "interesting_facts": "Most powerful production BMW M car ever at launch; weight reduced 70kg vs M5 Competition; features carbon fibre bodywork and exclusive Gold Bronze trim accents"
+      }
+    ]
+  },
+  {
+    "brandName": "Audi",
+    "country": "Germany",
+    "description": "Audi is a German luxury car manufacturer known for cutting-edge technology, quattro all-wheel-drive performance, and elegant design. Founded in 1909, Audi combines sportiness, innovation, and premium quality across its lineup of sedans, SUVs, and sports cars.",
+    "logo": "audi logo.png",
+    "models": [
+      {
+        "name": "Audi R8",
+        "HP": "620",
+        "year": "2023",
+        "daily_price": "850",
+        "image": "r8.avif",
+        "technical_specifications": "5.2L V10 engine, 620 HP, 0-100 km/h in 3.2s",
+        "rental_conditions": "Minimum age 27, valid international driving licence, security deposit €20,000",
+        "interesting_facts": "Naturally aspirated V10 mid-engine layout; production version of a car developed with motorsport DNA and reaches over 330km/h"
+      },
+      {
+        "name": "Audi RS3 ABT",
+        "HP": "500",
+        "year": "2022",
+        "daily_price": "550",
+        "image": "rs3 abt.webp",
+        "technical_specifications": "2.5L five-cyl turbo engine, 500 HP, 0-100 km/h in 3.3s",
+        "rental_conditions": "Minimum age 25, valid international driving licence, security deposit €12,000",
+        "interesting_facts": "Prepared by ABT Sportsline to increase the stock RS3 power up to 500HP with upgraded intercooler, exhaust and aero kit; limited edition in many markets."
+      },
+      {
+        "name": "Audi RS Q8 Performance",
+        "HP": "640",
+        "year": "2025",
+        "daily_price": "750",
+        "image": "rsq8 performance.webp",
+        "technical_specifications": "4.0L twin-turbo V8 engine, 640 HP, 0-100 km/h in 3.6s",
+        "rental_conditions": "Minimum age 30, valid international driving licence, security deposit €30,000",
+        "interesting_facts": "Most powerful combustion-engine SUV from Audi Sport; set a Nürburgring Nordschleife lap of 7:36.698 for production SUVs"
+      }
+    ]
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "country": "Germany",
+    "description": "Mercedes-Benz is a German luxury automobile manufacturer renowned for innovation, premium engineering, and timeless design. Founded in 1926, the brand produces a wide range of vehicles from high-performance sports cars to sophisticated SUVs, combining comfort, safety, and advanced technology.",
+    "logo": "mercedes logo.png",
+    "models": [
+      {
+        "name": "Mercedes-AMG GTR bs",
+        "HP": "720",
+        "year": "2022",
+        "daily_price": "1,500",
+        "image": "amg gtr bs.jpg",
+        "technical_specifications": "4.0L twin-turbo V8 engine, 720 HP, 0-100 km/h in 3.2sh",
+        "rental_conditions": "Minimum age 30, valid driving licence, security deposit €50,000",
+        "interesting_facts": "Most extreme road-going AMG to date, with track-derived aerodynamics, over 800Nm of torque and only ~1,615kg kerb weight"
+      },
+      {
+        "name": "Mercedes-AMG ONE",
+        "HP": "1,063",
+        "year": "2022",
+        "daily_price": "5,000",
+        "image": "amg one.webp",
+        "technical_specifications": "1.6L V6 turbo + hybrid system, 1,063 HP, 0-100 km/h in 2.9s",
+        "rental_conditions": "Minimum age 30, valid international driving licence, security deposit €500,000",
+        "interesting_facts": "Formula 1 derived powertrain, only 275 units planned, active aerodynamics with DRS and push-rod suspension"
+      },
+      {
+        "name": "Mercedes-AMG G63 Mansory",
+        "HP": "850",
+        "year": "2023",
+        "daily_price": "2,500",
+        "image": "g63 mansory.webp",
+        "technical_specifications": "4.0L twin-turbo V8 engine (tuned), 850 HP, 0-100 km/h in 4.5s",
+        "rental_conditions": "Minimum age 30, valid international driving licence, security deposit €80,000",
+        "interesting_facts": "Limited-edition Mansory conversion of the G-Class; only 10 units built with 1,000 Nm torque and full carbon wide-body kit"
+      }
+    ]
+  },
+  {
+    "brandName": "Rolls-Royce",
+    "country": "England",
+    "description": "Rolls-Royce Motor Cars is a British luxury automobile manufacturer known for unparalleled craftsmanship, elegance, and bespoke customization. Founded in 1906, the brand produces ultra-luxury vehicles that combine exquisite design, advanced engineering, and a serene driving experience.",
+    "logo": "rolls royce logo.png",
+    "models": [
+      {
+        "name": "Cullinan",
+        "HP": "563",
+        "year": "2018",
+        "daily_price": "1000",
+        "image": "cullinan.jpg",
+        "technical_specifications": "6.75L V12 twin-turbo engine, 563 hp, 0-100 km/h in 5.2 s",
+        "rental_conditions": "Minimum age 25, valid international driving license, €15,000 deposit",
+        "interesting_facts": "The suspension system uses cameras and sensors to read the road ahead and smooth out bumps before you hit them. The ride is tuned to feel like you are gliding."
+      },
+      {
+        "name": "Phantom",
+        "HP": "563",
+        "year": "2027",
+        "daily_price": "1000",
+        "image": "phantom.jpg",
+        "technical_specifications": "6.75L twin-turbo V12 engine, 563 HP, 0-100 km/h in 5.1s",
+        "rental_conditions": "Minimum age 30, valid driving licence, security deposit €100,000",
+        "interesting_facts": "Hand-built at Goodwood with over 44,000 exterior paint colour options and bespoke craftsmanship throughout"
+      },
+      {
+        "name": "Wraith",
+        "HP": "624",
+        "year": "2013",
+        "daily_price": "900",
+        "image": "wraith.jpg",
+        "technical_specifications": "6.6L V12 twin-turbo engine, 624 HP, 0-100 km/h in 4.6s",
+        "rental_conditions": "Minimum age 30, valid international driving license, €20,000 deposit",
+        "interesting_facts": "Most powerful production Rolls-Royce at its launch; debuted with 'Satellite-Aided Transmission' using GPS to pre-select gears"
+      }
+    ]
+  },
+  {
+    "brandName": "Bentley",
+    "country": "England",
+    "description": "Bentley Motors is a British manufacturer of luxury cars and SUVs, known for blending handcrafted luxury with effortless performance. Founded in 1919 by W.O. Bentley, the brand represents the pinnacle of grand touring.",
+    "logo": "bentley logo.png",
+    "models": [
+      {
+        "name": "Continental GT Speed",
+        "HP": "650",
+        "year": "2023",
+        "daily_price": "950",
+        "image": "continental gt speed.jpg",
+        "technical_specifications": "6.0L twin-turbo W12 engine, 650 HP, 900 Nm torque, 0-100 km/h in 3.6s, top speed 335 km/h, 8-speed dual-clutch, AWD",
+        "rental_conditions": "Minimum age 27, valid international license, €12,000 deposit",
+        "interesting_facts": "The Continental GT Speed features four-wheel steering and an electronic limited-slip differential for enhanced agility."
+      },
+      {
+        "name": "Bentayga EWB",
+        "HP": "542",
+        "year": "2024",
+        "daily_price": "1100",
+        "image": "bentayga ewb.jpg",
+        "technical_specifications": "4.0L twin-turbo V8 engine, 542 HP, 770 Nm torque, 0-100 km/h in 4.6s, top speed 290 km/h, 8-speed automatic, AWD",
+        "rental_conditions": "Minimum age 27, valid international license, €10,000 deposit",
+        "interesting_facts": "The 'Airline Seat' specification in the rear is the most advanced seat ever fitted to a car, with auto-climate sensing."
+      },
+      {
+        "name": "Flying Spur Mulliner",
+        "HP": "626",
+        "year": "2023",
+        "daily_price": "1000",
+        "image": "flying spur mulliner.jpg",
+        "technical_specifications": "6.0L twin-turbo W12 engine, 626 HP, 900 Nm torque, 0-100 km/h in 3.8s, top speed 333 km/h, 8-speed dual-clutch, AWD",
+        "rental_conditions": "Minimum age 30, valid international license, €15,000 deposit",
+        "interesting_facts": "The Flying Spur is considered the world's fastest production sedan, combining limousine luxury with sports car performance."
+      }
+    ]
+  },
+  {
+    "brandName": "Bugatti",
+    "country": "France",
+    "description": "Automobiles Ettore Bugatti is a French luxury manufacturer of hypercars, renowned for design beauty and engineering extremity. Founded in 1909, the brand is famous for breaking world speed records.",
+    "logo": "bugatti logo.png",
+    "models": [
+      {
+        "name": "Chiron Super Sport",
+        "HP": "1600",
+        "year": "2022",
+        "daily_price": "15000",
+        "image": "chiron super sport.jpg",
+        "technical_specifications": "8.0L quad-turbo W16 engine, 1600 HP, 1600 Nm torque, 0-100 km/h in 2.4s, top speed 440 km/h, 7-speed DSG, AWD",
+        "rental_conditions": "Minimum age 30, valid international license, €150,000 deposit, chauffeur recommended",
+        "interesting_facts": "The Chiron Super Sport is designed for maximum longitudinal speed without compromising luxury."
+      },
+      {
+        "name": "Veyron Grand Sport Vitesse",
+        "HP": "1200",
+        "year": "2015",
+        "daily_price": "12000",
+        "image": "veyron vitesse.jpeg",
+        "technical_specifications": "8.0L quad-turbo W16 engine, 1200 HP, 1500 Nm torque, 0-100 km/h in 2.6s, top speed 410 km/h, 7-speed DSG, AWD",
+        "rental_conditions": "Minimum age 30, valid international license, €100,000 deposit",
+        "interesting_facts": "Once the fastest roadster in the world, holding the record at 408.84 km/h."
+      },
+      {
+        "name": "Divo",
+        "HP": "1500",
+        "year": "2021",
+        "daily_price": "18000",
+        "image": "divo.webp",
+        "technical_specifications": "8.0L quad-turbo W16 engine, 1500 HP, 1600 Nm torque, 0-100 km/h in 2.4s, top speed 380 km/h (limited), 7-speed DSG, AWD",
+        "rental_conditions": "Minimum age 30, exclusive clientele check, €200,000 deposit",
+        "interesting_facts": "Limited to only 40 units, the Divo is built for corners, with 90kg more downforce than the Chiron."
+      }
+    ]
+  },
+  {
+    "brandName": "Maserati",
+    "country": "Italy",
+    "description": "Maserati is an Italian luxury vehicle manufacturer established in 1914. Known for their signature exhaust note and trident logo, they offer a blend of comfort, style, and sporting ability.",
+    "logo": "maserati logo.png",
+    "models": [
+      {
+        "name": "MC20",
+        "HP": "630",
+        "year": "2023",
+        "daily_price": "1100",
+        "image": "MC20.jpg",
+        "technical_specifications": "3.0L twin-turbo V6 'Nettuno' engine, 630 HP, 730 Nm torque, 0-100 km/h in 2.9s, top speed 325 km/h, 8-speed DCT, RWD",
+        "rental_conditions": "Minimum age 27, valid international license, €10,000 deposit",
+        "interesting_facts": "The MC20 marks Maserati's return to racing and features a carbon fiber monocoque chassis."
+      },
+      {
+        "name": "GranTurismo Trofeo",
+        "HP": "550",
+        "year": "2024",
+        "daily_price": "850",
+        "image": "granturismo trofeo.jpg",
+        "technical_specifications": "3.0L twin-turbo V6 engine, 550 HP, 650 Nm torque, 0-100 km/h in 3.5s, top speed 320 km/h, 8-speed automatic, AWD",
+        "rental_conditions": "Minimum age 25, valid international license, €8,000 deposit",
+        "interesting_facts": "Replaces the iconic V8 with the F1-derived Nettuno V6 engine."
+      },
+      {
+        "name": "Levante Trofeo",
+        "HP": "580",
+        "year": "2022",
+        "daily_price": "700",
+        "image": "levante trofeo.webp",
+        "technical_specifications": "3.8L twin-turbo V8 engine, 580 HP, 730 Nm torque, 0-100 km/h in 4.1s, top speed 302 km/h, 8-speed automatic, AWD",
+        "rental_conditions": "Minimum age 25, valid international license, €7,000 deposit",
+        "interesting_facts": "The engine is built by Ferrari in Maranello, giving this SUV true supercar DNA."
+      }
+    ]
+  },
+  {
+    "brandName": "Koenigsegg",
+    "country": "Sweden",
+    "description": "Koenigsegg Automotive AB is a Swedish manufacturer of high-performance sports cars, based in Ängelholm. Founded in 1994, it is known for extreme engineering and holding multiple world speed records.",
+    "logo": "koenigsegg logo.png",
+    "models": [
+      {
+        "name": "Jesko Attack",
+        "HP": "1280",
+        "year": "2023",
+        "daily_price": "25000",
+        "image": "jesko attack.jpg",
+        "technical_specifications": "5.0L twin-turbo V8, 1280 HP (gas) / 1600 HP (E85), 1500 Nm, 0-100 km/h in 2.5s, top speed >480 km/h, 9-speed LST, RWD",
+        "rental_conditions": "Minimum age 30, special insurance required, €250,000 deposit",
+        "interesting_facts": "Features the Light Speed Transmission (LST) which shifts instantly without a clutch pedal."
+      },
+      {
+        "name": "Gemera",
+        "HP": "1700",
+        "year": "2024",
+        "daily_price": "20000",
+        "image": "gemera.avif",
+        "technical_specifications": "2.0L 3-cylinder twin-turbo + 3 electric motors, 1700 HP combined, 3500 Nm, 0-100 km/h in 1.9s, AWD",
+        "rental_conditions": "Minimum age 30, valid international license, €200,000 deposit",
+        "interesting_facts": "The world's first 'Mega-GT' seating four adults comfortably while delivering hypercar performance."
+      },
+      {
+        "name": "Agera RS",
+        "HP": "1160",
+        "year": "2017",
+        "daily_price": "18000",
+        "image": "agera rs.jpg",
+        "technical_specifications": "5.0L twin-turbo V8, 1160 HP, 1280 Nm, 0-100 km/h in 2.8s, top speed 447 km/h, 7-speed dual-clutch, RWD",
+        "rental_conditions": "Minimum age 30, valid international license, €150,000 deposit",
+        "interesting_facts": "Held the production car speed record in 2017 with a two-way average of 447.19 km/h."
+      }
+    ]
+  },
+  {
+    "brandName": "Pagani",
+    "country": "Italy",
+    "description": "Pagani Automobili is an Italian manufacturer of sports cars and carbon fibre components. Founded in 1992 by Horacio Pagani, the brand is celebrated for treating cars as art forms.",
+    "logo": "pagani logo.png",
+    "models": [
+      {
+        "name": "Huayra Roadster BC",
+        "HP": "802",
+        "year": "2021",
+        "daily_price": "16000",
+        "image": "huayra roadster bc.webp",
+        "technical_specifications": "6.0L twin-turbo V12 (AMG), 802 HP, 1050 Nm, 0-100 km/h in 2.8s, top speed 370 km/h, 7-speed Xtrac AMT, RWD",
+        "rental_conditions": "Minimum age 30, valid international license, €150,000 deposit",
+        "interesting_facts": "Uses a new material called Carbo-Triax HP62 which is lighter and stronger than traditional carbon fiber."
+      },
+      {
+        "name": "Zonda Cinque",
+        "HP": "678",
+        "year": "2009",
+        "daily_price": "20000",
+        "image": "zonda cinque.jpg",
+        "technical_specifications": "7.3L naturally aspirated V12 (AMG), 678 HP, 780 Nm, 0-100 km/h in 3.4s, top speed 350 km/h, 6-speed sequential, RWD",
+        "rental_conditions": "Minimum age 30, special insurance approval, €200,000 deposit",
+        "interesting_facts": "Only 5 coupes and 5 roadsters were ever made, making it one of the rarest Paganis."
+      },
+      {
+        "name": "Utopia",
+        "HP": "864",
+        "year": "2023",
+        "daily_price": "18000",
+        "image": "utopia.jpg",
+        "technical_specifications": "6.0L twin-turbo V12 (AMG), 864 HP, 1100 Nm, 0-100 km/h in 2.7s, top speed 350+ km/h, 7-speed manual or auto, RWD",
+        "rental_conditions": "Minimum age 30, valid international license, €180,000 deposit",
+        "interesting_facts": "Designed with a focus on simplicity and lightness, it eschews hybrid systems for a pure V12 experience."
+      }
+    ]
+  },
+  {
+    "brandName": "Land Rover",
+    "country": "England",
+    "description": "Land Rover is a British brand of predominantly four-wheel drive, off-road capable vehicles. Their Range Rover line represents the height of luxury SUV motoring.",
+    "logo": "land rover logo.png",
+    "models": [
+      {
+        "name": "Range Rover SV",
+        "HP": "607",
+        "year": "2024",
+        "daily_price": "900",
+        "image": "range rover sv.webp",
+        "technical_specifications": "4.4L twin-turbo V8, 607 HP, 750 Nm, 0-100 km/h in 4.5s, top speed 261 km/h, 8-speed automatic, AWD",
+        "rental_conditions": "Minimum age 25, valid international license, €8,000 deposit",
+        "interesting_facts": "The SV offers over 1.6 million configuration combinations and uses ceramic materials in the interior."
+      },
+      {
+        "name": "Range Rover Sport SV",
+        "HP": "626",
+        "year": "2024",
+        "daily_price": "850",
+        "image": "range rover sport sv.jpg",
+        "technical_specifications": "4.4L twin-turbo V8 mild-hybrid, 626 HP, 750 Nm, 0-100 km/h in 3.6s, top speed 290 km/h, 8-speed automatic, AWD",
+        "rental_conditions": "Minimum age 25, valid international license, €8,000 deposit",
+        "interesting_facts": "Features '6D Dynamics' suspension and the option for world-first 23-inch carbon fibre wheels on an SUV."
+      },
+      {
+        "name": "Defender 110 V8",
+        "HP": "518",
+        "year": "2023",
+        "daily_price": "600",
+        "image": "defender v8.webp",
+        "technical_specifications": "5.0L supercharged V8, 518 HP, 625 Nm, 0-100 km/h in 5.2s, top speed 240 km/h, 8-speed automatic, AWD",
+        "rental_conditions": "Minimum age 25, valid international license, €5,000 deposit",
+        "interesting_facts": "Combines rugged off-road capability with a high-performance supercharged V8 soundtrack."
+      }
+    ]
+  },
+  {
+    "brandName": "Jaguar",
+    "country": "England",
+    "description": "Jaguar is the luxury vehicle brand of Jaguar Land Rover. Known for its slogan 'Grace, Space, Pace', Jaguar produces premium sedans and sports cars with a rich racing history.",
+    "logo": "jaguar logo.png",
+    "models": [
+      {
+        "name": "F-Type SVR",
+        "HP": "575",
+        "year": "2021",
+        "daily_price": "650",
+        "image": "f-type svr.jpg",
+        "technical_specifications": "5.0L supercharged V8, 575 HP, 700 Nm, 0-100 km/h in 3.7s, top speed 322 km/h, 8-speed automatic, AWD",
+        "rental_conditions": "Minimum age 25, valid international license, €6,000 deposit",
+        "interesting_facts": "Features a titanium exhaust system that saves weight and produces a distinctively aggressive sound."
+      },
+      {
+        "name": "XE SV Project 8",
+        "HP": "592",
+        "year": "2019",
+        "daily_price": "800",
+        "image": "xe sv project 8.jpg",
+        "technical_specifications": "5.0L supercharged V8, 592 HP, 700 Nm, 0-100 km/h in 3.3s, top speed 322 km/h, 8-speed automatic, AWD",
+        "rental_conditions": "Minimum age 27, valid international license, €10,000 deposit",
+        "interesting_facts": "Hand-assembled by SVO (Special Vehicle Operations), it was the fastest saloon car on the Nürburgring at launch."
+      },
+      {
+        "name": "XJ220",
+        "HP": "542",
+        "year": "1992",
+        "daily_price": "1200",
+        "image": "xj220.jpg",
+        "technical_specifications": "3.5L twin-turbo V6, 542 HP, 644 Nm, 0-100 km/h in 3.6s, top speed 342 km/h, 5-speed manual, RWD",
+        "rental_conditions": "Minimum age 30, valid international license, classic car insurance required, €20,000 deposit",
+        "interesting_facts": "Held the record for the fastest production car in the world from 1992 to 1993."
+      }
+    ]
+  },
+  {
+    "brandName": "Alfa Romeo",
+    "country": "Italy",
+    "description": "Alfa Romeo is an Italian premium car manufacturer known for its sporty vehicles and racing heritage since 1910. It embodies 'La Meccanica delle Emozioni' (The Mechanics of Emotions).",
+    "logo": "alfa romeo logo.png",
+    "models": [
+      {
+        "name": "Giulia GTAm",
+        "HP": "540",
+        "year": "2021",
+        "daily_price": "800",
+        "image": "giulia gtam.jpg",
+        "technical_specifications": "2.9L twin-turbo V6, 540 HP, 600 Nm, 0-100 km/h in 3.6s, top speed 300 km/h, 8-speed automatic, RWD",
+        "rental_conditions": "Minimum age 27, valid international license, €10,000 deposit",
+        "interesting_facts": "A track-focused version of the Giulia with 100kg weight reduction, roll bar, and no rear seats."
+      },
+      {
+        "name": "8C Competizione",
+        "HP": "444",
+        "year": "2007",
+        "daily_price": "1000",
+        "image": "alfa 8c.webp",
+        "technical_specifications": "4.7L V8 (Ferrari/Maserati), 444 HP, 480 Nm, 0-100 km/h in 4.2s, top speed 292 km/h, 6-speed automated manual, RWD",
+        "rental_conditions": "Minimum age 30, valid international license, €15,000 deposit",
+        "interesting_facts": "Limited to 500 units worldwide, widely considered one of the most beautiful cars ever designed."
+      },
+      {
+        "name": "Stelvio Quadrifoglio",
+        "HP": "505",
+        "year": "2023",
+        "daily_price": "600",
+        "image": "stelvio quadrifoglio.avif",
+        "technical_specifications": "2.9L twin-turbo V6, 505 HP, 600 Nm, 0-100 km/h in 3.8s, top speed 283 km/h, 8-speed automatic, AWD",
+        "rental_conditions": "Minimum age 25, valid international license, €5,000 deposit",
+        "interesting_facts": "Held the title of the world's fastest SUV around the Nürburgring for several years."
+      }
+    ]
+  },
+  {
+    "brandName": "Rimac",
+    "country": "Croatia",
+    "description": "Rimac Automobili is a Croatian manufacturer that develops and produces electric sports cars, drivetrains, and battery systems. It represents the future of electric hypercar performance.",
+    "logo": "rimac logo.jpg",
+    "models": [
+      {
+        "name": "Nevera",
+        "HP": "1914",
+        "year": "2023",
+        "daily_price": "20000",
+        "image": "nevera.jpg",
+        "technical_specifications": "4 electric motors, 1914 HP, 2360 Nm torque, 0-100 km/h in 1.81s, top speed 412 km/h, 1-speed direct drive, AWD",
+        "rental_conditions": "Minimum age 30, special insurance approval, €200,000 deposit",
+        "interesting_facts": "The Nevera holds over 20 acceleration and braking records, including 0-400-0 km/h in under 30 seconds."
+      },
+      {
+        "name": "Concept One",
+        "HP": "1224",
+        "year": "2016",
+        "daily_price": "15000",
+        "image": "concept one.webp",
+        "technical_specifications": "4 electric motors, 1224 HP, 1600 Nm torque, 0-100 km/h in 2.5s, top speed 355 km/h, AWD",
+        "rental_conditions": "Minimum age 30, valid international license, €150,000 deposit",
+        "interesting_facts": "The car that put Rimac on the map as the world's first true electric supercar."
+      },
+      {
+        "name": "Nevera Time Attack",
+        "HP": "1914",
+        "year": "2024",
+        "daily_price": "22000",
+        "image": "nevera time attack.avif",
+        "technical_specifications": "4 electric motors, 1914 HP, 2360 Nm torque, 0-100 km/h in 1.81s, optimized aero for track",
+        "rental_conditions": "Minimum age 30, valid international license, €250,000 deposit",
+        "interesting_facts": "A limited edition of 12 units celebrating the car's record-breaking year at tracks like Nürburgring."
+      }
+    ]
+  }
+]
