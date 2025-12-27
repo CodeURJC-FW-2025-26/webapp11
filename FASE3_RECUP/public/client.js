@@ -188,22 +188,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 const previousImageExists = !removeImageButton?.classList.contains("d-none");
 
                 // In case there is no previous image, upload the default image. If any image exists, this code won't
-                // execute, keeping the last image.
+                // execute, keeping the last image uploaded to the server.
                 if (!previousImageExists) {
 
-                    const response = await fetch('/default_car.jpg');
-                    
-                    if (!response.ok) {
-                        throw new Error("Error fetching image");
-                    }
-
-                    // Create image and upload it masked as a File uploaded by the user.
-                    const blob = await response.blob();
-                    const file = new File(
-                        [blob],
-                        "model-image.jpg",
-                        { type: blob.type }
-                    );
+                    const file = await loadDefaultImage();
 
                     // Add the image to the form before sending it.
                     formData.append("image", file);
@@ -233,9 +221,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert("There was an error updating the model: " + error.message);
             }
         }
+
         else if (e.submitter.id === "createButton") {
             const formData = new FormData(createForm);
 
+            // If no image sent, load default image as placeholder in the form
+            if (!formData.get("image").size) {
+                const file = await loadDefaultImage();
+                formData.append("image", file);
+            }
+
+            // Logic for sending out the form
             try {
                 const response = await fetch(`/brand/${brandid}/model/create`, {
                     method: "POST",
@@ -243,8 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 if (!response.ok) {
-                    const errorText = await response.text();
-                    throw new Error(errorText || "Error uploading data");
+                    throw new Error("Error uploading data");
                 }
 
                 const result = await response.json();
@@ -261,6 +256,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+async function loadDefaultImage() {
+    const response = await fetch('/default_car.jpg');
+
+    if (!response.ok) {
+        throw new Error("Error fetching image");
+    }
+
+    // Create image and upload it masked as a File uploaded by the user.
+    const blob = await response.blob();
+    const file = new File(
+        [blob],
+        "model-image.jpg",
+        { type: blob.type }
+    );
+
+    return file;
+}
 
 function wipeFormInfo() {
     const form = document.getElementById("createForm");
@@ -996,7 +1009,7 @@ document.addEventListener("DOMContentLoaded", () => {
 async function checkEditBrandName() {
     const input = document.getElementById("editBrandName");
     const message = document.getElementById("editBrandNameMessage");
-    
+
     // Safety check
     if (!input) return;
 
@@ -1027,7 +1040,7 @@ async function checkEditBrandName() {
     try {
         const response = await fetch(`/brand/check-name?brandName=${encodeURIComponent(value)}`);
         const data = await response.json();
-        
+
         if (data.available) {
             showValidationMessage(input, message, "Brand name is available", true);
         } else {
@@ -1146,11 +1159,11 @@ document.addEventListener("DOMContentLoaded", () => {
             // If there are invalid fields, prevent submission
             if (invalidFields.length > 0) {
                 e.preventDefault();
-                
+
                 //  Hide spinner if visible
                 const spinner = document.getElementById("edit-form-spinner");
                 if (spinner) spinner.classList.add("d-none");
-                
+
                 // Re-enable submit button
                 const btn = editForm.querySelector("button[type='submit']");
                 if (btn) btn.disabled = false;
