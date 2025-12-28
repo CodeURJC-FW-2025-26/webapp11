@@ -476,12 +476,23 @@ function setupFormSpinner(formSelector, spinnerId, redirectUrl = null, spinnerDu
         e.preventDefault();
         spinner.classList.remove("d-none");
         saveButton.disabled = true;
+        document.body.style.overflow = "hidden";
 
         setTimeout(() => {
             if (redirectUrl) {
                 window.location.href = redirectUrl;
             } else {
-                form.submit();
+                
+                if (saveButton.classList.contains("newBrandButton")) {
+                    form.submit();
+                }
+                else {
+                    spinner.classList.add("d-none");
+                    saveButton.disabled = false;
+                    document.body.style.overflow = "";
+                    window.scrollTo(0, 0);
+                }
+                
             }
         }, spinnerDuration);
     });
