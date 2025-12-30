@@ -218,7 +218,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             } catch (error) {
                 console.error("Error:", error);
-                alert("There was an error updating the model: " + error.message);
             }
         }
 
@@ -238,18 +237,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     body: formData
                 });
 
-                if (!response.ok) {
-                    throw new Error("Error uploading data");
-                }
-
                 const result = await response.json();
                 createCarCard(result);
                 wipeFormInfo();
 
             } catch (error) {
-                console.error("Error:", error);
-                // Remake as Bootstrap alert message
-                alert("There was an error sending out the form info: " + error.message);
+                showFixError(dialog);
             }
         }
 
@@ -474,15 +467,20 @@ function setupFormSpinner(formSelector, spinnerId, redirectUrl = null, spinnerDu
     const saveButton = form.querySelector("button[type='submit']");
     form.addEventListener("submit", (e) => {
         e.preventDefault();
-        spinner.classList.remove("d-none");
-        saveButton.disabled = true;
-        document.body.style.overflow = "hidden";
+        const noInvalidFieldsPresent = document.querySelectorAll(".is-invalid")?.length === 0;
+        if (noInvalidFieldsPresent) {
+            spinner.classList.remove("d-none");
+            saveButton.disabled = true;
+            document.body.style.overflow = "hidden";
+        }
+
+
 
         setTimeout(() => {
             if (redirectUrl) {
                 window.location.href = redirectUrl;
             } else {
-                
+
                 if (saveButton.classList.contains("newBrandButton")) {
                     form.submit();
                 }
@@ -490,9 +488,10 @@ function setupFormSpinner(formSelector, spinnerId, redirectUrl = null, spinnerDu
                     spinner.classList.add("d-none");
                     saveButton.disabled = false;
                     document.body.style.overflow = "";
-                    window.scrollTo(0, 0);
+                    if (noInvalidFieldsPresent)
+                        window.scrollTo(0, 0);
                 }
-                
+
             }
         }, spinnerDuration);
     });
@@ -586,6 +585,19 @@ function brandConfirmationWindow(dialog) {
     dialog.cancelButton.innerText = "Cancel";
 
     // Display of the pop-up dialog
+    dialog.window.showModal();
+}
+
+function showFixError(dialog, invalidFields) {
+    dialog.headtext.innerText = "Something went wrong."
+    dialog.bodytext.innerText = "Please, fix all errors before validating."
+    dialog.subtext.style.display = "block"
+    const invalid = invalidFields.map(el => el.name);
+    dialog.subtext.innerText = invalidFields ? `Current invalid fields: ${invalid}` : "";
+    dialog.confirmButton.style.display = "none";
+    dialog.cancelButton.style.display = "block";
+    dialog.cancelButton.innerText = "Okay";
+
     dialog.window.showModal();
 }
 
@@ -1005,7 +1017,9 @@ document.addEventListener("DOMContentLoaded", () => {
             // If there are invalid fields, prevent submission
             if (invalidFields.length > 0) {
                 e.preventDefault();
-                alert("Please fix all validation errors before submitting.");
+                const dialog = loadDialogWindow();
+                const invalidFieldsList = [...invalidFields];
+                showFixError(dialog, invalidFieldsList);
                 return;
             }
         });
@@ -1170,6 +1184,8 @@ document.addEventListener("DOMContentLoaded", () => {
             // If there are invalid fields, prevent submission
             if (invalidFields.length > 0) {
                 e.preventDefault();
+                const invalidFieldsList = [...invalidFields];
+                const dialog = loadDialogWindow();
 
                 //  Hide spinner if visible
                 const spinner = document.getElementById("edit-form-spinner");
@@ -1179,7 +1195,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const btn = editForm.querySelector("button[type='submit']");
                 if (btn) btn.disabled = false;
 
-                alert("Please fix all validation errors before submitting.");
+                showFixError(dialog, invalidFieldsList);
                 return;
             }
         });
