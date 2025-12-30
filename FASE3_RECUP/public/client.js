@@ -166,6 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         // Button pressed is a model edition cancel button
         else if (targetButton.classList.contains("cancelEditModel")) {
+            wipeFormInfo();
             hideShowInfoPage();
         }
     })
@@ -217,7 +218,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 wipeFormInfo();
 
             } catch (error) {
-                console.error("Error:", error);
             }
         }
 
@@ -467,11 +467,16 @@ function setupFormSpinner(formSelector, spinnerId, redirectUrl = null, spinnerDu
     const saveButton = form.querySelector("button[type='submit']");
     form.addEventListener("submit", (e) => {
         e.preventDefault();
-        const noInvalidFieldsPresent = document.querySelectorAll(".is-invalid")?.length === 0;
+        const invalidFields = document.querySelectorAll(".is-invalid");
+        const noInvalidFieldsPresent = invalidFields?.length === 0;
+        const dialog = loadDialogWindow();
         if (noInvalidFieldsPresent) {
             spinner.classList.remove("d-none");
             saveButton.disabled = true;
             document.body.style.overflow = "hidden";
+        }
+        else {
+            showFixError(dialog, [...invalidFields]);
         }
 
 
@@ -480,9 +485,14 @@ function setupFormSpinner(formSelector, spinnerId, redirectUrl = null, spinnerDu
             if (redirectUrl) {
                 window.location.href = redirectUrl;
             } else {
-
-                if (saveButton.classList.contains("newBrandButton")) {
-                    form.submit();
+                if (saveButton.classList.contains("newBrandButton") || saveButton.classList.contains("editBrandButton")) {
+                    if (noInvalidFieldsPresent)
+                        form.submit();
+                    else {
+                        spinner.classList.add("d-none");
+                        saveButton.disabled = false;
+                        document.body.style.overflow = "";
+                    }
                 }
                 else {
                     spinner.classList.add("d-none");
@@ -759,14 +769,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!spinner || !saveButton) return;
 
     form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const invalidFields = document.querySelectorAll(".is-invalid")
+        const noInvalidFieldsPresent = invalidFields?.length === 0;
+        const dialog = loadDialogWindow();
+        console.log(invalidFields);
         spinner.classList.remove("d-none");
         saveButton.disabled = true;
 
         setTimeout(() => {
-            form.submit();
+            if (noInvalidFieldsPresent)
+                form.submit();
+            else 
+                showFixError(dialog, [...invalidFields]);
         }, 500);
 
-        e.preventDefault();
+
     });
 });
 // ===================== NEW MODEL INFO VALIDATION =====================
@@ -1196,7 +1214,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (btn) btn.disabled = false;
 
                 showFixError(dialog, invalidFieldsList);
-                return;
             }
         });
     }

@@ -23,6 +23,8 @@
 
     {{> nav_bar }}
 
+    {{> dialog_popup}}
+
     <section class="brands">
         <div class="container d-flex justify-content-center">
             <form id="editBrandForm" class="car-form p-4 shadow rounded bg-white" action="/brand/{{brand._id}}/edit"
@@ -63,7 +65,7 @@
                 </div>
 
                 <div class="button-group d-flex justify-content-between align-items-center">
-                    <button type="submit" class="btn btn-outline-dark">Save Changes</button>
+                    <button type="submit" class="btn btn-outline-dark editBrandButton">Save Changes</button>
                     <a href="/brand/{{brand._id}}" class="btn btn-outline-secondary">Cancel</a>
 
                 </div>
