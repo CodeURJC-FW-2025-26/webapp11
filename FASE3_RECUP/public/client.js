@@ -122,7 +122,7 @@ function renderNewBrands(brands) {
                 </a>
             </div>
         `;
-        container.insertAdjacentHTML('beforeend', cardHTML);
+        container?.insertAdjacentHTML('beforeend', cardHTML);
     });
 }
 // ===================== MODAL CODE =====================
@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const createForm = document.getElementById("createForm");
 
-    createForm.addEventListener("submit", async (e) => {
+    createForm?.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         if (e.submitter.classList.contains("confirmEdit")) {
@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 // execute, keeping the last image uploaded to the server.
                 if (!previousImageExists) {
 
-                    const file = await loadDefaultImage();
+                    const file = await loadDefaultModelImage();
 
                     // Add the image to the form before sending it.
                     formData.append("image", file);
@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // If no image sent, load default image as placeholder in the form
             if (!formData.get("image").size) {
-                const file = await loadDefaultImage();
+                const file = await loadDefaultModelImage();
                 formData.append("image", file);
             }
 
@@ -250,8 +250,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-async function loadDefaultImage() {
+async function loadDefaultModelImage() {
     const response = await fetch('/default_car.jpg');
+
+    if (!response.ok) {
+        throw new Error("Error fetching image");
+    }
+
+    // Create image and upload it masked as a File uploaded by the user.
+    const blob = await response.blob();
+    const file = new File(
+        [blob],
+        "model-image.jpg",
+        { type: blob.type }
+    );
+
+    return file;
+}
+
+async function loadDefaultBrandImage() {
+    const response = await fetch('/default_logo.jpg');
 
     if (!response.ok) {
         throw new Error("Error fetching image");
@@ -395,20 +413,20 @@ function loadDropZoneHandler() {
     const previewField = document.getElementById("imgPreviewField");
 
     // Opening file explorer when clicking the drop zone
-    dropZone.addEventListener("click", () => fileInput.click());
+    dropZone?.addEventListener("click", () => fileInput.click());
 
     // Visuals for dragging over and away from the drop zone
-    dropZone.addEventListener("dragover", (e) => {
+    dropZone?.addEventListener("dragover", (e) => {
         e.preventDefault();
         dropZone.classList.add("dragover");
     });
 
-    dropZone.addEventListener("dragleave", () => {
+    dropZone?.addEventListener("dragleave", () => {
         dropZone.classList.remove("dragover");
     });
 
     // Handler for dropping a file
-    dropZone.addEventListener("drop", (e) => {
+    dropZone?.addEventListener("drop", (e) => {
         e.preventDefault();
         dropZone.classList.remove("dragover");
 
@@ -421,7 +439,7 @@ function loadDropZoneHandler() {
     });
 
     // Manual selection of the file (File explorer)
-    fileInput.addEventListener("change", () => {
+    fileInput?.addEventListener("change", () => {
         if (fileInput.files.length) {
             showPreview(fileInput.files[0]);
         }
@@ -465,7 +483,7 @@ function setupFormSpinner(formSelector, spinnerId, redirectUrl = null, spinnerDu
     if (!form || !spinner) return;
 
     const saveButton = form.querySelector("button[type='submit']");
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
         e.preventDefault();
         const invalidFields = document.querySelectorAll(".is-invalid");
         const noInvalidFieldsPresent = invalidFields?.length === 0;
@@ -479,15 +497,18 @@ function setupFormSpinner(formSelector, spinnerId, redirectUrl = null, spinnerDu
             showFixError(dialog, [...invalidFields]);
         }
 
+        const formData = await obtainEditedFormData(form);
 
-
-        setTimeout(() => {
+        setTimeout(async () => {
             if (redirectUrl) {
                 window.location.href = redirectUrl;
             } else {
                 if (saveButton.classList.contains("newBrandButton") || saveButton.classList.contains("editBrandButton")) {
-                    if (noInvalidFieldsPresent)
-                        form.submit();
+                    if (noInvalidFieldsPresent) {
+                        // form.submit();
+
+
+                    }
                     else {
                         spinner.classList.add("d-none");
                         saveButton.disabled = false;
@@ -525,7 +546,7 @@ async function deleteModel(modelName, brandId) {
 
 // Function to obtain the ID from the brand.
 function obtainBrandID() {
-    return document.getElementById("brandField").getAttribute("data-brandid");
+    return document.getElementById("brandField")?.getAttribute("data-brandid");
 }
 
 // Function to obtain the name of the model from the button we press.
@@ -768,19 +789,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!spinner || !saveButton) return;
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
         e.preventDefault();
         const invalidFields = document.querySelectorAll(".is-invalid")
+        const brandid = document.getElementById("editBrandForm")?.getAttribute("data-id");
         const noInvalidFieldsPresent = invalidFields?.length === 0;
         const dialog = loadDialogWindow();
         console.log(invalidFields);
         spinner.classList.remove("d-none");
         saveButton.disabled = true;
 
-        setTimeout(() => {
-            if (noInvalidFieldsPresent)
-                form.submit();
-            else 
+        const formData = await obtainEditedFormData(form);
+
+        setTimeout(async () => {
+            if (noInvalidFieldsPresent){
+                // form.submit();
+                await fetch(`/brand/${brandid}/edit`, {
+                    method: "POST",
+                    body: formData
+                });
+                window.location.href = `/brand/${brandid}`;
+            }
+            else
                 showFixError(dialog, [...invalidFields]);
         }, 500);
 
@@ -1158,7 +1188,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // Obtain logo. If everything went well, show it in the preview field.
         const NewestLogoImage = await fetch(logoImageRoute);
-        if (NewestLogoImage.ok){
+        if (NewestLogoImage.ok) {
             imagePreview.style.display = "block";
             removeImageBtn.style.display = "inline-block";
             imagePreview.src = logoImageRoute;
@@ -1203,13 +1233,15 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ===================== EDIT FORM VALIDATION ON SUBMIT =====================
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const editForm = document.getElementById("editBrandForm");
+    const brandid = editForm?.getAttribute("data-id");
 
     if (editForm) {
-        editForm.addEventListener("submit", (e) => {
+        editForm.addEventListener("submit", async (e) => {
             // Get all input and textarea fields with errors
             const invalidFields = editForm.querySelectorAll(".is-invalid");
+            const btn = editForm.querySelector("button[type='submit']");
 
             // If there are invalid fields, prevent submission
             if (invalidFields.length > 0) {
@@ -1222,11 +1254,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (spinner) spinner.classList.add("d-none");
 
                 // Re-enable submit button
-                const btn = editForm.querySelector("button[type='submit']");
+
                 if (btn) btn.disabled = false;
 
                 showFixError(dialog, invalidFieldsList);
             }
+
         });
     }
 });
+
+async function obtainEditedFormData(form) {
+    const formData = new FormData(form);
+    const removeButton = document.getElementById("removeEditImage");
+    const btn = form.querySelector("button[type='submit']");
+    const buttonIsForBrand = btn.classList.contains("newBrandButton") || btn.classList.contains("editBrandButton");
+    const imageHasBeenAdded = buttonIsForBrand && removeButton.style.display !== "none";
+
+    console.log(formData);
+    console.log(imageHasBeenAdded);
+    if (!imageHasBeenAdded) {
+        const file = await loadDefaultBrandImage();
+        formData.append("image", file);
+    }
+
+    return formData;
+}
