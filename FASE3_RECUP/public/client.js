@@ -795,7 +795,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const brandid = document.getElementById("editBrandForm")?.getAttribute("data-id");
         const noInvalidFieldsPresent = invalidFields?.length === 0;
         const dialog = loadDialogWindow();
-        console.log(invalidFields);
         spinner.classList.remove("d-none");
         saveButton.disabled = true;
 
@@ -1271,8 +1270,6 @@ async function obtainEditedFormData(form) {
     const buttonIsForBrand = btn.classList.contains("newBrandButton") || btn.classList.contains("editBrandButton");
     const imageHasBeenAdded = buttonIsForBrand && removeButton.style.display !== "none";
 
-    console.log(formData);
-    console.log(imageHasBeenAdded);
     if (!imageHasBeenAdded) {
         const file = await loadDefaultBrandImage();
         formData.append("image", file);
