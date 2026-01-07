@@ -1146,12 +1146,24 @@ function checkEditDescription() {
 }
 
 // ===================== EDIT IMAGE PREVIEW AND REMOVAL =====================
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const imageInput = document.getElementById("editImage");
     const imagePreview = document.getElementById("editImagePreview");
     const removeImageBtn = document.getElementById("removeEditImage");
 
     if (imageInput && imagePreview && removeImageBtn) {
+        // Brand ID. Needed for the current logo fetch for preview.
+        const brandid = document.getElementById("editBrandForm")?.getAttribute("data-id");
+        const logoImageRoute = `/brand/${brandid}/image`;
+
+        // Obtain logo. If everything went well, show it in the preview field.
+        const NewestLogoImage = await fetch(logoImageRoute);
+        if (NewestLogoImage.ok){
+            imagePreview.style.display = "block";
+            removeImageBtn.style.display = "inline-block";
+            imagePreview.src = logoImageRoute;
+        }
+
         imageInput.addEventListener("change", () => {
             const file = imageInput.files[0];
             if (file) {
