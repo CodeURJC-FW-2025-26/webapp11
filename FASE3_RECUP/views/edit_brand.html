@@ -27,8 +27,9 @@
 
     <section class="brands">
         <div class="container d-flex justify-content-center">
-            <form id="editBrandForm" class="car-form p-4 shadow rounded bg-white" action="/brand/{{brand._id}}/edit" data-id="{{brand._id}}"
-                method="POST" enctype="multipart/form-data" style="max-width: 600px; width: 100%;">
+            <form id="editBrandForm" class="p-4 shadow rounded bg-white" action="/brand/{{brand._id}}/edit"
+                data-id="{{brand._id}}" method="POST" enctype="multipart/form-data"
+                style="max-width: 600px; width: 100%;">
 
                 <div class="mb-3">
                     <label for="editBrandName" class="form-label">Brand Name</label>
@@ -73,7 +74,7 @@
             </form>
         </div>
         <!-- Form submit spinner -->
-        <div id="form-spinner" class="d-none spinner-overlay">
+        <div id="edit-form-spinner" class="d-none spinner-overlay">
             <div class="spinner-content">
                 <div class="car-spinner-final">
                     <div class="top-car">🏎️</div>

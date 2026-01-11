@@ -801,7 +801,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const formData = await obtainEditedFormData(form);
 
         setTimeout(async () => {
-            if (noInvalidFieldsPresent){
+            if (noInvalidFieldsPresent) {
                 // form.submit();
                 await fetch(`/brand/${brandid}/edit`, {
                     method: "POST",
@@ -1227,41 +1227,57 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("editCountry")?.addEventListener("input", checkEditCountry);
     document.getElementById("editDescription")?.addEventListener("input", checkEditDescription);
 
-    // Form spinner setup for edit brand form
-    setupFormSpinner("#editBrandForm", "edit-form-spinner");
+
 });
 
 // ===================== EDIT FORM VALIDATION ON SUBMIT =====================
-document.addEventListener("DOMContentLoaded", async () => {
-    const editForm = document.getElementById("editBrandForm");
-    const brandid = editForm?.getAttribute("data-id");
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("editBrandForm");
+    if (!form) return;
 
-    if (editForm) {
-        editForm.addEventListener("submit", async (e) => {
-            // Get all input and textarea fields with errors
-            const invalidFields = editForm.querySelectorAll(".is-invalid");
-            const btn = editForm.querySelector("button[type='submit']");
+    const spinner = document.getElementById("edit-form-spinner");
+    const saveButton = form.querySelector("button[type='submit']");
+    if (!spinner || !saveButton) return;
 
-            // If there are invalid fields, prevent submission
-            if (invalidFields.length > 0) {
-                e.preventDefault();
-                const invalidFieldsList = [...invalidFields];
-                const dialog = loadDialogWindow();
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-                //  Hide spinner if visible
-                const spinner = document.getElementById("edit-form-spinner");
-                if (spinner) spinner.classList.add("d-none");
+        const invalidFields = form.querySelectorAll(".is-invalid");
+        const dialog = loadDialogWindow();
+        const brandid = form.getAttribute("data-id");
 
-                // Re-enable submit button
+        // Prev validation check - if there are invalid fields, show error dialog 
+        if (invalidFields.length > 0) {
+            showFixError(dialog, [...invalidFields]);
+            return; // Exit the function early
+        }
 
-                if (btn) btn.disabled = false;
+        // No errors found, proceed with form submission and show spinner
+        spinner.classList.remove("d-none");
+        saveButton.disabled = true;
 
-                showFixError(dialog, invalidFieldsList);
-            }
+        // Obtain edited form data 
+        const formData = await obtainEditedFormData(form);
 
+        // Send AJAX request to update brand
+        const response = await fetch(`/brand/${brandid}/edit`, {
+            method: "POST",
+            body: formData
         });
-    }
+
+        // If there was an error during submission, show error dialog
+        if (!response.ok) {
+            spinner.classList.add("d-none");
+            saveButton.disabled = false;
+            showErrorWindow(dialog, response);
+            return;
+        }
+
+        // If everything went well, redirect to brand page
+        window.location.href = `/brand/${brandid}`;
+    });
 });
+
 
 async function obtainEditedFormData(form) {
     const formData = new FormData(form);
