@@ -497,15 +497,13 @@ function setupFormSpinner(formSelector, spinnerId, redirectUrl = null, spinnerDu
             showFixError(dialog, [...invalidFields]);
         }
 
-        const formData = await obtainEditedFormData(form);
-
         setTimeout(async () => {
             if (redirectUrl) {
                 window.location.href = redirectUrl;
             } else {
                 if (saveButton.classList.contains("newBrandButton") || saveButton.classList.contains("editBrandButton")) {
                     if (noInvalidFieldsPresent) {
-                        // form.submit();
+                        form.submit();
 
 
                     }
@@ -1284,12 +1282,13 @@ async function obtainEditedFormData(form) {
     const removeButton = document.getElementById("removeEditImage");
     const btn = form.querySelector("button[type='submit']");
     const buttonIsForBrand = btn.classList.contains("newBrandButton") || btn.classList.contains("editBrandButton");
-    const imageHasBeenAdded = buttonIsForBrand && removeButton.style.display !== "none";
+    const imageHasBeenAdded = buttonIsForBrand && removeButton?.style.display !== "none";
 
     if (!imageHasBeenAdded) {
         const file = await loadDefaultBrandImage();
         formData.append("image", file);
     }
+    console.log(formData)
 
     return formData;
 }
