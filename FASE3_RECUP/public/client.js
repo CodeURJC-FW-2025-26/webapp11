@@ -1288,7 +1288,6 @@ async function obtainEditedFormData(form) {
         const file = await loadDefaultBrandImage();
         formData.append("image", file);
     }
-    console.log(formData)
 
     return formData;
 }
