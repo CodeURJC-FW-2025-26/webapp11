@@ -269,14 +269,14 @@ router.post('/brand/:id/model/:name/edit', upload.single('image'), async (req, r
     const date = new Date();
 
     const updatedModelObject = {
-        name: sentFormInfo.modelName || oldModelObject.name,
-        HP: sentFormInfo.HP || oldModelObject.HP,
-        year: sentFormInfo.year || oldModelObject.year,
-        daily_price: sentFormInfo.daily_price || oldModelObject.daily_price,
-        image: req.file ? req.file.filename : oldModelObject.models[0].image,
-        technical_specifications: sentFormInfo.technical_specifications || oldModelObject.technical_specifications,
-        rental_conditions: sentFormInfo.rental_conditions || oldModelObject.rental_conditions,
-        interesting_facts: sentFormInfo.interesting_facts || oldModelObject.interesting_facts
+        name: sentFormInfo.modelName || oldModelObject.models[0].name,
+        HP: sentFormInfo.HP || oldModelObject.models[0].HP,
+        year: sentFormInfo.year || oldModelObject.models[0].year,
+        daily_price: sentFormInfo.daily_price || oldModelObject.models[0].daily_price,
+        image: null, // Será asignada después según la lógica
+        technical_specifications: sentFormInfo.technical_specifications || oldModelObject.models[0].technical_specifications,
+        rental_conditions: sentFormInfo.rental_conditions || oldModelObject.models[0].rental_conditions,
+        interesting_facts: sentFormInfo.interesting_facts || oldModelObject.models[0].interesting_facts
     };
 
 
@@ -288,17 +288,27 @@ router.post('/brand/:id/model/:name/edit', upload.single('image'), async (req, r
     if (!updatedModelObject.name || !updatedModelObject.HP || !updatedModelObject.year || !updatedModelObject.daily_price || !updatedModelObject.technical_specifications || !updatedModelObject.rental_conditions || !updatedModelObject.interesting_facts) {
         return res.status(400).render('error', { message: "Some fields are missing", link: `/brand/${brandId}/model/${oldModelName}/edit`, page: `Edit ${oldModelName}` });
     }
-    if (!updatedModelObject.image) {
-        return res.status(400).render('error', { message: "You must upload a model image", link: `/brand/${brandId}/model/${oldModelName}/edit`, page: `Edit ${oldModelName}` });
+    // Image handling
+    if (req.file) {
+        // If a new image is uploaded, use it
+        updatedModelObject.image = req.file.filename;
+    } else if (req.body.deleteImage === 'true') {
+        // If the image is marked for deletion, set to null
+        updatedModelObject.image = null;
+    } else {
+        // Otherwise, keep the old image
+        updatedModelObject.image = oldModelObject.models[0].image;
     }
     //Valid model name
     if (!/^[A-Z0-9ÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]{0,29}$/.test(updatedModelObject.name)) {
         return res.status(400).render('error', { message: "Model name must start with an uppercase letter and have a maximum of 30 characters", link: `/brand/${brandId}/model/${oldModelName}/edit`, page: `Edit ${oldModelName}` });
     }
-    //Checks if the model name already exists
-    const existingModel = await catalog.findModelByName(brandId, oldModelObject.name);
-    if (existingModel.models) {
-        return res.status(400).render('error', { message: "Model name already exists", link: `/brand/${brandId}/model/${oldModelName}/edit`, page: `Edit ${oldModelName}` });
+    //Checks if the model name already exists (only if the name changed)
+    if (updatedModelObject.name !== oldModelName) {
+        const existingModel = await catalog.findModelByName(brandId, updatedModelObject.name);
+        if (existingModel && existingModel.models && existingModel.models.length > 0) {
+            return res.status(400).render('error', { message: "Model name already exists", link: `/brand/${brandId}/model/${oldModelName}/edit`, page: `Edit ${oldModelName}` });
+        }
     }
     //Year
     if (updatedModelObject.year < 1850 || updatedModelObject.year > (date.getFullYear() + 1)) {

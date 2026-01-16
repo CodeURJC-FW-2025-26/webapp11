@@ -142,6 +142,17 @@ document.addEventListener("DOMContentLoaded", () => {
             let response = await deleteModel(modelName, brandid);
             if (response.status === 200) {
                 document.getElementById(modelName).remove();
+                
+                // Check if there are no more models left
+                const brandModelSection = document.getElementById("brandModelSection");
+                const remainingModels = brandModelSection.querySelectorAll(".brand-card");
+                
+                // If no models remain, show the "no models" message
+                if (remainingModels.length === 0) {
+                    const noModelsMsg = document.createElement("p");
+                    noModelsMsg.textContent = "This brand has no models currently.";
+                    brandModelSection.appendChild(noModelsMsg);
+                }
             }
             else {
                 showErrorWindow(dialog, response);
@@ -150,24 +161,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // Button pressed is the brand deletion button
         else if (targetButton.id === "brandDeletionButton") {
             confirmBrandDeletion(dialog, brandid);
-        }
-        // Button pressed is a model edition button
-        else if (targetButton.classList.contains("editModelButton")) {
-            modelName = obtainModelName(targetButton);
-
-            let result = await fetch(`/brand/${brandid}/model/${modelName}`);
-            let modelInfo = await result.json();
-            let model = modelInfo.models[0];
-
-            if (modelName) {
-                loadFormInfo(model, brandid);
-                hideShowInfoPage();
-            }
-        }
-        // Button pressed is a model edition cancel button
-        else if (targetButton.classList.contains("cancelEditModel")) {
-            wipeFormInfo();
-            hideShowInfoPage();
         }
     })
 
@@ -293,6 +286,28 @@ function wipeFormInfo() {
     document.getElementById("rental_conditions").innerText = '';
     document.getElementById("interesting_facts").innerText = '';
     document.getElementById("imgPreviewField").innerHTML = '';
+    
+    // Clear validation states and messages
+    if (form) {
+        // Remove all validation classes from form inputs
+        const validatedInputs = form.querySelectorAll(".is-valid, .is-invalid");
+        validatedInputs.forEach(input => {
+            input.classList.remove("is-valid", "is-invalid");
+        });
+        
+        // Clear all validation messages
+        const validationMessages = form.querySelectorAll("[id$=Message], [class$=msg]");
+        validationMessages.forEach(msg => {
+            msg.textContent = "";
+            msg.style.color = "";
+        });
+    }
+    
+    // Hide the remove image button
+    const removeImageButton = document.getElementById("removeImageButton");
+    if (removeImageButton) {
+        removeImageButton.classList.add("d-none");
+    }
 }
 
 async function updateCarCard(car, modelName) {
@@ -339,11 +354,15 @@ function createCarCard(car) {
     card.id = car.name;
     card.dataset.modelname = car.name;
     let brandid = obtainBrandID();
+    card.dataset.brandid = brandid;
+    card.style.position = "relative";
 
-    // Fill content in the card
+    // Fill content in the card with complete structure (display + edit form)
+    // Match the exact same structure as info.html for consistency
     card.innerHTML = `
-        <div class="mt-3">
-            <img src="/brand/${brandid}/model/${car.name}/image" alt="${car.name}">
+        <!-- VISTA NORMAL -->
+        <div class="mt-3 model-display">
+            <img src="/brand/${brandid}/model/${car.name}/image" alt="${car.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27200%27%3E%3Crect fill=%27%23f0f0f0%27 width=%27300%27 height=%27200%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 dy=%27.3em%27 fill=%27%23999%27 font-family=%27Arial%27 font-size=%2716%27%3ENo Image Available%3C/text%3E%3C/svg%3E'">
             <br>
             <span class="car-name">${car.name}</span>
             <span class="car-details">${car.year} • ${car.HP} HP</span>
@@ -362,10 +381,93 @@ function createCarCard(car) {
                 <a class="btn btn-sm btn-outline-danger deleteModelButton" data-modelname="${car.name}">Delete</a>
             </div>
         </div>
+
+        <!-- EDIT VIEW (hidden) -->
+        <form class="mt-3 model-edit-form d-none" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control model-edit-name" name="modelName" value="${car.name}" required>
+                <span class="model-edit-name-msg"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Year of Release</label>
+                <input type="number" class="form-control model-edit-year" name="year" value="${car.year}" required>
+                <span class="model-edit-year-msg"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Horsepower</label>
+                <input type="number" class="form-control model-edit-hp" name="HP" value="${car.HP}" required>
+                <span class="model-edit-hp-msg"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Daily Price</label>
+                <input type="number" class="form-control model-edit-price" name="daily_price" value="${car.daily_price}" required>
+                <span class="model-edit-price-msg"></span>
+            </div>
+
+            <div class="mb-3">
+                <label>Image</label>
+                <div class="drop-zone model-drop-zone">
+                    <span>Drag an image here or click</span>
+                    <input type="file" name="image" class="model-image-input" accept="image/*" hidden>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label>Image Preview</label><br>
+                <small class="model-image-preview"></small>
+                <button type="button" class="btn btn-sm btn-outline-danger ms-2 model-remove-image">Remove Image</button>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Technical Specifications</label>
+                <textarea class="form-control model-edit-specs" name="technical_specifications" rows="3" required>${car.technical_specifications}</textarea>
+                <span class="model-edit-specs-msg"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Rental Conditions</label>
+                <textarea class="form-control model-edit-rental" name="rental_conditions" rows="3" required>${car.rental_conditions}</textarea>
+                <span class="model-edit-rental-msg"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Interesting Facts</label>
+                <textarea class="form-control model-edit-facts" name="interesting_facts" rows="3" required>${car.interesting_facts}</textarea>
+                <span class="model-edit-facts-msg"></span>
+            </div>
+
+            <div class="button-group d-flex justify-content-between">
+                <button type="submit" class="btn btn-dark model-save-btn">Save Changes</button>
+                <button type="button" class="btn btn-outline-secondary model-cancel-btn">Cancel</button>
+            </div>
+        </form>
+        
+        <!-- Spinner for model edit -->
+        <div class="d-none spinner-overlay model-edit-spinner">
+            <div class="spinner-content">
+                <div class="car-spinner-final">
+                    <div class="top-car">🏎️</div>
+                </div>
+                <small>Updating model...</small>
+            </div>
+        </div>
     `;
 
     // Inserting after all of the other model cards
     const container = document.getElementById("brandModelSection");
+    
+    // Remove the "no models" message if it exists
+    const noModelsMsg = Array.from(container.children).find(child => 
+        child.tagName === 'P' && child.textContent.includes("This brand has no models")
+    );
+    if (noModelsMsg) {
+        noModelsMsg.remove();
+    }
+    
     container.appendChild(card);
 }
 
@@ -831,9 +933,9 @@ async function checkModelName() {
     }
 
     // Local syntax validation
-    const syntaxValid = /^[A-ZÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]{0,29}$/.test(value);
+    const syntaxValid = /^[A-Z0-9ÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]{0,29}$/.test(value);
     if (!syntaxValid) {
-        showValidationMessage(input, message, "Model must start with uppercase letter and be max 30 characters", false);
+        showValidationMessage(input, message, "Model must start with uppercase letter or number and be max 30 characters", false);
         return;
     }
     // Availability check via AJAX
@@ -1253,26 +1355,39 @@ document.addEventListener("DOMContentLoaded", () => {
         // No errors found, proceed with form submission and show spinner
         spinner.classList.remove("d-none");
         saveButton.disabled = true;
+        document.body.style.overflow = "hidden"; // Prevent scrolling while spinner is active
 
         // Obtain edited form data 
         const formData = await obtainEditedFormData(form);
 
-        // Send AJAX request to update brand
-        const response = await fetch(`/brand/${brandid}/edit`, {
-            method: "POST",
-            body: formData
-        });
+        try {
+            // Send AJAX request to update brand
+            const response = await fetch(`/brand/${brandid}/edit`, {
+                method: "POST",
+                body: formData
+            });
 
-        // If there was an error during submission, show error dialog
-        if (!response.ok) {
+            // If there was an error during submission, show error dialog
+            if (!response.ok) {
+                spinner.classList.add("d-none");
+                saveButton.disabled = false;
+                document.body.style.overflow = ""; // Re-enable scrolling
+                showErrorWindow(dialog, response);
+                return;
+            }
+
+            // If everything went well, wait for spinner to show then redirect to brand page
+            setTimeout(() => {
+                window.location.href = `/brand/${brandid}`;
+            }, 1000);
+
+        } catch (error) {
+            // Handle network errors
             spinner.classList.add("d-none");
             saveButton.disabled = false;
-            showErrorWindow(dialog, response);
-            return;
+            document.body.style.overflow = ""; // Re-enable scrolling
+            showErrorWindow(dialog, { status: 500, statusText: "Network Error" });
         }
-
-        // If everything went well, redirect to brand page
-        window.location.href = `/brand/${brandid}`;
     });
 });
 
@@ -1290,4 +1405,549 @@ async function obtainEditedFormData(form) {
     }
 
     return formData;
+}
+
+// ===================== EDIT MODEL IN INFO PAGE =====================
+// When the info page loads, configure model editing buttons
+document.addEventListener("DOMContentLoaded", () => {
+    setupModelEditButtons();
+});
+
+function setupModelEditButtons() {
+    // Use event delegation to capture clicks on dynamically created buttons
+    const brandModelSection = document.getElementById('brandModelSection');
+    if (!brandModelSection) return;
+    
+    brandModelSection.addEventListener('click', (e) => {
+        const btn = e.target.closest('.editModelButton');
+        if (!btn) return;
+        
+        e.preventDefault();
+        const card = btn.closest('.brand-card');
+        const modelName = card.getAttribute('data-modelname');
+        const brandId = card.getAttribute('data-brandid');
+        
+        // Show the edit form and load the data
+        toggleModelEditForm(card);
+        setupEditModelForm(card, brandId, modelName);
+    });
+}
+
+function toggleModelEditForm(card) {
+    const displayDiv = card.querySelector('.model-display');
+    const editForm = card.querySelector('.model-edit-form');
+    
+    displayDiv.classList.toggle('d-none');
+    editForm.classList.toggle('d-none');
+}
+
+function setupEditModelForm(card, brandId, oldModelName) {
+    const editForm = card.querySelector('.model-edit-form');
+    const nameInput = editForm.querySelector('.model-edit-name');
+    const yearInput = editForm.querySelector('.model-edit-year');
+    const hpInput = editForm.querySelector('.model-edit-hp');
+    const priceInput = editForm.querySelector('.model-edit-price');
+    const specsInput = editForm.querySelector('.model-edit-specs');
+    const rentalInput = editForm.querySelector('.model-edit-rental');
+    const factsInput = editForm.querySelector('.model-edit-facts');
+    const dropZone = editForm.querySelector('.model-drop-zone');
+    const fileInput = editForm.querySelector('.model-image-input');
+    const previewField = editForm.querySelector('.model-image-preview');
+    const removeBtn = editForm.querySelector('.model-remove-image');
+    const cancelBtn = editForm.querySelector('.model-cancel-btn');
+    const submitBtn = editForm.querySelector('.model-save-btn');
+    
+    
+    let selectedImageFile = null;
+    
+    // Load existing model data into the form
+    const displayDiv = card.querySelector('.model-display');
+    const nameSpan = displayDiv.querySelector('.car-name');
+    const detailsSpan = displayDiv.querySelector('.car-details');
+    const priceSpan = displayDiv.querySelector('.car-price');
+    const paragraphs = displayDiv.querySelectorAll('p');
+    
+    // Extract model data
+    const modelName = nameSpan.textContent.trim();
+    const details = detailsSpan.textContent.trim().split(' • ');
+    const year = details[0].trim();
+    const hp = details[1].trim().replace(' HP', '');
+    const price = priceSpan.textContent.trim().replace('$/day', '').trim();
+    
+    // Extract text from paragraphs (removing <strong> tags)
+    let specs = '';
+    let rental = '';
+    let facts = '';
+    
+    // Extract text from paragraphs (removing <strong> tags)
+    if (paragraphs[0]) {
+        specs = paragraphs[0].textContent.replace('Technical Specifications:', '').trim();
+    }
+    if (paragraphs[1]) {
+        rental = paragraphs[1].textContent.replace('Rental Conditions:', '').trim();
+    }
+    if (paragraphs[2]) {
+        facts = paragraphs[2].textContent.replace('Interesting Facts:', '').trim();
+    }
+    
+    nameInput.value = modelName;
+    yearInput.value = year;
+    hpInput.value = hp;
+    priceInput.value = price;
+    specsInput.value = specs;
+    rentalInput.value = rental;
+    factsInput.value = facts;
+    
+    // Fetch model data from server to check if image exists
+    fetch(`/brand/${brandId}/model/${oldModelName}`)
+        .then(response => response.json())
+        .then(modelObject => {
+            const model = modelObject.models[0];
+            // If image exists and is not null, show it. Otherwise show placeholder
+            if (model.image) {
+                // Add cache-busting parameter to force reload of updated images
+                previewField.innerHTML = `<img src="/brand/${brandId}/model/${oldModelName}/image?t=${Date.now()}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27200%27 height=%27200%27%3E%3Crect fill=%27%23f0f0f0%27 width=%27200%27 height=%27200%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 dy=%27.3em%27 fill=%27%23999%27 font-family=%27Arial%27 font-size=%2714%27%3ENo Image%3C/text%3E%3C/svg%3E'" style="max-width: 200px; max-height: 200px; border: 1px solid #ddd;">`;
+            } else {
+                // Show placeholder when no image exists
+                previewField.innerHTML = `<img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27200%27 height=%27200%27%3E%3Crect fill=%27%23f0f0f0%27 width=%27200%27 height=%27200%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 dy=%27.3em%27 fill=%27%23999%27 font-family=%27Arial%27 font-size=%2714%27%3ENo Image%3C/text%3E%3C/svg%3E'" style="max-width: 200px; max-height: 200px; border: 1px dashed #999;">`;
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching model data:', error);
+            previewField.innerHTML = `<img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27200%27 height=%27200%27%3E%3Crect fill=%27%23f0f0f0%27 width=%27200%27 height=%27200%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 dy=%27.3em%27 fill=%27%23999%27 font-family=%27Arial%27 font-size=%2714%27%3ENo Image%3C/text%3E%3C/svg%3E'" style="max-width: 200px; max-height: 200px; border: 1px dashed #999;">`;
+        });
+    
+    // Clean up previous listeners by replacing nodes
+    const newNameInput = nameInput.cloneNode(true);
+    nameInput.parentNode.replaceChild(newNameInput, nameInput);
+    const newYearInput = yearInput.cloneNode(true);
+    yearInput.parentNode.replaceChild(newYearInput, yearInput);
+    const newHpInput = hpInput.cloneNode(true);
+    hpInput.parentNode.replaceChild(newHpInput, hpInput);
+    const newPriceInput = priceInput.cloneNode(true);
+    priceInput.parentNode.replaceChild(newPriceInput, priceInput);
+    const newSpecsInput = specsInput.cloneNode(true);
+    specsInput.parentNode.replaceChild(newSpecsInput, specsInput);
+    const newRentalInput = rentalInput.cloneNode(true);
+    rentalInput.parentNode.replaceChild(newRentalInput, rentalInput);
+    const newFactsInput = factsInput.cloneNode(true);
+    factsInput.parentNode.replaceChild(newFactsInput, factsInput);
+    
+    // Also clean up button listeners
+    const newCancelBtn = cancelBtn.cloneNode(true);
+    cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
+    const newSubmitBtn = submitBtn.cloneNode(true);
+    submitBtn.parentNode.replaceChild(newSubmitBtn, submitBtn);
+    
+    // Update references after cloning
+    const updatedEditForm = card.querySelector('.model-edit-form');
+    const updatedNameInput = updatedEditForm.querySelector('.model-edit-name');
+    const updatedYearInput = updatedEditForm.querySelector('.model-edit-year');
+    const updatedHpInput = updatedEditForm.querySelector('.model-edit-hp');
+    const updatedPriceInput = updatedEditForm.querySelector('.model-edit-price');
+    const updatedSpecsInput = updatedEditForm.querySelector('.model-edit-specs');
+    const updatedRentalInput = updatedEditForm.querySelector('.model-edit-rental');
+    const updatedFactsInput = updatedEditForm.querySelector('.model-edit-facts');
+    const updatedCancelBtn = updatedEditForm.querySelector('.model-cancel-btn');
+    const updatedSubmitBtn = updatedEditForm.querySelector('.model-save-btn');
+    
+    updatedNameInput.value = modelName;
+    updatedYearInput.value = year;
+    updatedHpInput.value = hp;
+    updatedPriceInput.value = price;
+    updatedSpecsInput.value = specs;
+    updatedRentalInput.value = rental;
+    updatedFactsInput.value = facts;
+    
+    // Setup drop zone
+    setupEditModelDropZone(dropZone, fileInput, previewField, removeBtn, brandId, oldModelName,
+                           () => selectedImageFile, 
+                           (file) => { selectedImageFile = file; });
+    
+    // Setup validaciones in real time
+    updatedNameInput.addEventListener('input', () => validateEditModelName(updatedNameInput, updatedEditForm, brandId, oldModelName));
+    updatedYearInput.addEventListener('input', () => validateEditYear(updatedYearInput, updatedEditForm));
+    updatedHpInput.addEventListener('input', () => validateEditHP(updatedHpInput, updatedEditForm));
+    updatedPriceInput.addEventListener('input', () => validateEditDailyPrice(updatedPriceInput, updatedEditForm));
+    updatedSpecsInput.addEventListener('input', () => validateEditTechnicalSpecs(updatedSpecsInput, updatedEditForm));
+    updatedRentalInput.addEventListener('input', () => validateEditRentalConditions(updatedRentalInput, updatedEditForm));
+    updatedFactsInput.addEventListener('input', () => validateEditInterestingFacts(updatedFactsInput, updatedEditForm));
+    
+    // Cancel button
+    updatedCancelBtn.addEventListener('click', () => {
+        toggleModelEditForm(card);
+        selectedImageFile = null;
+        fileInput.value = '';
+        updatedEditForm.reset();
+    });
+    
+    // Submit button
+    updatedSubmitBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        
+        // Validate all fields
+        const isNameValid = await validateEditModelName(updatedNameInput, updatedEditForm, brandId, oldModelName);
+        const isYearValid = validateEditYear(updatedYearInput, updatedEditForm);
+        const isHPValid = validateEditHP(updatedHpInput, updatedEditForm);
+        const isPriceValid = validateEditDailyPrice(updatedPriceInput, updatedEditForm);
+        const isSpecsValid = validateEditTechnicalSpecs(updatedSpecsInput, updatedEditForm);
+        const isRentalValid = validateEditRentalConditions(updatedRentalInput, updatedEditForm);
+        const isFactsValid = validateEditInterestingFacts(updatedFactsInput, updatedEditForm);
+        
+        if (!isNameValid || !isYearValid || !isHPValid || !isPriceValid || 
+            !isSpecsValid || !isRentalValid || !isFactsValid) {
+            return;
+        }
+        
+        // Create FormData to send
+        const formData = new FormData();
+        formData.append('modelName', updatedNameInput.value);
+        formData.append('year', updatedYearInput.value);
+        formData.append('HP', updatedHpInput.value);
+        formData.append('daily_price', updatedPriceInput.value);
+        formData.append('technical_specifications', updatedSpecsInput.value);
+        formData.append('rental_conditions', updatedRentalInput.value);
+        formData.append('interesting_facts', updatedFactsInput.value);
+        
+        // Handle image: new, deleted, or keep previous
+        if (selectedImageFile) {
+            formData.append('image', selectedImageFile);
+        } else if (removeBtn.hasAttribute('data-image-deleted')) {
+            // if user marked image for deletion
+            formData.append('deleteImage', 'true');
+        }
+        
+        // Show spinner
+        const spinner = card.querySelector('.model-edit-spinner');
+        spinner.classList.remove('d-none');
+        
+        try {
+            const response = await fetch(
+                `/brand/${brandId}/model/${encodeURIComponent(oldModelName)}/edit`,
+                {
+                    method: 'POST',
+                    body: formData
+                }
+            );
+            
+            if (!response.ok) {
+                throw new Error('Error updating model');
+            }
+            
+            const data = await response.json();
+            
+            spinner.classList.add('d-none');
+            
+            // Update the model card with new data
+            updateModelCard(card, data, brandId);
+            
+            // Hide the edit form
+            toggleModelEditForm(card);
+            
+            // Variable reset
+            selectedImageFile = null;
+            fileInput.value = '';
+            updatedEditForm.reset();
+            
+        } catch (error) {
+            spinner.classList.add('d-none');
+            console.error('Error:', error);
+        }
+    });
+}
+
+function setupEditModelDropZone(dropZone, fileInput, previewField, removeBtn, brandId, oldModelName, getSelectedFile, setSelectedFile) {
+    // Click to open file dialog
+    dropZone.addEventListener('click', () => fileInput.click());
+    
+    // Drag over
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('dragover');
+    });
+    
+    // Drag leave
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('dragover');
+    });
+    
+    // Drop
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            fileInput.files = files;
+            showEditModelImagePreview(files[0], previewField, removeBtn);
+            setSelectedFile(files[0]);
+        }
+    });
+    
+    // File input change
+    fileInput.addEventListener('change', () => {
+        if (fileInput.files.length > 0) {
+            showEditModelImagePreview(fileInput.files[0], previewField, removeBtn);
+            setSelectedFile(fileInput.files[0]);
+            removeBtn.removeAttribute('data-image-deleted');
+        }
+    });
+    
+    // Remove button - marks image as deleted
+    removeBtn.addEventListener('click', () => {
+        fileInput.value = '';
+        setSelectedFile(null);
+        // Show 'no image' placeholder
+        previewField.innerHTML = `<img src="" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27200%27 height=%27200%27%3E%3Crect fill=%27%23f0f0f0%27 width=%27200%27 height=%27200%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 dy=%27.3em%27 fill=%27%23999%27 font-family=%27Arial%27 font-size=%2714%27%3ENo Image%3C/text%3E%3C/svg%3E'\" style="max-width: 200px; max-height: 200px; border: 1px dashed #999;">`;
+        // Mark that user wants to delete the image
+        removeBtn.setAttribute('data-image-deleted', 'true');
+    });
+}
+
+function showEditModelImagePreview(file, previewField, removeBtn) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        previewField.innerHTML = `<img src="${e.target.result}" style="max-width: 200px; max-height: 200px;">`;
+        removeBtn.classList.remove('d-none');
+    };
+    reader.readAsDataURL(file);
+}
+
+function updateModelCard(card, updatedData, brandId) {
+    const displayDiv = card.querySelector('.model-display');
+    const nameSpan = displayDiv.querySelector('.car-name');
+    const detailsSpan = displayDiv.querySelector('.car-details');
+    const priceSpan = displayDiv.querySelector('.car-price');
+    const specsP = displayDiv.querySelectorAll('p')[0];
+    const rentalP = displayDiv.querySelectorAll('p')[1];
+    const factsP = displayDiv.querySelectorAll('p')[2];
+    const imgElement = displayDiv.querySelector('img');
+    
+    // Update image with cache-busting
+    imgElement.src = `/brand/${brandId}/model/${updatedData.name}/image?t=${Date.now()}`;
+    imgElement.onerror = function() {
+        this.src = 'data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27200%27%3E%3Crect fill=%27%23f0f0f0%27 width=%27300%27 height=%27200%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 dy=%27.3em%27 fill=%27%23999%27 font-family=%27Arial%27 font-size=%2716%27%3ENo Image Available%3C/text%3E%3C/svg%3E';
+    };
+    
+    // Update text fields
+    nameSpan.textContent = updatedData.name;
+    detailsSpan.textContent = `${updatedData.year} • ${updatedData.HP} HP`;
+    priceSpan.textContent = `${updatedData.daily_price}$/day`;
+    specsP.innerHTML = `<strong>Technical Specifications:</strong> ${updatedData.technical_specifications}`;
+    rentalP.innerHTML = `<strong>Rental Conditions:</strong> ${updatedData.rental_conditions}`;
+    factsP.innerHTML = `<strong>Interesting Facts:</strong> ${updatedData.interesting_facts}`;
+    
+    // Update the ID and data-modelname if the name changed
+    const oldName = card.id;
+    if (oldName !== updatedData.name) {
+        card.id = updatedData.name;
+        card.setAttribute('data-modelname', updatedData.name);
+        
+        // Update edit button data-modelname
+        const deleteBtn = card.querySelector('.deleteModelButton');
+        if (deleteBtn) deleteBtn.setAttribute('data-modelname', updatedData.name);
+    }
+}
+
+// ===================== VALIDATION FUNCTIONS FOR MODEL EDIT =====================
+
+async function validateEditModelName(input, editForm, brandId, oldModelName) {
+    const msgSpan = editForm.querySelector('.model-edit-name-msg');
+    const modelName = input.value.trim();
+    
+    if (!modelName) {
+        input.classList.remove("is-valid", "is-invalid");
+        msgSpan.textContent = "";
+        return false;
+    }
+    
+    // Local syntax validation
+    const syntaxValid = /^[A-Z0-9ÁÉÍÓÚÑ][a-zA-Z0-9\sáéíóúñÁÉÍÓÚÑ]{0,29}$/.test(modelName);
+    if (!syntaxValid) {
+        showValidationMessage(input, msgSpan, "Model must start with uppercase letter and be max 30 characters", false);
+        return false;
+    }
+    
+    // If the name didn't change, it's valid (no database validation needed)
+    if (modelName === oldModelName) {
+        showValidationMessage(input, msgSpan, "Model name is valid", true);
+        return true;
+    }
+    
+    // Check availability only if the name changed
+    try {
+        const response = await fetch(`/brand/${brandId}/model/check-name?modelName=${encodeURIComponent(modelName)}`);
+        const data = await response.json();
+        
+        if (data.available && data.correct) {
+            showValidationMessage(input, msgSpan, "Model name is available", true);
+            return true;
+        } else if (!data.correct) {
+            showValidationMessage(input, msgSpan, "Model name must start with an uppercase letter or a number, and have a maximum of 30 characters", false);
+            return false;
+        } else {
+            showValidationMessage(input, msgSpan, "Model name already exists", false);
+            return false;
+        }
+    } catch (error) {
+        showValidationMessage(input, msgSpan, "Error checking model name", false);
+        return false;
+    }
+}
+
+function validateEditYear(input, editForm) {
+    const msgSpan = editForm.querySelector('.model-edit-year-msg');
+    const value = input.value.trim();
+    
+    if (!value) {
+        input.classList.remove("is-valid", "is-invalid");
+        msgSpan.textContent = "";
+        return false;
+    }
+    
+    const year = parseInt(value, 10);
+    if (Number.isNaN(year)) {
+        showValidationMessage(input, msgSpan, "Year must be a positive number", false);
+        return false;
+    }
+    
+    const now = new Date().getFullYear();
+    if (year < 1850 || year > now + 1) {
+        showValidationMessage(input, msgSpan, "Year must be between 1850 and current year", false);
+        return false;
+    }
+    
+    showValidationMessage(input, msgSpan, "Year is valid", true);
+    return true;
+}
+
+function validateEditHP(input, editForm) {
+    const msgSpan = editForm.querySelector('.model-edit-hp-msg');
+    const value = input.value.trim();
+    
+    if (!value) {
+        input.classList.remove("is-valid", "is-invalid");
+        msgSpan.textContent = "";
+        return false;
+    }
+    
+    const hp = parseInt(value, 10);
+    if (Number.isNaN(hp) || !/^[0-9]+$/.test(value)) {
+        showValidationMessage(input, msgSpan, "HP must be a positive number", false);
+        return false;
+    }
+    
+    if (hp > 10000) {
+        showValidationMessage(input, msgSpan, "HP must not exceed 10000", false);
+        return false;
+    }
+    
+    if (hp <= 0) {
+        showValidationMessage(input, msgSpan, "HP must be greater than 0", false);
+        return false;
+    }
+    
+    showValidationMessage(input, msgSpan, "HP is valid", true);
+    return true;
+}
+
+function validateEditDailyPrice(input, editForm) {
+    const msgSpan = editForm.querySelector('.model-edit-price-msg');
+    const value = input.value.trim();
+    
+    if (!value) {
+        input.classList.remove("is-valid", "is-invalid");
+        msgSpan.textContent = "";
+        return false;
+    }
+    
+    const price = parseInt(value, 10);
+    if (Number.isNaN(price) || !/^[0-9]+$/.test(value)) {
+        showValidationMessage(input, msgSpan, "Daily price must be a positive number", false);
+        return false;
+    }
+    
+    if (price > 1000000) {
+        showValidationMessage(input, msgSpan, "Daily price must not exceed $1,000,000", false);
+        return false;
+    }
+    
+    if (price <= 0) {
+        showValidationMessage(input, msgSpan, "Daily price must be greater than 0", false);
+        return false;
+    }
+    
+    showValidationMessage(input, msgSpan, "Daily price is valid", true);
+    return true;
+}
+
+function validateEditTechnicalSpecs(input, editForm) {
+    const msgSpan = editForm.querySelector('.model-edit-specs-msg');
+    const text = input.value.trim();
+    
+    if (!text) {
+        input.classList.remove("is-valid", "is-invalid");
+        msgSpan.textContent = "";
+        return false;
+    }
+    
+    if (text.length < 10) {
+        showValidationMessage(input, msgSpan, "Technical specifications must be at least 10 characters", false);
+        return false;
+    }
+    
+    if (text.length > 300) {
+        showValidationMessage(input, msgSpan, "Technical specifications cannot exceed 300 characters", false);
+        return false;
+    }
+    
+    showValidationMessage(input, msgSpan, "Technical specifications are valid", true);
+    return true;
+}
+
+function validateEditRentalConditions(input, editForm) {
+    const msgSpan = editForm.querySelector('.model-edit-rental-msg');
+    const text = input.value.trim();
+    
+    if (!text) {
+        input.classList.remove("is-valid", "is-invalid");
+        msgSpan.textContent = "";
+        return false;
+    }
+    
+    if (text.length < 10) {
+        showValidationMessage(input, msgSpan, "Rental conditions must be at least 10 characters", false);
+        return false;
+    }
+    
+    if (text.length > 300) {
+        showValidationMessage(input, msgSpan, "Rental conditions cannot exceed 300 characters", false);
+        return false;
+    }
+    
+    showValidationMessage(input, msgSpan, "Rental conditions are valid", true);
+    return true;
+}
+
+function validateEditInterestingFacts(input, editForm) {
+    const msgSpan = editForm.querySelector('.model-edit-facts-msg');
+    const text = input.value.trim();
+    
+    if (!text) {
+        input.classList.remove("is-valid", "is-invalid");
+        msgSpan.textContent = "";
+        return false;
+    }
+    
+    if (text.length < 10) {
+        showValidationMessage(input, msgSpan, "Interesting facts must be at least 10 characters", false);
+        return false;
+    }
+    
+    if (text.length > 300) {
+        showValidationMessage(input, msgSpan, "Interesting facts cannot exceed 300 characters", false);
+        return false;
+    }
+    
+    showValidationMessage(input, msgSpan, "Interesting facts are valid", true);
+    return true;
 }

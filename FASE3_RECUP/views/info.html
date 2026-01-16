@@ -54,9 +54,10 @@
     <!-- Brand's models -->
     <div class="container mt-4" id="brandModelSection">
         {{#brand.models}}
-        <div class="brand-card" id="{{name}}" data-modelname="{{name}}">
-            <div class="mt-3">
-                <img src="/brand/{{brand._id}}/model/{{name}}/image" alt="{{name}}">
+        <div class="brand-card" id="{{name}}" data-modelname="{{name}}" data-brandid="{{brand._id}}" style="position: relative;">
+            <!-- NORMAL VIEW -->
+            <div class="mt-3 model-display">
+                <img src="/brand/{{brand._id}}/model/{{name}}/image" alt="{{name}}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27200%27%3E%3Crect fill=%27%23f0f0f0%27 width=%27300%27 height=%27200%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 dy=%27.3em%27 fill=%27%23999%27 font-family=%27Arial%27 font-size=%2716%27%3ENo Image Available%3C/text%3E%3C/svg%3E'">
                 <br>
                 <span class="car-name">{{name}}</span>
                 <span class="car-details">{{year}} • {{HP}} HP</span>
@@ -73,6 +74,80 @@
                 <div class="button-group mb-4">
                     <a class="btn btn-sm btn-outline-primary editModelButton">Edit</a>
                     <a class="btn btn-sm btn-outline-danger deleteModelButton" data-modelname="{{name}}">Delete</a>
+                </div>
+            </div>
+
+            <!-- EDIT VIEW (hidden) -->
+            <form class="mt-3 model-edit-form d-none" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control model-edit-name" name="modelName" value="{{name}}" required>
+                    <span class="model-edit-name-msg"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Year of Release</label>
+                    <input type="number" class="form-control model-edit-year" name="year" value="{{year}}" required>
+                    <span class="model-edit-year-msg"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Horsepower</label>
+                    <input type="number" class="form-control model-edit-hp" name="HP" value="{{HP}}" required>
+                    <span class="model-edit-hp-msg"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Daily Price</label>
+                    <input type="number" class="form-control model-edit-price" name="daily_price" value="{{daily_price}}" required>
+                    <span class="model-edit-price-msg"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label>Image</label>
+                    <div class="drop-zone model-drop-zone">
+                        <span>Arrastra una imagen aquí o haz clic</span>
+                        <input type="file" name="image" class="model-image-input" accept="image/*" hidden>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label>Image Preview</label><br>
+                    <small class="model-image-preview"></small>
+                    <button type="button" class="btn btn-sm btn-outline-danger ms-2 model-remove-image">Remove Image</button>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Technical Specifications</label>
+                    <textarea class="form-control model-edit-specs" name="technical_specifications" rows="3" required>{{technical_specifications}}</textarea>
+                    <span class="model-edit-specs-msg"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Rental conditions</label>
+                    <textarea class="form-control model-edit-rental" name="rental_conditions" rows="3" required>{{rental_conditions}}</textarea>
+                    <span class="model-edit-rental-msg"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Interesting Facts</label>
+                    <textarea class="form-control model-edit-facts" name="interesting_facts" rows="3" required>{{interesting_facts}}</textarea>
+                    <span class="model-edit-facts-msg"></span>
+                </div>
+
+                <div class="button-group d-flex justify-content-between">
+                    <button type="submit" class="btn btn-dark model-save-btn">Save Changes</button>
+                    <button type="button" class="btn btn-outline-secondary model-cancel-btn">Cancel</button>
+                </div>
+            </form>
+            
+            <!-- Spinner for model edit -->
+            <div class="d-none spinner-overlay model-edit-spinner">
+                <div class="spinner-content">
+                    <div class="car-spinner-final">
+                        <div class="top-car">🏎️</div>
+                    </div>
+                    <small>Updating model...</small>
                 </div>
             </div>
         </div>
